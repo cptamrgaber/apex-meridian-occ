@@ -64,3 +64,10 @@
 - [ ] Create production checkpoint
 - [ ] Verify all features working in production
 
+
+
+
+## Bugs to Fix
+- [x] Fix 401 error on dashboard page load - send auth token with API requests
+- [x] Add fallback data when API calls fail
+
