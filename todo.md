@@ -71,3 +71,20 @@
 - [x] Fix 401 error on dashboard page load - send auth token with API requests
 - [x] Add fallback data when API calls fail
 
+
+
+
+## New Feature: ADS-B Real-Time Flight Tracking for EgyptAir
+- [x] Research and select ADS-B data provider (OpenSky Network selected - FREE)
+- [x] Create OpenSky API client library
+- [x] Create ADS-B data ingestion service
+- [x] Filter flights by EgyptAir fleet (callsign prefix: MSR/MSE)
+- [x] Implement real-time flight position tracking API
+- [x] Add flight history API (past flights from airports)
+- [ ] Add future scheduled flights (requires additional API)
+- [ ] Create flight map visualization component
+- [x] Update dashboard to show live flight data
+- [ ] Add flight details modal/panel
+- [x] Implement auto-refresh for live updates (15 seconds)
+- [ ] Store flight data in database for historical tracking
+
