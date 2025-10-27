@@ -1,43 +1,83 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import jwt from 'jsonwebtoken';
 
-export async function GET() {
-  // Mock flight data
-  const flights = [
-    {
-      id: 'FL001',
-      flightNumber: 'AM101',
-      origin: 'JFK',
-      destination: 'LAX',
-      departure: '2025-10-27T10:00:00Z',
-      arrival: '2025-10-27T13:30:00Z',
-      status: 'On Time',
-      aircraft: 'B737-800',
-      crew: ['CPT001', 'FO002', 'FA003', 'FA004']
-    },
-    {
-      id: 'FL002',
-      flightNumber: 'AM202',
-      origin: 'LAX',
-      destination: 'SFO',
-      departure: '2025-10-27T14:00:00Z',
-      arrival: '2025-10-27T15:30:00Z',
-      status: 'Delayed',
-      aircraft: 'A320',
-      crew: ['CPT005', 'FO006', 'FA007', 'FA008']
-    },
-    {
-      id: 'FL003',
-      flightNumber: 'AM303',
-      origin: 'ORD',
-      destination: 'MIA',
-      departure: '2025-10-27T11:00:00Z',
-      arrival: '2025-10-27T15:00:00Z',
-      status: 'On Time',
-      aircraft: 'B787-9',
-      crew: ['CPT009', 'FO010', 'FA011', 'FA012', 'FA013', 'FA014']
+const JWT_SECRET = process.env.JWT_SECRET || 'apex-meridian-super-secret-key';
+
+export async function GET(request: NextRequest) {
+  try {
+    // Get token from Authorization header
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
     }
-  ];
 
-  return NextResponse.json(flights);
+    const token = authHeader.substring(7);
+    const decoded = jwt.verify(token, JWT_SECRET) as any;
+    const tenant = decoded.tenant || 'DEMO';
+
+    // Try to get flights from database
+    try {
+      const { db } = await import('@/lib/db');
+      const flights = await db.getActiveFlights(tenant);
+      
+      return NextResponse.json({
+        success: true,
+        flights
+      });
+    } catch (dbError) {
+      console.log('Database not configured, using mock data');
+    }
+
+    // Fallback to mock data
+    const mockFlights = [
+      {
+        id: 1,
+        flight_number: 'AM101',
+        origin: 'JFK',
+        destination: 'LAX',
+        status: 'On Time',
+        departure: '14:30',
+        arrival: '18:45',
+        aircraft: 'B737-800',
+        gate: 'A12'
+      },
+      {
+        id: 2,
+        flight_number: 'AM202',
+        origin: 'LAX',
+        destination: 'SFO',
+        status: 'Delayed',
+        departure: '09:15',
+        arrival: '10:45',
+        aircraft: 'A320',
+        gate: 'B7'
+      },
+      {
+        id: 3,
+        flight_number: 'AM303',
+        origin: 'ORD',
+        destination: 'MIA',
+        status: 'On Time',
+        departure: '16:00',
+        arrival: '20:30',
+        aircraft: 'B787-9',
+        gate: 'C3'
+      }
+    ];
+
+    return NextResponse.json({
+      success: true,
+      flights: mockFlights
+    });
+  } catch (error) {
+    console.error('Flights error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch flights' },
+      { status: 500 }
+    );
+  }
 }
 
