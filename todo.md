@@ -8,12 +8,12 @@
 - [x] Update API routes to use database with fallback to mock data
 
 ## Phase 2: User Management
-- [ ] Create users table with roles (admin, dispatcher, crew) - DONE in schema
-- [ ] Implement proper JWT authentication - DONE
+- [x] Create users table with roles (admin, dispatcher, crew)
+- [x] Implement proper JWT authentication
 - [ ] Add user registration endpoint
 - [ ] Add user management UI (admin only)
-- [ ] Implement role-based access control (RBAC)
-- [ ] Add password hashing with bcrypt - DONE
+- [x] Implement role-based access control (RBAC)
+- [x] Add password hashing with bcrypt
 
 ## Phase 3: Real Flight Data Integration
 - [ ] Research and select flight tracking API (AviationStack/FlightAware)
