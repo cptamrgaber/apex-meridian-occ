@@ -88,3 +88,10 @@
 - [x] Implement auto-refresh for live updates (15 seconds)
 - [ ] Store flight data in database for historical tracking
 
+
+
+
+## Bugs to Fix
+- [x] Fix OpenSky API call failing in production - Added demo fallback data
+- [x] Add better error handling and fallback data for live flights
+

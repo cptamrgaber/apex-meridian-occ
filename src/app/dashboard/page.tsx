@@ -33,6 +33,7 @@ export default function DashboardPage() {
   const [user, setUser] = useState<any>(null);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
   const [loading, setLoading] = useState(true);
+  const [demoMode, setDemoMode] = useState(false);
 
   useEffect(() => {
     // Check authentication
@@ -108,6 +109,7 @@ export default function DashboardPage() {
       const data = await response.json();
       if (data.success && data.flights) {
         setLiveFlights(data.flights);
+        setDemoMode(data.demo || false);
         
         // Update stats with live flight count
         setStats(prev => ({
@@ -199,8 +201,8 @@ export default function DashboardPage() {
             </div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2 text-xs text-slate-400">
-                <Radio className="w-4 h-4 text-green-400 animate-pulse" />
-                <span>Live ADS-B</span>
+                <Radio className={`w-4 h-4 ${demoMode ? 'text-yellow-400' : 'text-green-400'} animate-pulse`} />
+                <span>{demoMode ? 'Demo Mode' : 'Live ADS-B'}</span>
                 {lastUpdate && (
                   <span className="text-slate-500">• {getTimeSinceUpdate()}</span>
                 )}
