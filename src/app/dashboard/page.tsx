@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plane, Users, AlertTriangle, Calendar, LogOut, Activity, Radio, MapPin, Clock } from 'lucide-react';
+import Sidebar from '@/components/Sidebar';
+import { Plane, Users, AlertTriangle, Calendar, Activity, Radio, MapPin, Clock } from 'lucide-react';
 
 interface Stats {
   activeFlights: number;
@@ -86,11 +87,10 @@ export default function DashboardPage() {
       }
     } catch (error) {
       console.error('Failed to fetch stats:', error);
-      // Use live flight count if available
       if (liveFlights.length > 0) {
         setStats({
           activeFlights: liveFlights.length,
-          crewOnDuty: liveFlights.length * 4, // Estimate crew
+          crewOnDuty: liveFlights.length * 4,
           alerts: 0,
           scheduledFlights: liveFlights.length * 2
         });
@@ -100,7 +100,12 @@ export default function DashboardPage() {
 
   const fetchLiveFlights = async () => {
     try {
-      const response = await fetch('/api/flights/live');
+      const token = localStorage.getItem('token');
+      const response = await fetch('/api/flights/live', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       
       if (!response.ok) {
         throw new Error('Failed to fetch live flights');
@@ -109,15 +114,7 @@ export default function DashboardPage() {
       const data = await response.json();
       if (data.success && data.flights) {
         setLiveFlights(data.flights);
-        setDemoMode(data.demo || false);
-        
-        // Update stats with live flight count
-        setStats(prev => ({
-          activeFlights: data.flights.length,
-          crewOnDuty: prev?.crewOnDuty || data.flights.length * 4,
-          alerts: prev?.alerts || 0,
-          scheduledFlights: prev?.scheduledFlights || data.flights.length * 2
-        }));
+        setDemoMode(data.demo_mode || false);
       }
     } catch (error) {
       console.error('Failed to fetch live flights:', error);
@@ -130,184 +127,113 @@ export default function DashboardPage() {
     router.push('/login');
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'in flight':
-        return 'text-green-400 bg-green-900/30';
-      case 'on ground':
-        return 'text-blue-400 bg-blue-900/30';
-      case 'delayed':
-        return 'text-yellow-400 bg-yellow-900/30';
-      case 'cancelled':
-        return 'text-red-400 bg-red-900/30';
-      default:
-        return 'text-slate-400 bg-slate-900/30';
-    }
-  };
-
-  const formatAltitude = (alt: number | null) => {
-    if (alt === null) return 'N/A';
-    return `${alt.toLocaleString()} ft`;
-  };
-
-  const formatSpeed = (speed: number | null) => {
-    if (speed === null) return 'N/A';
-    return `${speed} kts`;
-  };
-
-  const formatHeading = (heading: number | null) => {
-    if (heading === null) return 'N/A';
-    return `${Math.round(heading)}°`;
-  };
-
-  const formatPosition = (lat: number | null, lon: number | null) => {
-    if (lat === null || lon === null) return 'N/A';
-    return `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
-  };
-
-  const getTimeSinceUpdate = () => {
-    if (!lastUpdate) return '';
-    const seconds = Math.floor((Date.now() - lastUpdate.getTime()) / 1000);
-    if (seconds < 60) return `${seconds}s ago`;
-    const minutes = Math.floor(seconds / 60);
-    return `${minutes}m ago`;
-  };
-
-  if (!user || loading) {
+  if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+      <div className="min-h-screen flex items-center justify-center bg-slate-950">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mb-4"></div>
-          <div className="text-white text-lg">Loading EgyptAir Operations...</div>
+          <Plane className="w-16 h-16 text-sky-400 animate-pulse mx-auto mb-4" />
+          <p className="text-xl text-white">Loading EgyptAir Operations...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
-      {/* Header */}
-      <header className="bg-slate-800 border-b border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div className="min-h-screen flex bg-slate-950">
+      <Sidebar onLogout={handleLogout} />
+      
+      <div className="flex-1 flex flex-col">
+        {/* Header */}
+        <div className="bg-slate-900 border-b border-slate-800 p-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-blue-600 rounded-lg">
-                <Plane className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-white">Apex Meridian OCC</h1>
-                <p className="text-sm text-slate-400">EgyptAir Operations Control Center</p>
-              </div>
+            <div>
+              <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+                <Radio className="w-8 h-8 text-sky-400" />
+                Operations Control Center
+              </h1>
+              <p className="text-slate-400 mt-1">Real-time EgyptAir operations monitoring</p>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-xs text-slate-400">
-                <Radio className={`w-4 h-4 ${demoMode ? 'text-yellow-400' : 'text-green-400'} animate-pulse`} />
-                <span>{demoMode ? 'Demo Mode' : 'Live ADS-B'}</span>
+            <div className="flex items-center gap-4">
+              <div className={`px-4 py-2 rounded-lg flex items-center gap-2 ${
+                demoMode ? 'bg-yellow-500/20 text-yellow-400' : 'bg-green-500/20 text-green-400'
+              }`}>
+                <Activity className="w-4 h-4" />
+                <span className="font-medium">{demoMode ? 'Demo Mode' : 'Live ADS-B'}</span>
                 {lastUpdate && (
-                  <span className="text-slate-500">• {getTimeSinceUpdate()}</span>
+                  <span className="text-sm opacity-75">
+                    • {Math.floor((Date.now() - lastUpdate.getTime()) / 1000)}s ago
+                  </span>
                 )}
               </div>
-              <div className="text-right">
-                <p className="text-sm font-medium text-white">{user.name}</p>
-                <p className="text-xs text-slate-400">{user.role} • {user.tenant}</p>
-              </div>
-              <button
-                onClick={handleLogout}
-                className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
-                title="Logout"
-              >
-                <LogOut className="w-5 h-5 text-slate-400" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-400">Active Flights</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats?.activeFlights || 0}</p>
-                <p className="text-xs text-green-400 mt-1">Live Tracking</p>
-              </div>
-              <div className="p-3 bg-blue-900/30 rounded-lg">
-                <Plane className="w-6 h-6 text-blue-400" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-400">Crew On Duty</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats?.crewOnDuty || 0}</p>
-                <p className="text-xs text-slate-500 mt-1">Estimated</p>
-              </div>
-              <div className="p-3 bg-green-900/30 rounded-lg">
-                <Users className="w-6 h-6 text-green-400" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-400">Active Alerts</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats?.alerts || 0}</p>
-                <p className="text-xs text-slate-500 mt-1">All Clear</p>
-              </div>
-              <div className="p-3 bg-red-900/30 rounded-lg">
-                <AlertTriangle className="w-6 h-6 text-red-400" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-400">Scheduled</p>
-                <p className="text-3xl font-bold text-white mt-1">{stats?.scheduledFlights || 0}</p>
-                <p className="text-xs text-slate-500 mt-1">Today</p>
-              </div>
-              <div className="p-3 bg-purple-900/30 rounded-lg">
-                <Calendar className="w-6 h-6 text-purple-400" />
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Live Flights Table */}
-        <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-700">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-semibold text-white">Live EgyptAir Flights</h2>
-                <p className="text-sm text-slate-400 mt-1">Real-time ADS-B tracking via OpenSky Network</p>
+        {/* Content */}
+        <div className="flex-1 p-6 overflow-auto">
+          {/* Statistics */}
+          <div className="grid grid-cols-4 gap-6 mb-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-slate-400 text-sm">Active Flights</p>
+                  <p className="text-3xl font-bold text-white mt-1">{stats?.activeFlights || 0}</p>
+                  <p className="text-xs text-sky-400 mt-1">Live Tracking</p>
+                </div>
+                <Plane className="w-12 h-12 text-sky-400 opacity-20" />
               </div>
-              <div className="flex items-center space-x-2 text-sm">
-                <Activity className="w-4 h-4 text-green-400 animate-pulse" />
-                <span className="text-green-400">Live</span>
-                <span className="text-slate-500">• {liveFlights.length} aircraft</span>
+            </div>
+            
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-slate-400 text-sm">Crew On Duty</p>
+                  <p className="text-3xl font-bold text-white mt-1">{stats?.crewOnDuty || 0}</p>
+                  <p className="text-xs text-green-400 mt-1">Estimated</p>
+                </div>
+                <Users className="w-12 h-12 text-green-400 opacity-20" />
+              </div>
+            </div>
+            
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-slate-400 text-sm">Active Alerts</p>
+                  <p className="text-3xl font-bold text-white mt-1">{stats?.alerts || 0}</p>
+                  <p className="text-xs text-slate-400 mt-1">All Clear</p>
+                </div>
+                <AlertTriangle className="w-12 h-12 text-yellow-400 opacity-20" />
+              </div>
+            </div>
+            
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-slate-400 text-sm">Scheduled</p>
+                  <p className="text-3xl font-bold text-white mt-1">{stats?.scheduledFlights || 0}</p>
+                  <p className="text-xs text-blue-400 mt-1">Today</p>
+                </div>
+                <Calendar className="w-12 h-12 text-blue-400 opacity-20" />
               </div>
             </div>
           </div>
-          
-          {liveFlights.length === 0 ? (
-            <div className="px-6 py-12 text-center">
-              <Plane className="w-12 h-12 text-slate-600 mx-auto mb-4" />
-              <p className="text-slate-400 text-lg">No EgyptAir flights currently tracked</p>
-              <p className="text-slate-500 text-sm mt-2">
-                Waiting for aircraft with callsign MSR* or MSE* to appear on ADS-B
-              </p>
+
+          {/* Live Flights Table */}
+          <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+                <Plane className="w-5 h-5 text-sky-400" />
+                Live EgyptAir Flights
+              </h2>
+              <div className="flex items-center gap-2 text-sm text-green-400">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                Live
+              </div>
             </div>
-          ) : (
+            
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-slate-900/50">
+                <thead className="bg-slate-800 border-b border-slate-700">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
                       Callsign
@@ -329,61 +255,63 @@ export default function DashboardPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-700">
-                  {liveFlights.map((flight) => (
-                    <tr key={flight.id} className="hover:bg-slate-700/50 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-2">
-                          <Plane className="w-4 h-4 text-blue-400" />
-                          <div>
-                            <div className="text-sm font-medium text-white">{flight.callsign}</div>
-                            <div className="text-xs text-slate-500">{flight.icao24.toUpperCase()}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-1 text-sm text-slate-300">
-                          <MapPin className="w-3 h-3 text-slate-500" />
-                          <span>{formatPosition(flight.latitude, flight.longitude)}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-slate-300">{formatAltitude(flight.altitude_feet)}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-slate-300">{formatSpeed(flight.speed_knots)}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-slate-300">{formatHeading(flight.heading)}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(flight.status)}`}>
-                          {flight.status}
-                        </span>
+                <tbody className="divide-y divide-slate-800">
+                  {liveFlights.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="px-6 py-8 text-center text-slate-400">
+                        No live flights detected. Waiting for EgyptAir aircraft...
                       </td>
                     </tr>
-                  ))}
+                  ) : (
+                    liveFlights.map((flight) => (
+                      <tr key={flight.id} className="hover:bg-slate-800/50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-mono font-medium text-sky-400">
+                          {flight.callsign}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                          {flight.latitude?.toFixed(2)}°, {flight.longitude?.toFixed(2)}°
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                          {flight.altitude_feet?.toLocaleString() || 0} ft
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                          {flight.speed_knots?.toFixed(0) || 0} kts
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                          {flight.heading?.toFixed(0) || 0}°
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                            flight.on_ground 
+                              ? 'bg-yellow-500/20 text-yellow-400'
+                              : 'bg-green-500/20 text-green-400'
+                          }`}>
+                            {flight.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
-          )}
-        </div>
+          </div>
 
-        {/* Info Banner */}
-        <div className="mt-6 bg-blue-900/20 border border-blue-800/50 rounded-lg p-4">
-          <div className="flex items-start space-x-3">
-            <Radio className="w-5 h-5 text-blue-400 mt-0.5" />
-            <div>
-              <h3 className="text-sm font-medium text-blue-300">Real-Time ADS-B Tracking</h3>
-              <p className="text-xs text-slate-400 mt-1">
-                Flight data is sourced from OpenSky Network's crowdsourced ADS-B receivers worldwide. 
-                Updates every 15 seconds. Coverage may vary by region.
-              </p>
+          {/* Info Banner */}
+          <div className="mt-6 bg-sky-500/10 border border-sky-500/30 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <Radio className="w-5 h-5 text-sky-400 mt-0.5" />
+              <div>
+                <p className="text-sm font-medium text-sky-400">Real-Time ADS-B Tracking</p>
+                <p className="text-sm text-slate-300 mt-1">
+                  Monitoring EgyptAir fleet (MSR*/MSE* callsigns) via OpenSky Network. 
+                  Data refreshes every 15 seconds. {demoMode && 'Currently showing demo data.'}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
-
