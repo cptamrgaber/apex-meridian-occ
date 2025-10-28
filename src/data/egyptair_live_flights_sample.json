@@ -1,0 +1,162 @@
+[
+  {
+    "flight": "MSR2753",
+    "aircraft": "B738",
+    "origin": "CAI",
+    "destination": "MAD",
+    "departure": "09:22",
+    "arrival": "11:56"
+  },
+  {
+    "flight": "MSR5045",
+    "aircraft": "A332",
+    "origin": "PNR",
+    "destination": "CAI",
+    "departure": "07:17",
+    "arrival": "14:57"
+  },
+  {
+    "flight": "MSR5554",
+    "aircraft": "A332",
+    "origin": "CAI",
+    "destination": "MRA",
+    "departure": "12:43",
+    "arrival": "13:50"
+  },
+  {
+    "flight": "MSR640",
+    "aircraft": "A333",
+    "origin": "MED",
+    "destination": "CAI",
+    "departure": "12:20",
+    "arrival": "13:49"
+  },
+  {
+    "flight": "MSR668",
+    "aircraft": "B738",
+    "origin": "JED",
+    "destination": "CAI",
+    "departure": "12:44",
+    "arrival": "14:35"
+  },
+  {
+    "flight": "MSR682",
+    "aircraft": "B738",
+    "origin": "DMM",
+    "destination": "CAI",
+    "departure": "13:10",
+    "arrival": "14:40"
+  },
+  {
+    "flight": "MSR703",
+    "aircraft": "B738",
+    "origin": "CAI",
+    "destination": "MXP",
+    "departure": "11:40",
+    "arrival": "13:00"
+  },
+  {
+    "flight": "MSR725",
+    "aircraft": "B738",
+    "origin": "CAI",
+    "destination": "BRU",
+    "departure": "11:18",
+    "arrival": "13:24"
+  },
+  {
+    "flight": "MSR729",
+    "aircraft": "B738",
+    "origin": "CAI",
+    "destination": "DME",
+    "departure": "09:20",
+    "arrival": "14:35"
+  },
+  {
+    "flight": "MSR731",
+    "aircraft": "B738",
+    "origin": "CAI",
+    "destination": "BER",
+    "departure": "12:39",
+    "arrival": "14:19"
+  },
+  {
+    "flight": "MSR747",
+    "aircraft": "B738",
+    "origin": "CAI",
+    "destination": "ATH",
+    "departure": "12:54",
+    "arrival": "13:17"
+  },
+  {
+    "flight": "MSR753",
+    "aircraft": "A321",
+    "origin": "CAI",
+    "destination": "MAD",
+    "departure": "11:34",
+    "arrival": "13:39"
+  },
+  {
+    "flight": "MSR757",
+    "aircraft": "A21N",
+    "origin": "CAI",
+    "destination": "AMS",
+    "departure": "12:56",
+    "arrival": "16:36"
+  },
+  {
+    "flight": "MSR759",
+    "aircraft": "B738",
+    "origin": "CAI",
+    "destination": "CPH",
+    "departure": "11:48",
+    "arrival": "13:52"
+  },
+  {
+    "flight": "MSR761",
+    "aircraft": "A20N",
+    "origin": "LXR",
+    "destination": "LHR",
+    "departure": "10:15",
+    "arrival": "12:28"
+  },
+  {
+    "flight": "MSR773",
+    "aircraft": "A20N",
+    "origin": "CAI",
+    "destination": "ZRH",
+    "departure": "11:26",
+    "arrival": "12:49"
+  },
+  {
+    "flight": "MSR777",
+    "aircraft": "B77W",
+    "origin": "CAI",
+    "destination": "LHR",
+    "departure": "11:10",
+    "arrival": "12:09"
+  },
+  {
+    "flight": "MSR781",
+    "aircraft": "A321",
+    "origin": "CAI",
+    "destination": "MAN",
+    "departure": "10:33",
+    "arrival": "12:19"
+  },
+  {
+    "flight": "MSR784",
+    "aircraft": "A20N",
+    "origin": "LHR",
+    "destination": "CAI",
+    "departure": "10:11",
+    "arrival": "16:30"
+  },
+  {
+    "flight": "MSR785",
+    "aircraft": "A21N",
+    "origin": "CAI",
+    "destination": "FRA",
+    "departure": "12:29",
+    "arrival": "14:01"
+  }
+]

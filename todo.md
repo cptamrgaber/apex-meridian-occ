@@ -114,3 +114,15 @@
 - [ ] Add routes/network visualization
 - [ ] Add data refresh/sync mechanism
 
+
+
+
+## Data Enrichment from Online Sources
+- [ ] Search for complete EgyptAir fleet data (planespotters.net, airfleets.net)
+- [ ] Get aircraft serial numbers (MSN) and configurations
+- [ ] Find flight schedules with departure/arrival times
+- [ ] Get real-time ADS-B data for current flights
+- [ ] Verify and update route information
+- [ ] Add missing aircraft details (age, seat configuration)
+- [ ] Integrate findings into database
+
