@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
       { flight: 'MSR781', origin: 'CAI', destination: 'MAN', departure: '10:33', arrival: '14:19', aircraft: 'A321' },
     ];
 
-    const roster = [];
+    const roster: any[] = [];
     flights.forEach((flight, flightIdx) => {
       roles.forEach((role, roleIdx) => {
         roster.push({
