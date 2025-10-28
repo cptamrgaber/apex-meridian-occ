@@ -1,0 +1,272 @@
+[
+  {
+    "iata_code": "CAI",
+    "icao_code": "HECA",
+    "airport_name": "Cairo International Airport",
+    "city": "Cairo",
+    "country": "Egypt",
+    "region": "Africa",
+    "classification": "Hub"
+  },
+  {
+    "iata_code": "HBE",
+    "icao_code": "HEBA",
+    "airport_name": "Borg El Arab Airport",
+    "city": "Alexandria",
+    "country": "Egypt",
+    "region": "Africa",
+    "classification": "Focus City"
+  },
+  {
+    "iata_code": "SSH",
+    "icao_code": "HESH",
+    "airport_name": "Sharm El Sheikh International Airport",
+    "city": "Sharm El Sheikh",
+    "country": "Egypt",
+    "region": "Africa",
+    "classification": "Focus City"
+  },
+  {
+    "iata_code": "LXR",
+    "icao_code": "HELX",
+    "airport_name": "Luxor International Airport",
+    "city": "Luxor",
+    "country": "Egypt",
+    "region": "Africa",
+    "classification": "Domestic"
+  },
+  {
+    "iata_code": "HRG",
+    "icao_code": "HERG",
+    "airport_name": "Hurghada International Airport",
+    "city": "Hurghada",
+    "country": "Egypt",
+    "region": "Africa",
+    "classification": "Domestic"
+  },
+  {
+    "iata_code": "ASW",
+    "icao_code": "HESN",
+    "airport_name": "Aswan International Airport",
+    "city": "Aswan",
+    "country": "Egypt",
+    "region": "Africa",
+    "classification": "Domestic"
+  },
+  {
+    "iata_code": "ADD",
+    "icao_code": "HAAB",
+    "airport_name": "Addis Ababa Bole International Airport",
+    "city": "Addis Ababa",
+    "country": "Ethiopia",
+    "region": "Africa",
+    "classification": "International"
+  },
+  {
+    "iata_code": "ACC",
+    "icao_code": "DGAA",
+    "airport_name": "Kotoka International Airport",
+    "city": "Accra",
+    "country": "Ghana",
+    "region": "Africa",
+    "classification": "International"
+  },
+  {
+    "iata_code": "NBO",
+    "icao_code": "HKJK",
+    "airport_name": "Jomo Kenyatta International Airport",
+    "city": "Nairobi",
+    "country": "Kenya",
+    "region": "Africa",
+    "classification": "International"
+  },
+  {
+    "iata_code": "LOS",
+    "icao_code": "DNMM",
+    "airport_name": "Murtala Muhammed International Airport",
+    "city": "Lagos",
+    "country": "Nigeria",
+    "region": "Africa",
+    "classification": "International"
+  },
+  {
+    "iata_code": "KRT",
+    "icao_code": "HSSS",
+    "airport_name": "Khartoum International Airport",
+    "city": "Khartoum",
+    "country": "Sudan",
+    "region": "Africa",
+    "classification": "International"
+  },
+  {
+    "iata_code": "YYZ",
+    "icao_code": "CYYZ",
+    "airport_name": "Toronto Pearson International Airport",
+    "city": "Toronto",
+    "country": "Canada",
+    "region": "Americas",
+    "classification": "International"
+  },
+  {
+    "iata_code": "JFK",
+    "icao_code": "KJFK",
+    "airport_name": "John F. Kennedy International Airport",
+    "city": "New York",
+    "country": "United States",
+    "region": "Americas",
+    "classification": "International"
+  },
+  {
+    "iata_code": "PEK",
+    "icao_code": "ZBAA",
+    "airport_name": "Beijing Capital International Airport",
+    "city": "Beijing",
+    "country": "China",
+    "region": "Asia",
+    "classification": "International"
+  },
+  {
+    "iata_code": "BOM",
+    "icao_code": "VABB",
+    "airport_name": "Chhatrapati Shivaji Maharaj International Airport",
+    "city": "Mumbai",
+    "country": "India",
+    "region": "Asia",
+    "classification": "International"
+  },
+  {
+    "iata_code": "BKK",
+    "icao_code": "VTBS",
+    "airport_name": "Suvarnabhumi Airport",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "region": "Asia",
+    "classification": "International"
+  },
+  {
+    "iata_code": "VIE",
+    "icao_code": "LOWW",
+    "airport_name": "Vienna International Airport",
+    "city": "Vienna",
+    "country": "Austria",
+    "region": "Europe",
+    "classification": "International"
+  },
+  {
+    "iata_code": "CDG",
+    "icao_code": "LFPG",
+    "airport_name": "Charles de Gaulle Airport",
+    "city": "Paris",
+    "country": "France",
+    "region": "Europe",
+    "classification": "International"
+  },
+  {
+    "iata_code": "FRA",
+    "icao_code": "EDDF",
+    "airport_name": "Frankfurt Airport",
+    "city": "Frankfurt",
+    "country": "Germany",
+    "region": "Europe",
+    "classification": "International"
+  },
+  {
+    "iata_code": "ATH",
+    "icao_code": "LGAV",
+    "airport_name": "Athens International Airport",
+    "city": "Athens",
+    "country": "Greece",
+    "region": "Europe",
+    "classification": "International"
+  },
+  {
+    "iata_code": "FCO",
+    "icao_code": "LIRF",
+    "airport_name": "Leonardo da Vinci Airport",
+    "city": "Rome",
+    "country": "Italy",
+    "region": "Europe",
+    "classification": "International"
+  },
+  {
+    "iata_code": "MAD",
+    "icao_code": "LEMD",
+    "airport_name": "Adolfo Su\u00e1rez Madrid\u2013Barajas Airport",
+    "city": "Madrid",
+    "country": "Spain",
+    "region": "Europe",
+    "classification": "International"
+  },
+  {
+    "iata_code": "LHR",
+    "icao_code": "EGLL",
+    "airport_name": "London Heathrow Airport",
+    "city": "London",
+    "country": "United Kingdom",
+    "region": "Europe",
+    "classification": "International"
+  },
+  {
+    "iata_code": "AMM",
+    "icao_code": "OJAI",
+    "airport_name": "Queen Alia International Airport",
+    "city": "Amman",
+    "country": "Jordan",
+    "region": "Middle East",
+    "classification": "International"
+  },
+  {
+    "iata_code": "KWI",
+    "icao_code": "OKBK",
+    "airport_name": "Kuwait International Airport",
+    "city": "Kuwait City",
+    "country": "Kuwait",
+    "region": "Middle East",
+    "classification": "International"
+  },
+  {
+    "iata_code": "BEY",
+    "icao_code": "OLBA",
+    "airport_name": "Rafic Hariri International Airport",
+    "city": "Beirut",
+    "country": "Lebanon",
+    "region": "Middle East",
+    "classification": "International"
+  },
+  {
+    "iata_code": "DOH",
+    "icao_code": "OTHH",
+    "airport_name": "Hamad International Airport",
+    "city": "Doha",
+    "country": "Qatar",
+    "region": "Middle East",
+    "classification": "International"
+  },
+  {
+    "iata_code": "RUH",
+    "icao_code": "OERK",
+    "airport_name": "King Khalid International Airport",
+    "city": "Riyadh",
+    "country": "Saudi Arabia",
+    "region": "Middle East",
+    "classification": "International"
+  },
+  {
+    "iata_code": "JED",
+    "icao_code": "OEJN",
+    "airport_name": "King Abdulaziz International Airport",
+    "city": "Jeddah",
+    "country": "Saudi Arabia",
+    "region": "Middle East",
+    "classification": "International"
+  },
+  {
+    "iata_code": "DXB",
+    "icao_code": "OMDB",
+    "airport_name": "Dubai International Airport",
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "region": "Middle East",
+    "classification": "International"
+  }
+]

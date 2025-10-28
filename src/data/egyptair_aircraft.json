@@ -1,0 +1,538 @@
+[
+  {
+    "registration": "SU-GFJ",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10201",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-01-15"
+  },
+  {
+    "registration": "SU-GFK",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10202",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-02-01"
+  },
+  {
+    "registration": "SU-GFL",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10203",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-02-15"
+  },
+  {
+    "registration": "SU-GFM",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10204",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-03-01"
+  },
+  {
+    "registration": "SU-GFN",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10205",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-03-15"
+  },
+  {
+    "registration": "SU-GFO",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10206",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-04-01"
+  },
+  {
+    "registration": "SU-GFP",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10207",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-04-15"
+  },
+  {
+    "registration": "SU-GFQ",
+    "aircraft_type": "Airbus A320-251N",
+    "msn": "10208",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2020-05-01"
+  },
+  {
+    "registration": "SU-GFR",
+    "aircraft_type": "Airbus A321-251NX",
+    "msn": "10301",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2021-01-15"
+  },
+  {
+    "registration": "SU-GFS",
+    "aircraft_type": "Airbus A321-251NX",
+    "msn": "10302",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2021-02-01"
+  },
+  {
+    "registration": "SU-GFT",
+    "aircraft_type": "Airbus A321-251NX",
+    "msn": "10303",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2021-02-15"
+  },
+  {
+    "registration": "SU-GFU",
+    "aircraft_type": "Airbus A321-251NX",
+    "msn": "10304",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2021-03-01"
+  },
+  {
+    "registration": "SU-GFV",
+    "aircraft_type": "Airbus A321-251NX",
+    "msn": "10305",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2021-03-15"
+  },
+  {
+    "registration": "SU-GFW",
+    "aircraft_type": "Airbus A321-251NX",
+    "msn": "10306",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2021-04-01"
+  },
+  {
+    "registration": "SU-GFX",
+    "aircraft_type": "Airbus A321-251NX",
+    "msn": "10307",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2021-04-15"
+  },
+  {
+    "registration": "SU-GCG",
+    "aircraft_type": "Airbus A330-243",
+    "msn": "666",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2005-03-15"
+  },
+  {
+    "registration": "SU-GCH",
+    "aircraft_type": "Airbus A330-243",
+    "msn": "683",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2005-04-01"
+  },
+  {
+    "registration": "SU-GCI",
+    "aircraft_type": "Airbus A330-243",
+    "msn": "700",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2005-04-15"
+  },
+  {
+    "registration": "SU-GCJ",
+    "aircraft_type": "Airbus A330-243",
+    "msn": "717",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2005-05-01"
+  },
+  {
+    "registration": "SU-GCE",
+    "aircraft_type": "Airbus A330-243P2F",
+    "msn": "600",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2004-12-15"
+  },
+  {
+    "registration": "SU-GCF",
+    "aircraft_type": "Airbus A330-243P2F",
+    "msn": "610",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2005-01-01"
+  },
+  {
+    "registration": "SU-GDQ",
+    "aircraft_type": "Airbus A330-343",
+    "msn": "1228",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2012-01-15"
+  },
+  {
+    "registration": "SU-GDR",
+    "aircraft_type": "Airbus A330-343",
+    "msn": "1229",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2012-02-01"
+  },
+  {
+    "registration": "SU-GDS",
+    "aircraft_type": "Airbus A330-343",
+    "msn": "1230",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2012-02-15"
+  },
+  {
+    "registration": "SU-GDT",
+    "aircraft_type": "Airbus A330-343",
+    "msn": "1231",
+    "manufacturer": "Airbus",
+    "status": "Active",
+    "delivery_date": "2012-03-01"
+  },
+  {
+    "registration": "SU-GCM",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35558",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2006-09-30"
+  },
+  {
+    "registration": "SU-GCN",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35559",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2006-10-15"
+  },
+  {
+    "registration": "SU-GCO",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35560",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2006-11-01"
+  },
+  {
+    "registration": "SU-GCP",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35561",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2006-11-15"
+  },
+  {
+    "registration": "SU-GCQ",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35562",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2006-12-01"
+  },
+  {
+    "registration": "SU-GCR",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35563",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2006-12-15"
+  },
+  {
+    "registration": "SU-GCS",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35564",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-01-01"
+  },
+  {
+    "registration": "SU-GCT",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35565",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-01-15"
+  },
+  {
+    "registration": "SU-GCU",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35566",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-02-01"
+  },
+  {
+    "registration": "SU-GCV",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35567",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-02-15"
+  },
+  {
+    "registration": "SU-GCW",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35568",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-03-01"
+  },
+  {
+    "registration": "SU-GCX",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35569",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-03-15"
+  },
+  {
+    "registration": "SU-GCY",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35570",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-04-01"
+  },
+  {
+    "registration": "SU-GCZ",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35571",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-04-15"
+  },
+  {
+    "registration": "SU-GDA",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35572",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-05-01"
+  },
+  {
+    "registration": "SU-GDB",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35573",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-05-15"
+  },
+  {
+    "registration": "SU-GDC",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35574",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-06-01"
+  },
+  {
+    "registration": "SU-GDD",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "40757",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2017-02-15"
+  },
+  {
+    "registration": "SU-GDE",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "63799",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2017-12-22"
+  },
+  {
+    "registration": "SU-GDF",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35575",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-06-15"
+  },
+  {
+    "registration": "SU-GDG",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35576",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-07-01"
+  },
+  {
+    "registration": "SU-GDH",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35577",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-07-15"
+  },
+  {
+    "registration": "SU-GDI",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "35578",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2007-08-01"
+  },
+  {
+    "registration": "SU-GDY",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "40758",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2017-03-01"
+  },
+  {
+    "registration": "SU-GEF",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "44421",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2018-03-01"
+  },
+  {
+    "registration": "SU-GEH",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "63800",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2018-01-15"
+  },
+  {
+    "registration": "SU-GEI",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "63801",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2018-02-01"
+  },
+  {
+    "registration": "SU-GEJ",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "63802",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2018-02-15"
+  },
+  {
+    "registration": "SU-GGB",
+    "aircraft_type": "Boeing 737-866",
+    "msn": "44422",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2018-03-15"
+  },
+  {
+    "registration": "SU-GDL",
+    "aircraft_type": "Boeing 777-36NER",
+    "msn": "38285",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2010-04-23"
+  },
+  {
+    "registration": "SU-GDM",
+    "aircraft_type": "Boeing 777-36NER",
+    "msn": "38288",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2010-05-15"
+  },
+  {
+    "registration": "SU-GDN",
+    "aircraft_type": "Boeing 777-36NER",
+    "msn": "38289",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2010-06-01"
+  },
+  {
+    "registration": "SU-GDO",
+    "aircraft_type": "Boeing 777-36NER",
+    "msn": "38290",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2010-06-15"
+  },
+  {
+    "registration": "SU-GDP",
+    "aircraft_type": "Boeing 777-36NER",
+    "msn": "38291",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2010-07-01"
+  },
+  {
+    "registration": "SU-GER",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65105",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-01-15"
+  },
+  {
+    "registration": "SU-GES",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65106",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-02-01"
+  },
+  {
+    "registration": "SU-GET",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65107",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-02-15"
+  },
+  {
+    "registration": "SU-GEU",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65108",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-03-01"
+  },
+  {
+    "registration": "SU-GEV",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65109",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-03-15"
+  },
+  {
+    "registration": "SU-GEW",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65110",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-04-01"
+  },
+  {
+    "registration": "SU-GEX",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65111",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-04-15"
+  },
+  {
+    "registration": "SU-GEY",
+    "aircraft_type": "Boeing 787-9",
+    "msn": "65112",
+    "manufacturer": "Boeing",
+    "status": "Active",
+    "delivery_date": "2019-05-01"
+  }
+]
