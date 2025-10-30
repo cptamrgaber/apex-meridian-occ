@@ -178,3 +178,18 @@
 - [ ] End-to-end testing
 - [ ] Production deployment checklist
 
+
+
+
+## USER REQUEST: Deep Search for Official EgyptAir Data (Oct 2025)
+- [ ] Search official EgyptAir website for current fleet
+- [ ] Search planespotters.net for complete fleet list
+- [ ] Search airfleets.net for aircraft details
+- [ ] Search FlightRadar24 for active routes
+- [ ] Verify aircraft registrations and types
+- [ ] Find any missing aircraft from current database
+- [ ] Update fleet database with latest information
+- [ ] Update routes database with current schedules
+- [ ] Verify aircraft status (active, stored, retired)
+- [ ] Add new aircraft if any delivered recently
+

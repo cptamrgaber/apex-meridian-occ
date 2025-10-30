@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Plane, Users, Calendar, BarChart3, Settings, LogOut, Radio, MapPin } from 'lucide-react';
+import { Plane, Users, Calendar, BarChart3, Settings, LogOut, Radio, MapPin, CalendarDays } from 'lucide-react';
 
 interface SidebarProps {
   onLogout: () => void;
@@ -13,6 +13,7 @@ export default function Sidebar({ onLogout }: SidebarProps) {
 
   const navItems = [
     { href: '/dashboard', icon: Radio, label: 'Operations' },
+    { href: '/schedule', icon: CalendarDays, label: 'Schedule' },
     { href: '/roster', icon: Calendar, label: 'Roster' },
     { href: '/crew', icon: Users, label: 'Crew' },
     { href: '/fleet', icon: Plane, label: 'Fleet' },
