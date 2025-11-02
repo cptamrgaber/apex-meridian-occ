@@ -106,6 +106,11 @@ export default function Schedule() {
     landed: flights.filter((f) => f.status === "Landed").length,
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    router.push('/login');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
@@ -116,7 +121,7 @@ export default function Schedule() {
 
   return (
     <div className="flex min-h-screen bg-slate-950">
-      <Sidebar />
+      <Sidebar onLogout={handleLogout} />
       <div className="flex-1 p-8">
         {/* Header */}
         <div className="mb-8">
