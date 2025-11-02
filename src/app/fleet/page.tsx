@@ -66,10 +66,15 @@ export default function FleetManagement() {
 
   const aircraftTypes = [...new Set(fleet.map(ac => ac.type))];
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    router.push('/login');
+  };
+
   if (loading) {
     return (
       <div className="flex h-screen bg-slate-950">
-        <Sidebar />
+        <Sidebar onLogout={handleLogout} />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-slate-400">Loading fleet data...</div>
         </div>
@@ -79,7 +84,7 @@ export default function FleetManagement() {
 
   return (
     <div className="flex h-screen bg-slate-950">
-      <Sidebar />
+      <Sidebar onLogout={handleLogout} />
       
       <div className="flex-1 overflow-auto">
         <div className="p-8">
