@@ -21,6 +21,7 @@ export default function Sidebar({ onLogout }: SidebarProps) {
     { href: '/weather', icon: Cloud, label: 'Weather' },
     { href: '/crew', icon: Users, label: 'Crew' },
     { href: '/fleet', icon: Plane, label: 'Fleet' },
+    { href: '/fleet-map', icon: MapPin, label: 'Fleet Map' },
     { href: '/routes', icon: MapPin, label: 'Routes' },
     { href: '/analytics', icon: BarChart3, label: 'Analytics' },
     { href: '/settings', icon: Settings, label: 'Settings' },
