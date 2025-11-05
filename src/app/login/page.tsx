@@ -45,80 +45,67 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center grid-pattern relative overflow-hidden">
+    <div className="min-h-screen grid-pattern relative overflow-hidden flex items-center justify-center">
       {/* Scan line effect */}
       <div className="scan-line absolute inset-0 pointer-events-none"></div>
       
-      {/* Main login container */}
-      <div className="w-full max-w-md px-4 relative z-10">
-        {/* Top logo section */}
+      {/* Small logo in top-left corner */}
+      <div className="absolute top-4 left-4 z-20">
+        <img
+          src="/images/apex-meridian-logo.png"
+          alt="Apex-Meridian"
+          className="h-8 opacity-80"
+        />
+      </div>
+
+      {/* Compact centered login box */}
+      <div className="w-full max-w-sm px-4 relative z-10">
+        {/* Title */}
         <div className="text-center mb-8">
-          {/* Apex-Meridian Logo */}
-          <div className="mb-6">
-            <img
-              src="/images/apex-meridian-logo.png"
-              alt="Apex-Meridian"
-              className="h-16 mx-auto neon-box-glow"
-            />
-          </div>
-          
-          {/* Title with neon effect */}
-          <h1 className="text-page-title neon-glow mb-2">
-            OPERATIONS CONTROL CENTER
+          <h1 className="text-2xl font-bold neon-glow mb-2 uppercase tracking-wider">
+            Operations Control Center
           </h1>
-          
-          {/* Decorative line */}
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="h-px w-20 bg-gradient-to-r from-transparent to-cyan-500"></div>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-500"></div>
             <div className="status-indicator"></div>
-            <div className="h-px w-20 bg-gradient-to-l from-transparent to-cyan-500"></div>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-500"></div>
           </div>
-          
-          <p className="text-sm text-cyan-400 uppercase tracking-widest">
-            Premium Airline Operations
+          <p className="text-xs text-cyan-400 uppercase tracking-widest">
+            EgyptAir Operations
           </p>
-          
-          {/* EgyptAir Logo */}
-          <div className="mt-6">
-            <img
-              src="/images/egyptair-logo.png"
-              alt="EgyptAir"
-              className="h-12 mx-auto opacity-80"
-            />
-          </div>
         </div>
 
-        {/* Login form card */}
-        <div className="command-card neon-border p-8 mb-6">
-          <form onSubmit={handleLogin} className="space-y-6">
+        {/* Compact login form card */}
+        <div className="command-card neon-border p-6 mb-4">
+          <form onSubmit={handleLogin} className="space-y-4">
             {/* Username field */}
             <div>
-              <label htmlFor="username" className="block text-sm font-semibold text-cyan-400 mb-2 uppercase tracking-wider">
-                &gt; USERNAME
+              <label htmlFor="username" className="block text-xs font-semibold text-cyan-400 mb-1.5 uppercase tracking-wider">
+                &gt; Username
               </label>
               <input
                 id="username"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="command-input w-full text-lg"
-                placeholder="Enter your username"
+                className="command-input w-full"
+                placeholder="Enter username"
                 required
               />
             </div>
 
             {/* Password field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-cyan-400 mb-2 uppercase tracking-wider">
-                &gt; PASSWORD
+              <label htmlFor="password" className="block text-xs font-semibold text-cyan-400 mb-1.5 uppercase tracking-wider">
+                &gt; Password
               </label>
               <input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="command-input w-full text-lg"
-                placeholder="Enter your password"
+                className="command-input w-full"
+                placeholder="Enter password"
                 required
               />
             </div>
@@ -126,7 +113,7 @@ export default function Login() {
             {/* Submit button */}
             <button
               type="submit"
-              className="command-button w-full py-3 text-lg"
+              className="command-button w-full py-2.5 text-sm"
             >
               ACCESS SYSTEM &gt;
             </button>
@@ -134,11 +121,11 @@ export default function Login() {
         </div>
 
         {/* System status indicator */}
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-cyan-500/30 rounded">
+        <div className="text-center mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-cyan-500/30 rounded text-xs">
             <div className="status-indicator"></div>
-            <span className="text-sm text-cyan-400 uppercase tracking-wider">
-              SYSTEM STATUS: ONLINE
+            <span className="text-cyan-400 uppercase tracking-wider">
+              System Online
             </span>
           </div>
         </div>
@@ -147,62 +134,62 @@ export default function Login() {
         <div className="text-center">
           <button
             onClick={() => setShowCredentials(!showCredentials)}
-            className="text-sm text-cyan-500 hover:text-cyan-300 uppercase tracking-wider transition-colors"
+            className="text-xs text-cyan-500 hover:text-cyan-300 uppercase tracking-wider transition-colors"
           >
-            {showCredentials ? "▼ HIDE" : "▶"} DEMO CREDENTIALS
+            {showCredentials ? "▼ Hide" : "▶"} Demo Credentials
           </button>
         </div>
 
         {/* Credentials list */}
         {showCredentials && (
-          <div className="mt-4 command-card neon-border p-6">
-            <h3 className="text-sm font-bold text-cyan-400 mb-4 uppercase tracking-wider">
-              AUTHORIZED PERSONNEL:
+          <div className="mt-3 command-card neon-border p-4">
+            <h3 className="text-xs font-bold text-cyan-400 mb-3 uppercase tracking-wider">
+              Authorized Personnel:
             </h3>
-            <div className="space-y-3 text-sm font-mono">
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+            <div className="space-y-2 text-xs font-mono">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">Admin:</span>
                 <span className="text-cyan-500">admin / admin123</span>
               </div>
               
-              <div className="text-cyan-400 text-xs uppercase tracking-wider mt-4 mb-2">
+              <div className="text-cyan-400 text-[10px] uppercase tracking-wider mt-3 mb-1.5">
                 Chief Pilots:
               </div>
               
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">A320:</span>
                 <span className="text-cyan-500">chief.yasser / yasser123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">A330:</span>
                 <span className="text-cyan-500">chief.mersal / mersal123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">B737:</span>
                 <span className="text-cyan-500">chief.sherif / sherif123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">B787:</span>
                 <span className="text-cyan-500">chief.khaled / khaled123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">B777:</span>
                 <span className="text-cyan-500">chief.tarek / tarek123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">A350:</span>
                 <span className="text-cyan-500">chief.elyan / elyan123</span>
               </div>
               
-              <div className="text-cyan-400 text-xs uppercase tracking-wider mt-4 mb-2">
+              <div className="text-cyan-400 text-[10px] uppercase tracking-wider mt-3 mb-1.5">
                 Operations:
               </div>
               
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">Pilot:</span>
                 <span className="text-cyan-500">pilot.ibrahim / ibrahim123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-2">
+              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
                 <span className="text-cyan-300">Dispatcher:</span>
                 <span className="text-cyan-500">dispatcher / dispatch123</span>
               </div>
@@ -211,8 +198,8 @@ export default function Login() {
         )}
 
         {/* Footer */}
-        <div className="mt-8 text-center text-xs text-cyan-700 uppercase tracking-wider">
-          © 2025 Apex-Meridian LLC. All rights reserved.
+        <div className="mt-6 text-center text-[10px] text-cyan-700 uppercase tracking-wider">
+          © 2025 Apex-Meridian LLC
         </div>
       </div>
     </div>

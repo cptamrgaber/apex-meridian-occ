@@ -616,3 +616,13 @@
 - [ ] Update all other pages with theme
 - [ ] Deploy and verify beautiful new design
 
+
+
+
+## USER REQUEST: Fix Login Page Layout
+- [x] Move Apex-Meridian logo to top-left corner (small size)
+- [x] Make login box compact and centered
+- [x] Remove large centered logo layout
+- [x] Keep Tech Command Center theme colors and styling
+- [ ] Deploy and verify new layout
+
