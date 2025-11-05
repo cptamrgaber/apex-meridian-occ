@@ -401,13 +401,16 @@
 - [x] Add aircraft assignment interface
 
 ### Phase 4: Monthly Roster Generation
-- [ ] Create roster generation algorithm
-- [ ] Implement duty time limit calculations
-- [ ] Add rest period compliance checks
-- [ ] Create roster template system
-- [ ] Build roster editor interface
-- [ ] Add drag-and-drop pilot assignment
-- [ ] Implement roster conflict detection
+- [ ] Create roster generation algorithm with fair distribution
+- [ ] Implement equal flight hours distribution (min 60h per pilot)
+- [ ] Implement equal duty hours distribution (min 120h per pilot)
+- [ ] Add equal layover distribution logic
+- [ ] Add equal night flights distribution logic
+- [ ] Add equal domestic/international flights distribution
+- [ ] Implement duty time limit calculations (OM-A compliance)
+- [ ] Add rest period compliance checks (minimum rest between flights)
+- [ ] Create flight assignment optimization engine
+- [ ] Add roster conflict detection
 - [ ] Add roster approval workflow
 - [ ] Create roster export (PDF, Excel)
 - [ ] Add roster email notifications to pilots
