@@ -2,7 +2,50 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plane } from 'lucide-react';
+import { Plane, Lock, User, AlertCircle } from 'lucide-react';
+
+// Mock users for demonstration
+const MOCK_USERS = [
+  {
+    id: 1,
+    username: 'admin',
+    password: 'admin123',
+    role: 'admin',
+    name: 'System Administrator',
+  },
+  {
+    id: 2,
+    username: 'chief.hassan',
+    password: 'hassan123',
+    role: 'chief_pilot',
+    name: 'Capt. Ahmed Hassan',
+    aircraft_type: 'A320',
+    chief_pilot_id: 1,
+  },
+  {
+    id: 3,
+    username: 'chief.mohamed',
+    password: 'mohamed123',
+    role: 'chief_pilot',
+    name: 'Capt. Mohamed Ali',
+    aircraft_type: 'A330',
+    chief_pilot_id: 2,
+  },
+  {
+    id: 4,
+    username: 'pilot.ibrahim',
+    password: 'ibrahim123',
+    role: 'pilot',
+    name: 'Capt. Youssef Ibrahim',
+  },
+  {
+    id: 5,
+    username: 'dispatcher',
+    password: 'dispatch123',
+    role: 'dispatcher',
+    name: 'Flight Dispatcher',
+  },
+];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,103 +54,164 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-      const data = await response.json();
+    // Find user
+    const user = MOCK_USERS.find(
+      u => u.username === username && u.password === password
+    );
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
-      }
-
-      // Store token in localStorage
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-
-      // Redirect to dashboard
-      router.push('/dashboard');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
-    } finally {
+    if (!user) {
+      setError('Invalid username or password');
       setLoading(false);
+      return;
     }
+
+    // Store user data in localStorage (in production, use secure tokens)
+    localStorage.setItem('token', 'mock-jwt-token');
+    localStorage.setItem('user', JSON.stringify(user));
+
+    // Redirect based on role
+    if (user.role === 'chief_pilot') {
+      router.push('/chief-pilot');
+    } else if (user.role === 'admin') {
+      router.push('/dashboard');
+    } else if (user.role === 'pilot') {
+      router.push('/roster'); // Pilot view of their own roster
+    } else if (user.role === 'dispatcher') {
+      router.push('/dashboard');
+    }
+
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      <div className="w-full max-w-md p-8 space-y-6 bg-slate-800/50 backdrop-blur-xl rounded-2xl border border-slate-700 shadow-2xl">
-        <div className="text-center space-y-2">
-          <div className="flex justify-center">
-            <div className="p-3 bg-blue-600 rounded-xl">
-              <Plane className="w-8 h-8 text-white" />
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Logo and Title */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4">
+            <Plane className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">Apex Meridian</h1>
-          <p className="text-slate-400">Operations Control Center</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Apex Meridian® OCC
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Operations Control Center
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-slate-300 mb-2">
-              Username
-            </label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="demo_admin"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-2">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="••••••••"
-              required
-            />
-          </div>
+        {/* Login Form */}
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 p-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            Sign In
+          </h2>
 
           {error && (
-            <div className="p-3 bg-red-900/50 border border-red-700 rounded-lg text-red-200 text-sm">
-              {error}
+            <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900"
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
+          <form onSubmit={handleLogin} className="space-y-5">
+            {/* Username */}
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Username
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <User className="w-5 h-5 text-gray-400" />
+                </div>
+                <input
+                  id="username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter your username"
+                  required
+                />
+              </div>
+            </div>
 
-        <div className="pt-4 border-t border-slate-700">
-          <p className="text-xs text-slate-500 text-center">
-            Demo credentials: <span className="text-slate-400">demo_admin / password123</span>
-          </p>
+            {/* Password */}
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="w-5 h-5 text-gray-400" />
+                </div>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  Signing in...
+                </>
+              ) : (
+                'Sign In'
+              )}
+            </button>
+          </form>
+
+          {/* Demo Credentials */}
+          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-3 font-medium">Demo Credentials:</p>
+            <div className="space-y-2 text-xs text-gray-600 dark:text-gray-400">
+              <div className="flex justify-between">
+                <span className="font-medium">Admin:</span>
+                <span className="font-mono">admin / admin123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Chief Pilot (A320):</span>
+                <span className="font-mono">chief.hassan / hassan123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Chief Pilot (A330):</span>
+                <span className="font-mono">chief.mohamed / mohamed123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Pilot:</span>
+                <span className="font-mono">pilot.ibrahim / ibrahim123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Dispatcher:</span>
+                <span className="font-mono">dispatcher / dispatch123</span>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+          © 2025 Apex-Meridian LLC. All rights reserved.
+        </p>
       </div>
     </div>
   );

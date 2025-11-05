@@ -401,15 +401,15 @@
 - [x] Add aircraft assignment interface
 
 ### Phase 4: Monthly Roster Generation
-- [ ] Create roster generation algorithm with fair distribution
-- [ ] Implement equal flight hours distribution (min 60h per pilot)
-- [ ] Implement equal duty hours distribution (min 120h per pilot)
-- [ ] Add equal layover distribution logic
-- [ ] Add equal night flights distribution logic
-- [ ] Add equal domestic/international flights distribution
-- [ ] Implement duty time limit calculations (OM-A compliance)
-- [ ] Add rest period compliance checks (minimum rest between flights)
-- [ ] Create flight assignment optimization engine
+- [x] Create roster generation algorithm with fair distribution
+- [x] Implement equal flight hours distribution (min 60h per pilot)
+- [x] Implement equal duty hours distribution (min 120h per pilot)
+- [x] Add equal layover distribution logic
+- [x] Add equal night flights distribution logic
+- [x] Add equal domestic/international flights distribution
+- [x] Implement duty time limit calculations (OM-A compliance)
+- [x] Add rest period compliance checks (minimum rest between flights)
+- [x] Create flight assignment optimization engine
 - [ ] Add roster conflict detection
 - [ ] Add roster approval workflow
 - [ ] Create roster export (PDF, Excel)
@@ -434,4 +434,28 @@
 - [ ] Verify OM-A compliance rules in roster
 - [ ] Test on mobile devices
 - [ ] Deploy to production
+
+
+
+
+## USER REQUEST: Documentation and Login System
+
+### Documentation
+- [ ] Create comprehensive roster algorithm documentation
+- [ ] Document fairness scoring system
+- [ ] Document OM-A compliance constraints
+- [ ] Add usage guide for chief pilots
+- [ ] Create API documentation for roster generation
+
+### Login System with Role-Based Access
+- [ ] Create login page UI
+- [ ] Implement authentication system
+- [ ] Add role-based authorization (admin, chief_pilot, pilot, dispatcher)
+- [ ] Create chief pilot role with limited admin privileges
+- [ ] Restrict chief pilot access to fleet management only
+- [ ] Add permission checks for sensitive operations
+- [ ] Create user management interface for admins
+- [ ] Add session management and token handling
+- [ ] Implement logout functionality
+- [ ] Add password reset functionality
 
