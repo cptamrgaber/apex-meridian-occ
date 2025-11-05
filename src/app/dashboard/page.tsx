@@ -330,7 +330,7 @@ export default function DashboardPage() {
                   />
                   <Legend />
                   <Line type="monotone" dataKey="flights" stroke="#3b82f6" strokeWidth={2} name="Total Flights" />
-                  <Line type="monotone" dataKey="onTime" stroke="#10b981" strokeWidth=2} name="On Time" />
+                  <Line type="monotone" dataKey="onTime" stroke="#10b981" strokeWidth={2} name="On Time" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
