@@ -486,15 +486,15 @@
 - [ ] Need to use real chief pilot names from OM-A
 
 ### Extract Real Names from OM-A
-- [ ] Find chief pilot names in OM-A PDF
-- [ ] Find board member names in OM-A PDF
-- [ ] Extract real EgyptAir personnel names
-- [ ] Create list of real names to replace mock names
+- [x] Find chief pilot names in OM-A PDF
+- [x] Find board member names in OM-A PDF
+- [x] Extract real EgyptAir personnel names
+- [x] Create list of real names to replace mock names
 
 ### Update Dashboard Design
-- [ ] Apply new clean design to /dashboard page
-- [ ] Add theme toggle to dashboard
-- [ ] Replace mock names with real OM-A names
+- [x] Apply new clean design to /dashboard page
+- [x] Add theme toggle to dashboard
+- [x] Replace mock names with real OM-A names
 - [ ] Test both light and dark themes
 - [ ] Deploy and verify on production
 

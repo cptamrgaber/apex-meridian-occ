@@ -168,9 +168,15 @@ export default function DashboardPage() {
     return () => clearInterval(interval);
   }, [router]);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    router.push('/login');
+  };
+
   return (
     <div className="flex min-h-screen bg-white dark:bg-slate-900">
-      <Sidebar />
+      <Sidebar onLogout={handleLogout} />
       
       <main className="flex-1 md:ml-64 pb-20 md:pb-0">
         <div className="p-4 md:p-8">
