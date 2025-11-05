@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Footer from '@/components/Footer';
-import { Plane, Users, AlertTriangle, Calendar, Activity } from 'lucide-react';
+import { Plane, Users, AlertTriangle, Calendar, Activity, TrendingUp } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function Dashboard() {
@@ -37,10 +37,10 @@ export default function Dashboard() {
 
   // Delay reasons data
   const delayData = [
-    { name: 'Weather', value: 35, color: '#06b6d4' },
-    { name: 'Technical', value: 25, color: '#3b82f6' },
-    { name: 'Crew', value: 12, color: '#22c55e' },
-    { name: 'Other', value: 8, color: '#a855f7' },
+    { name: 'Weather', value: 35, color: '#3b82f6' },
+    { name: 'Technical', value: 25, color: '#8b5cf6' },
+    { name: 'Crew', value: 12, color: '#10b981' },
+    { name: 'Other', value: 8, color: '#f59e0b' },
   ];
 
   // Weekly operations trend
@@ -60,25 +60,25 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen flex grid-pattern">
+    <div className="min-h-screen flex bg-gray-50">
       <Sidebar onLogout={handleLogout} />
       
       <main className="flex-1 md:ml-64 mobile-page-content">
         {/* Header */}
-        <div className="border-b border-cyan-500/30 bg-black/50 backdrop-blur-sm sticky top-0 z-10">
-          <div className="container mx-auto px-4 py-6">
+        <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+          <div className="container mx-auto px-6 py-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold neon-glow uppercase tracking-wider mb-1">
+                <h1 className="text-3xl font-bold text-gray-900 mb-1">
                   Operations Control
                 </h1>
-                <p className="text-sm text-cyan-400 uppercase tracking-widest">
+                <p className="text-base text-gray-600">
                   Real-time EgyptAir Monitoring
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="status-indicator"></div>
-                <span className="text-sm text-cyan-400 uppercase tracking-wider">
+              <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-green-700">
                   System Online
                 </span>
               </div>
@@ -87,142 +87,132 @@ export default function Dashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-6 py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {/* Active Flights */}
-            <div className="command-card neon-border p-6">
+            <div className="stat-card">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-cyan-500/10 rounded border border-cyan-500/30">
-                  <Plane className="w-6 h-6 text-cyan-400" />
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <Plane className="w-6 h-6 text-blue-600" />
                 </div>
-                <Activity className="w-5 h-5 text-cyan-500 animate-pulse" />
+                <Activity className="w-5 h-5 text-blue-500" />
               </div>
-              <div className="text-stat-number text-cyan-400 mb-2">{stats.activeFlights}</div>
-              <div className="text-sm text-cyan-300 uppercase tracking-wider">Active Flights</div>
-              <div className="text-xs text-cyan-600 mt-1">Live Tracking</div>
+              <div className="stat-number text-gray-900">{stats.activeFlights}</div>
+              <div className="stat-label text-gray-600">Active Flights</div>
+              <div className="text-xs text-blue-600 mt-2 font-medium">Live Tracking</div>
             </div>
 
             {/* Crew On Duty */}
-            <div className="command-card neon-border p-6">
+            <div className="stat-card">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-green-500/10 rounded border border-green-500/30">
-                  <Users className="w-6 h-6 text-green-400" />
+                <div className="p-3 bg-green-50 rounded-lg">
+                  <Users className="w-6 h-6 text-green-600" />
                 </div>
-                <div className="status-indicator"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
               </div>
-              <div className="text-stat-number text-green-400 mb-2">{stats.crewOnDuty}</div>
-              <div className="text-sm text-green-300 uppercase tracking-wider">Crew On Duty</div>
-              <div className="text-xs text-green-600 mt-1">Estimated</div>
+              <div className="stat-number text-gray-900">{stats.crewOnDuty}</div>
+              <div className="stat-label text-gray-600">Crew On Duty</div>
+              <div className="text-xs text-green-600 mt-2 font-medium">All Available</div>
             </div>
 
             {/* Active Alerts */}
-            <div className="command-card neon-border p-6">
+            <div className="stat-card">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-orange-500/10 rounded border border-orange-500/30">
-                  <AlertTriangle className="w-6 h-6 text-orange-400" />
+                <div className="p-3 bg-orange-50 rounded-lg">
+                  <AlertTriangle className="w-6 h-6 text-orange-600" />
                 </div>
-                {stats.alerts === 0 && <div className="status-indicator"></div>}
+                {stats.alerts === 0 && <div className="w-2 h-2 bg-green-500 rounded-full"></div>}
               </div>
-              <div className="text-stat-number text-orange-400 mb-2">{stats.alerts}</div>
-              <div className="text-sm text-orange-300 uppercase tracking-wider">Active Alerts</div>
-              <div className="text-xs text-orange-600 mt-1">All Clear</div>
+              <div className="stat-number text-gray-900">{stats.alerts}</div>
+              <div className="stat-label text-gray-600">Active Alerts</div>
+              <div className="text-xs text-green-600 mt-2 font-medium">All Clear</div>
             </div>
 
             {/* Scheduled Today */}
-            <div className="command-card neon-border p-6">
+            <div className="stat-card">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-purple-500/10 rounded border border-purple-500/30">
-                  <Calendar className="w-6 h-6 text-purple-400" />
+                <div className="p-3 bg-purple-50 rounded-lg">
+                  <Calendar className="w-6 h-6 text-purple-600" />
                 </div>
-                <div className="status-indicator"></div>
+                <TrendingUp className="w-5 h-5 text-purple-500" />
               </div>
-              <div className="text-stat-number text-purple-400 mb-2">{stats.scheduledFlights}</div>
-              <div className="text-sm text-purple-300 uppercase tracking-wider">Scheduled Today</div>
-              <div className="text-xs text-purple-600 mt-1">All Clear</div>
+              <div className="stat-number text-gray-900">{stats.scheduledFlights}</div>
+              <div className="stat-label text-gray-600">Scheduled Today</div>
+              <div className="text-xs text-purple-600 mt-2 font-medium">On Track</div>
             </div>
           </div>
 
           {/* Charts Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Hourly Operations */}
-            <div className="command-card neon-border p-6">
-              <h2 className="text-xl font-bold text-cyan-400 mb-4 uppercase tracking-wider flex items-center gap-2">
-                <Activity className="w-5 h-5" />
+            <div className="clean-card p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                <Activity className="w-5 h-5 text-blue-600" />
                 Hourly Operations
               </h2>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={hourlyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#06b6d4" opacity={0.1} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis 
                     dataKey="hour" 
-                    stroke="#06b6d4" 
-                    style={{ fontSize: '12px', fontFamily: 'Share Tech Mono, monospace' }}
+                    stroke="#6b7280"
+                    style={{ fontSize: '12px' }}
                   />
                   <YAxis 
-                    stroke="#06b6d4"
-                    style={{ fontSize: '12px', fontFamily: 'Share Tech Mono, monospace' }}
+                    stroke="#6b7280"
+                    style={{ fontSize: '12px' }}
                   />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#0a0a0a', 
-                      border: '1px solid #06b6d4',
-                      borderRadius: '2px',
-                      fontFamily: 'Share Tech Mono, monospace'
+                      backgroundColor: 'white', 
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                     }}
                   />
-                  <Legend 
-                    wrapperStyle={{ 
-                      fontFamily: 'Share Tech Mono, monospace',
-                      fontSize: '12px'
-                    }}
-                  />
-                  <Bar dataKey="delayed" fill="#fb923c" name="Delayed" />
-                  <Bar dataKey="onTime" fill="#22c55e" name="On Time" />
+                  <Legend />
+                  <Bar dataKey="delayed" fill="#f59e0b" name="Delayed" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="onTime" fill="#10b981" name="On Time" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
 
             {/* Weekly Operations */}
-            <div className="command-card neon-border p-6">
-              <h2 className="text-xl font-bold text-cyan-400 mb-4 uppercase tracking-wider flex items-center gap-2">
-                <Activity className="w-5 h-5" />
+            <div className="clean-card p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-blue-600" />
                 Weekly Operations
               </h2>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={weeklyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#06b6d4" opacity={0.1} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis 
                     dataKey="day" 
-                    stroke="#06b6d4"
-                    style={{ fontSize: '12px', fontFamily: 'Share Tech Mono, monospace' }}
+                    stroke="#6b7280"
+                    style={{ fontSize: '12px' }}
                   />
                   <YAxis 
-                    stroke="#06b6d4"
-                    style={{ fontSize: '12px', fontFamily: 'Share Tech Mono, monospace' }}
+                    stroke="#6b7280"
+                    style={{ fontSize: '12px' }}
                   />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#0a0a0a', 
-                      border: '1px solid #06b6d4',
-                      borderRadius: '2px',
-                      fontFamily: 'Share Tech Mono, monospace'
+                      backgroundColor: 'white', 
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                     }}
                   />
-                  <Legend 
-                    wrapperStyle={{ 
-                      fontFamily: 'Share Tech Mono, monospace',
-                      fontSize: '12px'
-                    }}
-                  />
-                  <Line type="monotone" dataKey="flights" stroke="#06b6d4" strokeWidth={2} name="Total Flights" />
-                  <Line type="monotone" dataKey="onTime" stroke="#22c55e" strokeWidth={2} name="On Time" />
+                  <Legend />
+                  <Line type="monotone" dataKey="flights" stroke="#3b82f6" strokeWidth={3} name="Total Flights" dot={{ r: 4 }} />
+                  <Line type="monotone" dataKey="onTime" stroke="#10b981" strokeWidth={3} name="On Time" dot={{ r: 4 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
             {/* Delay Reasons */}
-            <div className="command-card neon-border p-6">
-              <h2 className="text-xl font-bold text-cyan-400 mb-4 uppercase tracking-wider">
+            <div className="clean-card p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">
                 Delay Reasons
               </h2>
               <ResponsiveContainer width="100%" height={300}>
@@ -242,44 +232,43 @@ export default function Dashboard() {
                   </Pie>
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#0a0a0a', 
-                      border: '1px solid #06b6d4',
-                      borderRadius: '2px',
-                      fontFamily: 'Share Tech Mono, monospace'
+                      backgroundColor: 'white', 
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                     }}
                   />
-                  <Legend 
-                    wrapperStyle={{ 
-                      fontFamily: 'Share Tech Mono, monospace',
-                      fontSize: '12px'
-                    }}
-                  />
+                  <Legend />
                 </PieChart>
               </ResponsiveContainer>
             </div>
 
             {/* Live Flights Table */}
-            <div className="command-card neon-border p-6">
-              <h2 className="text-xl font-bold text-cyan-400 mb-4 uppercase tracking-wider flex items-center gap-2">
-                <Plane className="w-5 h-5" />
+            <div className="clean-card p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                <Plane className="w-5 h-5 text-blue-600" />
                 Live EgyptAir Flights
               </h2>
               <div className="space-y-3">
                 {liveFlights.map((flight, index) => (
-                  <div key={index} className="border border-cyan-900 p-3 rounded hover:border-cyan-500/50 transition-colors">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono text-cyan-300 font-bold">{flight.callsign}</span>
-                      <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 border border-green-500/30 rounded uppercase">
+                  <div key={index} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition-all">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="font-semibold text-gray-900 text-base">{flight.callsign}</span>
+                      <span className="text-xs px-3 py-1 bg-green-100 text-green-700 rounded-full font-medium">
                         {flight.status}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-xs text-cyan-500 font-mono">
-                      <div>{flight.origin} → {flight.destination}</div>
+                    <div className="grid grid-cols-2 gap-3 text-sm text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <span className="font-medium">{flight.origin}</span>
+                        <span>→</span>
+                        <span className="font-medium">{flight.destination}</span>
+                      </div>
                       <div className="text-right">{flight.altitude.toLocaleString()} ft</div>
                       <div>{flight.speed} kts</div>
-                      <div className="text-right flex items-center justify-end gap-1">
-                        <div className="status-indicator"></div>
-                        Tracking
+                      <div className="text-right flex items-center justify-end gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-green-600 font-medium">Tracking</span>
                       </div>
                     </div>
                   </div>

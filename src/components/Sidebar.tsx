@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Plane, Users, Calendar, BarChart3, Settings, LogOut, Radio, MapPin, CalendarDays, Bell, Cloud, BookOpen, Shield, Menu, X, UserCog } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 
 interface SidebarProps {
   onLogout: () => void;
@@ -40,7 +39,7 @@ export default function Sidebar({ onLogout }: SidebarProps) {
       {/* Mobile Menu Button - Fixed at top left */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 p-2.5 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-md"
+        className="md:hidden fixed top-4 left-4 z-50 p-2.5 bg-white rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors shadow-md"
         aria-label="Toggle menu"
       >
         {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -49,7 +48,7 @@ export default function Sidebar({ onLogout }: SidebarProps) {
       {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/30 dark:bg-black/50 z-40 backdrop-blur-sm"
+          className="md:hidden fixed inset-0 bg-black/20 z-40 backdrop-blur-sm"
           onClick={closeMobileMenu}
         />
       )}
@@ -58,28 +57,25 @@ export default function Sidebar({ onLogout }: SidebarProps) {
       <div
         className={`
           fixed md:static inset-y-0 left-0 z-40
-          w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col
+          w-64 bg-white border-r border-gray-200 flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
       >
-        {/* Logo & Theme Toggle */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-800">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <img 
-                src="/images/apex-meridian-logo.png" 
-                alt="Apex-Meridian" 
-                className="h-8"
-              />
-            </div>
+        {/* Logo */}
+        <div className="p-6 border-b border-gray-200">
+          <div className="flex items-center gap-3 mb-2">
+            <img 
+              src="/images/apex-meridian-logo.png" 
+              alt="Apex-Meridian" 
+              className="h-10"
+            />
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">Operations Control Center</p>
-          <ThemeToggle />
+          <p className="text-sm text-gray-600 font-medium">Operations Control Center</p>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -89,30 +85,26 @@ export default function Sidebar({ onLogout }: SidebarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={closeMobileMenu}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
-                  isActive
-                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                }`}
+                className={`nav-link ${isActive ? 'active' : ''}`}
               >
                 <Icon className="w-5 h-5" />
-                <span className="text-sm">{item.label}</span>
+                <span>{item.label}</span>
               </Link>
             );
           })}
         </nav>
 
         {/* Logout */}
-        <div className="p-3 border-t border-gray-200 dark:border-gray-800">
+        <div className="p-4 border-t border-gray-200">
           <button
             onClick={() => {
               closeMobileMenu();
               onLogout();
             }}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors w-full"
+            className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors w-full font-medium"
           >
             <LogOut className="w-5 h-5" />
-            <span className="text-sm font-medium">Logout</span>
+            <span>Logout</span>
           </button>
         </div>
       </div>

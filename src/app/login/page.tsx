@@ -45,67 +45,59 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen grid-pattern relative overflow-hidden flex items-center justify-center">
-      {/* Scan line effect */}
-      <div className="scan-line absolute inset-0 pointer-events-none"></div>
-      
-      {/* Small logo in top-left corner */}
-      <div className="absolute top-4 left-4 z-20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center px-4">
+      {/* Logo in top-left corner */}
+      <div className="absolute top-8 left-8">
         <img
           src="/images/apex-meridian-logo.png"
           alt="Apex-Meridian"
-          className="h-8 opacity-80"
+          className="h-10 opacity-90"
         />
       </div>
 
-      {/* Compact centered login box */}
-      <div className="w-full max-w-sm px-4 relative z-10">
-        {/* Title */}
+      {/* Centered login container */}
+      <div className="w-full max-w-md">
+        {/* Title Section */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold neon-glow mb-2 uppercase tracking-wider">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Operations Control Center
           </h1>
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-500"></div>
-            <div className="status-indicator"></div>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-500"></div>
-          </div>
-          <p className="text-xs text-cyan-400 uppercase tracking-widest">
-            EgyptAir Operations
+          <p className="text-base text-gray-600">
+            EgyptAir Operations Management
           </p>
         </div>
 
-        {/* Compact login form card */}
-        <div className="command-card neon-border p-6 mb-4">
-          <form onSubmit={handleLogin} className="space-y-4">
+        {/* Login Card */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
+          <form onSubmit={handleLogin} className="space-y-6">
             {/* Username field */}
             <div>
-              <label htmlFor="username" className="block text-xs font-semibold text-cyan-400 mb-1.5 uppercase tracking-wider">
-                &gt; Username
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+                Username
               </label>
               <input
                 id="username"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="command-input w-full"
-                placeholder="Enter username"
+                className="clean-input"
+                placeholder="Enter your username"
                 required
               />
             </div>
 
             {/* Password field */}
             <div>
-              <label htmlFor="password" className="block text-xs font-semibold text-cyan-400 mb-1.5 uppercase tracking-wider">
-                &gt; Password
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                Password
               </label>
               <input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="command-input w-full"
-                placeholder="Enter password"
+                className="clean-input"
+                placeholder="Enter your password"
                 required
               />
             </div>
@@ -113,92 +105,82 @@ export default function Login() {
             {/* Submit button */}
             <button
               type="submit"
-              className="command-button w-full py-2.5 text-sm"
+              className="premium-button premium-button-primary w-full py-3 text-base font-semibold"
             >
-              ACCESS SYSTEM &gt;
+              Sign In
             </button>
           </form>
         </div>
 
-        {/* System status indicator */}
-        <div className="text-center mb-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-cyan-500/30 rounded text-xs">
-            <div className="status-indicator"></div>
-            <span className="text-cyan-400 uppercase tracking-wider">
-              System Online
-            </span>
-          </div>
-        </div>
-
         {/* Demo credentials toggle */}
-        <div className="text-center">
+        <div className="text-center mb-4">
           <button
             onClick={() => setShowCredentials(!showCredentials)}
-            className="text-xs text-cyan-500 hover:text-cyan-300 uppercase tracking-wider transition-colors"
+            className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
           >
-            {showCredentials ? "▼ Hide" : "▶"} Demo Credentials
+            {showCredentials ? "Hide" : "View"} Demo Credentials
           </button>
         </div>
 
         {/* Credentials list */}
         {showCredentials && (
-          <div className="mt-3 command-card neon-border p-4">
-            <h3 className="text-xs font-bold text-cyan-400 mb-3 uppercase tracking-wider">
-              Authorized Personnel:
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">
+              Demo Accounts
             </h3>
-            <div className="space-y-2 text-xs font-mono">
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">Admin:</span>
-                <span className="text-cyan-500">admin / admin123</span>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">Admin:</span>
+                <span className="text-gray-600 font-mono text-xs">admin / admin123</span>
               </div>
               
-              <div className="text-cyan-400 text-[10px] uppercase tracking-wider mt-3 mb-1.5">
-                Chief Pilots:
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mt-4 mb-2">
+                Chief Pilots
               </div>
               
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">A320:</span>
-                <span className="text-cyan-500">chief.yasser / yasser123</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">A320:</span>
+                <span className="text-gray-600 font-mono text-xs">chief.yasser / yasser123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">A330:</span>
-                <span className="text-cyan-500">chief.mersal / mersal123</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">A330:</span>
+                <span className="text-gray-600 font-mono text-xs">chief.mersal / mersal123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">B737:</span>
-                <span className="text-cyan-500">chief.sherif / sherif123</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">B737:</span>
+                <span className="text-gray-600 font-mono text-xs">chief.sherif / sherif123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">B787:</span>
-                <span className="text-cyan-500">chief.khaled / khaled123</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">B787:</span>
+                <span className="text-gray-600 font-mono text-xs">chief.khaled / khaled123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">B777:</span>
-                <span className="text-cyan-500">chief.tarek / tarek123</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">B777:</span>
+                <span className="text-gray-600 font-mono text-xs">chief.tarek / tarek123</span>
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">A350:</span>
-                <span className="text-cyan-500">chief.elyan / elyan123</span>
-              </div>
-              
-              <div className="text-cyan-400 text-[10px] uppercase tracking-wider mt-3 mb-1.5">
-                Operations:
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">A350:</span>
+                <span className="text-gray-600 font-mono text-xs">chief.elyan / elyan123</span>
               </div>
               
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">Pilot:</span>
-                <span className="text-cyan-500">pilot.ibrahim / ibrahim123</span>
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mt-4 mb-2">
+                Operations
               </div>
-              <div className="flex justify-between items-center border-b border-cyan-900 pb-1.5">
-                <span className="text-cyan-300">Dispatcher:</span>
-                <span className="text-cyan-500">dispatcher / dispatch123</span>
+              
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">Pilot:</span>
+                <span className="text-gray-600 font-mono text-xs">pilot.ibrahim / ibrahim123</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-700">Dispatcher:</span>
+                <span className="text-gray-600 font-mono text-xs">dispatcher / dispatch123</span>
               </div>
             </div>
           </div>
         )}
 
         {/* Footer */}
-        <div className="mt-6 text-center text-[10px] text-cyan-700 uppercase tracking-wider">
+        <div className="mt-8 text-center text-sm text-gray-500">
           © 2025 Apex-Meridian LLC
         </div>
       </div>
