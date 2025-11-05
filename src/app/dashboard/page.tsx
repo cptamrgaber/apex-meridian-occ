@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import MobileBottomNav from '@/components/MobileBottomNav';
-import { Plane, Users, AlertTriangle, Calendar, Activity, Radio, Clock, TrendingUp, MapPin } from 'lucide-react';
+import { Plane, Users, AlertTriangle, Calendar } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface Stats {
@@ -91,43 +91,44 @@ export default function DashboardPage() {
 
   // Hourly operations data
   const hourlyData = [
-    { hour: '00:00', flights: 2, onTime: 2, delayed: 0 },
-    { hour: '03:00', flights: 5, onTime: 5, delayed: 0 },
-    { hour: '06:00', flights: 18, onTime: 16, delayed: 2 },
-    { hour: '09:00', flights: 24, onTime: 22, delayed: 2 },
-    { hour: '12:00', flights: 28, onTime: 25, delayed: 3 },
-    { hour: '15:00', flights: 26, onTime: 24, delayed: 2 },
-    { hour: '18:00', flights: 22, onTime: 20, delayed: 2 },
-    { hour: '21:00', flights: 15, onTime: 14, delayed: 1 }
+    { hour: '00:00', onTime: 2, delayed: 0 },
+    { hour: '03:00', onTime: 5, delayed: 0 },
+    { hour: '06:00', onTime: 16, delayed: 2 },
+    { hour: '09:00', onTime: 22, delayed: 2 },
+    { hour: '12:00', onTime: 25, delayed: 3 },
+    { hour: '15:00', onTime: 24, delayed: 2 },
+    { hour: '18:00', onTime: 20, delayed: 2 },
+    { hour: '21:00', onTime: 12, delayed: 1 },
   ];
 
   // Weekly operations data
   const weeklyData = [
-    { day: 'Mon', flights: 142, onTime: 128, delayed: 14 },
-    { day: 'Tue', flights: 138, onTime: 131, delayed: 7 },
-    { day: 'Wed', flights: 145, onTime: 135, delayed: 10 },
-    { day: 'Thu', flights: 140, onTime: 133, delayed: 7 },
-    { day: 'Fri', flights: 148, onTime: 138, delayed: 10 },
-    { day: 'Sat', flights: 135, onTime: 127, delayed: 8 },
-    { day: 'Sun', flights: 132, onTime: 125, delayed: 7 }
+    { day: 'Mon', flights: 52 },
+    { day: 'Tue', flights: 48 },
+    { day: 'Wed', flights: 55 },
+    { day: 'Thu', flights: 51 },
+    { day: 'Fri', flights: 58 },
+    { day: 'Sat', flights: 62 },
+    { day: 'Sun', flights: 45 },
   ];
 
   // Delay reasons data
-  const delayReasons = [
-    { name: 'Weather', value: 35, color: '#3b82f6' },
-    { name: 'Technical', value: 25, color: '#ef4444' },
-    { name: 'ATC', value: 20, color: '#f59e0b' },
-    { name: 'Crew', value: 12, color: '#8b5cf6' },
-    { name: 'Other', value: 8, color: '#6b7280' }
+  const delayData = [
+    { name: 'Weather', value: 35 },
+    { name: 'Technical', value: 25 },
+    { name: 'Crew', value: 12 },
+    { name: 'Other', value: 8 },
   ];
 
-  // On-time performance
+  const COLORS = ['#3b82f6', '#ef4444', '#f59e0b', '#8b5cf6'];
+
+  // On-time performance data
   const performanceData = [
-    { month: 'Jul', onTime: 89.2 },
-    { month: 'Aug', onTime: 91.5 },
-    { month: 'Sep', onTime: 88.7 },
-    { month: 'Oct', onTime: 92.3 },
-    { month: 'Nov', onTime: 90.8 }
+    { month: 'Jun', performance: 85 },
+    { month: 'Jul', performance: 88 },
+    { month: 'Aug', performance: 82 },
+    { month: 'Sep', performance: 90 },
+    { month: 'Oct', performance: 87 },
   ];
 
   useEffect(() => {
@@ -135,226 +136,188 @@ export default function DashboardPage() {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
     
-    if (!token || !userData) {
+    if (!token) {
       router.push('/login');
       return;
     }
 
-    setUser(JSON.parse(userData));
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
 
-    // Initial fetch in background (non-blocking)
-    fetchDashboardData();
+    // Fetch live flight data
+    const fetchLiveFlights = async () => {
+      try {
+        const response = await fetch('/api/flights/live');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.flights && data.flights.length > 0) {
+            setLiveFlights(data.flights);
+            setStats(prev => ({ ...prev, activeFlights: data.flights.length }));
+          }
+          setLastUpdate(new Date());
+        }
+      } catch (error) {
+        console.error('Error fetching live flights:', error);
+      }
+    };
 
-    // Refresh every 15 seconds for live tracking
-    const interval = setInterval(() => {
-      fetchDashboardData();
-    }, 15000);
+    fetchLiveFlights();
+    const interval = setInterval(fetchLiveFlights, 15000); // Update every 15 seconds
 
     return () => clearInterval(interval);
   }, [router]);
 
-  const fetchDashboardData = async () => {
-    // Fetch in background without blocking UI
-    try {
-      await Promise.all([
-        fetchStats(),
-        fetchLiveFlights()
-      ]);
-      setLastUpdate(new Date());
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-      // Keep using demo data if fetch fails
-    }
-  };
-
-  const fetchStats = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/api/dashboard/stats', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success && data.stats) {
-          setStats(data.stats);
-        }
-      }
-    } catch (error) {
-      console.error('Failed to fetch stats:', error);
-    }
-  };
-
-  const fetchLiveFlights = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/api/flights/live', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success && data.flights) {
-          setLiveFlights(data.flights);
-        }
-      }
-    } catch (error) {
-      console.error('Failed to fetch live flights:', error);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    router.push('/login');
-  };
-
-  const formatTime = (seconds: number) => {
-    const now = Date.now() / 1000;
-    const diff = Math.floor(now - seconds);
-    if (diff < 60) return `${diff}s ago`;
-    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-    return `${Math.floor(diff / 3600)}h ago`;
-  };
-
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-950">
-      <Sidebar onLogout={handleLogout} />
+    <div className="flex min-h-screen bg-white dark:bg-slate-900">
+      <Sidebar />
       
-      <main className="flex-1 overflow-auto mobile-page-content">
-        {/* Header */}
-        <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 md:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">Operations Control</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Real-time EgyptAir monitoring</p>
-            </div>
-            <div className="hidden md:flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-green-700 dark:text-green-400">Live</span>
-              <span className="text-xs text-green-600 dark:text-green-500">• {formatTime(lastUpdate.getTime() / 1000)}</span>
-            </div>
+      <main className="flex-1 md:ml-64 pb-20 md:pb-0">
+        <div className="p-4 md:p-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+              Operations Control
+            </h1>
+            <p className="text-slate-600 dark:text-slate-400">
+              Real-time EgyptAir monitoring
+            </p>
           </div>
-        </div>
 
-        <div className="p-4 md:p-6 space-y-6">
-          {/* Statistics Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                  <Plane className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          {/* Stats Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {/* Active Flights */}
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <Plane className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.activeFlights}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Flights</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Live Tracking</div>
+              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                {stats.activeFlights}
+              </div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">
+                Active Flights
+              </div>
+              <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+                Live Tracking
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                  <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
+            {/* Crew On Duty */}
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.crewOnDuty}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Crew On Duty</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Estimated</div>
+              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                {stats.crewOnDuty}
+              </div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">
+                Crew On Duty
+              </div>
+              <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+                Estimated
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-                  <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+            {/* Active Alerts */}
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                  <AlertTriangle className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.alerts}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Alerts</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">All Clear</div>
+              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                {stats.alerts}
+              </div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">
+                Active Alerts
+              </div>
+              <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+                All Clear
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                  <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+            {/* Scheduled Today */}
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                  <Calendar className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.scheduledFlights}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Scheduled</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Today</div>
+              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                {stats.scheduledFlights}
+              </div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">
+                Scheduled Today
+              </div>
+              <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+                All Clear
+              </div>
             </div>
           </div>
 
           {/* Charts Row 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             {/* Hourly Operations */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-              <div className="flex items-center gap-2 mb-4">
-                <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Hourly Operations</h2>
-              </div>
-              <ResponsiveContainer width="100%" height={250}>
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                Hourly Operations
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={hourlyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis dataKey="hour" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
-                    labelStyle={{ color: '#f1f5f9' }}
-                  />
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-slate-200 dark:stroke-slate-700" />
+                  <XAxis dataKey="hour" className="text-slate-600 dark:text-slate-400" />
+                  <YAxis className="text-slate-600 dark:text-slate-400" />
+                  <Tooltip contentStyle={{ backgroundColor: 'var(--tooltip-bg)', border: '1px solid var(--tooltip-border)' }} />
                   <Legend />
-                  <Bar dataKey="onTime" fill="#10b981" name="On Time" />
                   <Bar dataKey="delayed" fill="#ef4444" name="Delayed" />
+                  <Bar dataKey="onTime" fill="#10b981" name="On Time" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
 
             {/* Weekly Operations */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-              <div className="flex items-center gap-2 mb-4">
-                <TrendingUp className="w-5 h-5 text-green-600 dark:text-green-400" />
-                <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Weekly Operations</h2>
-              </div>
-              <ResponsiveContainer width="100%" height={250}>
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                Weekly Operations
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={weeklyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis dataKey="day" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
-                    labelStyle={{ color: '#f1f5f9' }}
-                  />
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-slate-200 dark:stroke-slate-700" />
+                  <XAxis dataKey="day" className="text-slate-600 dark:text-slate-400" />
+                  <YAxis className="text-slate-600 dark:text-slate-400" />
+                  <Tooltip contentStyle={{ backgroundColor: 'var(--tooltip-bg)', border: '1px solid var(--tooltip-border)' }} />
                   <Legend />
                   <Line type="monotone" dataKey="flights" stroke="#3b82f6" strokeWidth={2} name="Total Flights" />
-                  <Line type="monotone" dataKey="onTime" stroke="#10b981" strokeWidth={2} name="On Time" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* Charts Row 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             {/* Delay Reasons */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-              <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-4">Delay Reasons</h2>
-              <ResponsiveContainer width="100%" height={250}>
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                Delay Reasons
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
-                    data={delayReasons}
+                    data={delayData}
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label
-                    outerRadius={80}
+                    outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
+                    label={(entry) => entry.name}
                   >
-                    {delayReasons.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    {delayData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
                   <Tooltip />
@@ -363,68 +326,64 @@ export default function DashboardPage() {
             </div>
 
             {/* On-Time Performance */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800 md:col-span-2">
-              <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-4">On-Time Performance (Last 5 Months)</h2>
-              <ResponsiveContainer width="100%" height={250}>
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                On-Time Performance (Last 5 Months)
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={performanceData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis dataKey="month" stroke="#94a3b8" />
-                  <YAxis domain={[85, 95]} stroke="#94a3b8" />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
-                    labelStyle={{ color: '#f1f5f9' }}
-                    formatter={(value: any) => `${value}%`}
-                  />
-                  <Line 
-                    type="monotone" 
-                    dataKey="onTime" 
-                    stroke="#10b981" 
-                    strokeWidth={3} 
-                    dot={{ fill: '#10b981', r: 6 }}
-                    name="On-Time %" 
-                  />
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-slate-200 dark:stroke-slate-700" />
+                  <XAxis dataKey="month" className="text-slate-600 dark:text-slate-400" />
+                  <YAxis className="text-slate-600 dark:text-slate-400" domain={[0, 100]} />
+                  <Tooltip contentStyle={{ backgroundColor: 'var(--tooltip-bg)', border: '1px solid var(--tooltip-border)' }} />
+                  <Legend />
+                  <Line type="monotone" dataKey="performance" stroke="#10b981" strokeWidth={2} name="On-Time %" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* Live Flights Table */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-            <div className="flex items-center gap-2 mb-4">
-              <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Live EgyptAir Flights</h2>
-              <span className="ml-auto text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                Real-Time ADS-B Tracking
+          <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Live EgyptAir Flights
+              </h2>
+              <span className="text-sm text-slate-600 dark:text-slate-400">
+                Last updated: {lastUpdate.toLocaleTimeString()}
               </span>
             </div>
-            
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">CALLSIGN</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">POSITION</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">ALTITUDE</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">SPEED</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">HEADING</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">STATUS</th>
+                  <tr className="border-b border-slate-200 dark:border-slate-700">
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">Callsign</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">Registration</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">Altitude</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">Speed</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {liveFlights.map((flight) => (
-                    <tr key={flight.id} className="border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                      <td className="py-3 px-4 font-mono text-blue-600 dark:text-blue-400 font-semibold text-sm">{flight.callsign}</td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 font-mono text-xs md:text-sm">
-                        {flight.latitude?.toFixed(2)}°, {flight.longitude?.toFixed(2)}°
+                    <tr key={flight.id} className="border-b border-slate-200 dark:border-slate-700">
+                      <td className="py-3 px-4 text-sm text-slate-900 dark:text-white font-medium">
+                        {flight.callsign}
                       </td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 text-sm">{flight.altitude_feet?.toLocaleString() || 0} ft</td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 text-sm">{flight.speed_knots || 0} kts</td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 text-sm">{flight.heading || 0}°</td>
+                      <td className="py-3 px-4 text-sm text-slate-600 dark:text-slate-400">
+                        {flight.icao24.toUpperCase()}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-slate-600 dark:text-slate-400">
+                        {flight.altitude_feet ? `${flight.altitude_feet.toLocaleString()} ft` : 'N/A'}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-slate-600 dark:text-slate-400">
+                        {flight.speed_knots ? `${flight.speed_knots} kts` : 'N/A'}
+                      </td>
                       <td className="py-3 px-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          flight.on_ground 
-                            ? 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300' 
-                            : 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400'
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          flight.on_ground
+                            ? 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-300'
+                            : 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400'
                         }`}>
                           {flight.status}
                         </span>
@@ -437,7 +396,7 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-      
+
       <MobileBottomNav />
     </div>
   );

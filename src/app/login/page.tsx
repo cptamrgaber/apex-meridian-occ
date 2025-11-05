@@ -15,28 +15,28 @@ const MOCK_USERS = [
   },
   {
     id: 2,
-    username: 'chief.hassan',
-    password: 'hassan123',
+    username: 'chief.yasser',
+    password: 'yasser123',
     role: 'chief_pilot',
-    name: 'Capt. Ahmed Hassan',
+    name: 'CAPT. YASSER HUSSIN',
     aircraft_type: 'A320',
     chief_pilot_id: 1,
   },
   {
     id: 3,
-    username: 'chief.mohamed',
-    password: 'mohamed123',
+    username: 'chief.mersal',
+    password: 'mersal123',
     role: 'chief_pilot',
-    name: 'Capt. Mohamed Ali',
+    name: 'CAPT. MOHAMED MERSAL',
     aircraft_type: 'A330',
     chief_pilot_id: 2,
   },
   {
     id: 4,
-    username: 'chief.omar',
-    password: 'omar123',
+    username: 'chief.sherif',
+    password: 'sherif123',
     role: 'chief_pilot',
-    name: 'Capt. Omar Khalil',
+    name: 'CAPT. SHERIF ARRAM',
     aircraft_type: 'B737',
     chief_pilot_id: 3,
   },
@@ -45,7 +45,7 @@ const MOCK_USERS = [
     username: 'chief.khaled',
     password: 'khaled123',
     role: 'chief_pilot',
-    name: 'Capt. Khaled Mansour',
+    name: 'CAPT. KHALED MANSOUR',
     aircraft_type: 'B787',
     chief_pilot_id: 4,
   },
@@ -54,16 +54,16 @@ const MOCK_USERS = [
     username: 'chief.tarek',
     password: 'tarek123',
     role: 'chief_pilot',
-    name: 'Capt. Tarek Fouad',
+    name: 'CAPT. TAREK FOUAD',
     aircraft_type: 'B777',
     chief_pilot_id: 5,
   },
   {
     id: 7,
-    username: 'chief.waleed',
-    password: 'waleed123',
+    username: 'chief.elyan',
+    password: 'elyan123',
     role: 'chief_pilot',
-    name: 'Capt. Waleed Samir',
+    name: 'CAPT. MOHAMED ELYAN',
     aircraft_type: 'A350',
     chief_pilot_id: 6,
   },
@@ -226,15 +226,15 @@ export default function LoginPage() {
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Chief Pilot (A320):</span>
-                <span className="font-mono">chief.hassan / hassan123</span>
+                <span className="font-mono">chief.yasser / yasser123</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Chief Pilot (A330):</span>
-                <span className="font-mono">chief.mohamed / mohamed123</span>
+                <span className="font-mono">chief.mersal / mersal123</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Chief Pilot (B737):</span>
-                <span className="font-mono">chief.omar / omar123</span>
+                <span className="font-mono">chief.sherif / sherif123</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Chief Pilot (B787):</span>
@@ -246,7 +246,7 @@ export default function LoginPage() {
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Chief Pilot (A350):</span>
-                <span className="font-mono">chief.waleed / waleed123</span>
+                <span className="font-mono">chief.elyan / elyan123</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Pilot:</span>

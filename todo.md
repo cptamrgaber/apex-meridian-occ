@@ -465,12 +465,36 @@
 ## USER REQUEST: Complete All 6 Aircraft Type Chief Pilots
 
 ### Add Missing Chief Pilots
-- [ ] Add Chief Pilot for Boeing 737-800/MAX
-- [ ] Add Chief Pilot for Boeing 787-9
-- [ ] Add Chief Pilot for Boeing 777
-- [ ] Add Chief Pilot for Airbus A350
-- [ ] Update login page with all 6 chief pilot credentials
-- [ ] Update mock data with all 6 fleets
-- [ ] Update fleet management data with all aircraft types
-- [ ] Test each chief pilot can only access their assigned fleet
+- [x] Add Chief Pilot for Boeing 737-800/MAX
+- [x] Add Chief Pilot for Boeing 787-9
+- [x] Add Chief Pilot for Boeing 777
+- [x] Add Chief Pilot for Airbus A350
+- [x] Update login page with all 6 chief pilot credentials
+- [x] Update mock data with all 6 fleets
+- [x] Update fleet management data with all aircraft types
+- [x] Test each chief pilot can only access their assigned fleet
+
+
+
+
+## USER REQUEST: Fix Dashboard Design & Use Real OM-A Names
+
+### Problem
+- [x] User sees old dark design on /dashboard route
+- [x] Identified: /dashboard is the main page, / just redirects
+- [ ] Need to apply new clean light/dark theme design
+- [ ] Need to use real chief pilot names from OM-A
+
+### Extract Real Names from OM-A
+- [ ] Find chief pilot names in OM-A PDF
+- [ ] Find board member names in OM-A PDF
+- [ ] Extract real EgyptAir personnel names
+- [ ] Create list of real names to replace mock names
+
+### Update Dashboard Design
+- [ ] Apply new clean design to /dashboard page
+- [ ] Add theme toggle to dashboard
+- [ ] Replace mock names with real OM-A names
+- [ ] Test both light and dark themes
+- [ ] Deploy and verify on production
 
