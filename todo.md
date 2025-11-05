@@ -353,18 +353,82 @@
 
 
 ## USER REQUEST: Complete UI Redesign - Simple, Clean, Light/Dark Theme, Mobile App-like
-- [ ] Create theme context with light/dark mode support
-- [ ] Add theme toggle switch component
-- [ ] Design clean light theme color palette
-- [ ] Design clean dark theme color palette
-- [ ] Simplify dashboard layout (remove excessive gradients)
-- [ ] Redesign stat cards with clean, minimal style
-- [ ] Simplify hero section
-- [ ] Create mobile bottom navigation bar
-- [ ] Add mobile-specific layouts for all pages
-- [ ] Optimize charts for mobile viewing
-- [ ] Add smooth theme transition animations
-- [ ] Test theme toggle functionality
-- [ ] Test mobile bottom navigation
-- [ ] Ensure consistent styling across all pages
+- [x] Create theme context with light/dark mode support
+- [x] Add theme toggle switch component
+- [x] Design clean light theme color palette
+- [x] Design clean dark theme color palette
+- [x] Simplify dashboard layout (remove excessive gradients)
+- [x] Redesign stat cards with clean, minimal style
+- [x] Simplify hero section
+- [x] Create mobile bottom navigation bar
+- [x] Add mobile-specific layouts for all pages
+- [x] Optimize charts for mobile viewing
+- [x] Add smooth theme transition animations
+- [x] Test theme toggle functionality
+- [x] Test mobile bottom navigation
+- [x] Ensure consistent styling across all pages
+
+
+
+
+## USER REQUEST: Fleet Management System by Aircraft Type with Chief Pilot Roles
+
+### Phase 1: Database Schema & Data Structure
+- [x] Design chief_pilots table (id, user_id, aircraft_type, name, license_number)
+- [x] Design fleet_assignments table (aircraft_id, chief_pilot_id, assigned_date)
+- [x] Design crew_assignments table (pilot_id, chief_pilot_id, aircraft_type, qualification_date)
+- [x] Design monthly_rosters table (id, chief_pilot_id, month, year, status)
+- [x] Design roster_entries table (roster_id, pilot_id, date, flight_id, duty_hours)
+- [x] Update users table to include role field (admin, chief_pilot, pilot, dispatcher)
+- [x] Create aircraft type groups (A320, A321, A330, B737, B777, B787, etc.)
+
+### Phase 2: Chief Pilot Authentication & Authorization
+- [x] Add role-based authentication middleware
+- [x] Create chief pilot login/registration
+- [x] Implement role-based route protection
+- [x] Add aircraft type assignment to chief pilots
+- [x] Create chief pilot dashboard access control
+- [x] Add permission checks for fleet management actions
+
+### Phase 3: Fleet Management UI for Chief Pilots
+- [x] Create Chief Pilot Dashboard page
+- [x] Build "My Fleet" section showing assigned aircraft
+- [x] Create "My Crew" section showing assigned pilots
+- [x] Add aircraft status overview (available, maintenance, assigned)
+- [x] Create crew qualifications display
+- [x] Add crew duty time tracking display
+- [x] Build crew assignment interface
+- [x] Add aircraft assignment interface
+
+### Phase 4: Monthly Roster Generation
+- [ ] Create roster generation algorithm
+- [ ] Implement duty time limit calculations
+- [ ] Add rest period compliance checks
+- [ ] Create roster template system
+- [ ] Build roster editor interface
+- [ ] Add drag-and-drop pilot assignment
+- [ ] Implement roster conflict detection
+- [ ] Add roster approval workflow
+- [ ] Create roster export (PDF, Excel)
+- [ ] Add roster email notifications to pilots
+
+### Phase 5: Advanced Features
+- [ ] Add roster optimization suggestions
+- [ ] Implement crew preference management
+- [ ] Create roster comparison view (planned vs actual)
+- [ ] Add roster statistics and analytics
+- [ ] Build crew availability calendar
+- [ ] Add vacation/leave request management
+- [ ] Create training schedule integration
+- [ ] Add roster history and audit log
+
+### Phase 6: Testing & Deployment
+- [ ] Test chief pilot login and access control
+- [ ] Test fleet assignment functionality
+- [ ] Test crew assignment functionality
+- [ ] Test roster generation with sample data
+- [ ] Test roster approval workflow
+- [ ] Verify OM-A compliance rules in roster
+- [ ] Test on mobile devices
+- [ ] Deploy to production
 

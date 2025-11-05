@@ -1,0 +1,311 @@
+// Mock Data for Fleet Management System
+
+import type {
+  AircraftType,
+  ChiefPilot,
+  CrewAssignment,
+  MonthlyRoster,
+  RosterEntry,
+  CrewQualification,
+} from '@/types/fleet-management';
+
+export const mockAircraftTypes: AircraftType[] = [
+  {
+    id: 1,
+    code: 'A320',
+    name: 'Airbus A320',
+    manufacturer: 'Airbus',
+    category: 'Narrow-body',
+    min_crew: 2,
+    max_crew: 3,
+    created_at: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 2,
+    code: 'A321',
+    name: 'Airbus A321',
+    manufacturer: 'Airbus',
+    category: 'Narrow-body',
+    min_crew: 2,
+    max_crew: 3,
+    created_at: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 3,
+    code: 'A330',
+    name: 'Airbus A330',
+    manufacturer: 'Airbus',
+    category: 'Wide-body',
+    min_crew: 2,
+    max_crew: 4,
+    created_at: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 4,
+    code: 'B737',
+    name: 'Boeing 737',
+    manufacturer: 'Boeing',
+    category: 'Narrow-body',
+    min_crew: 2,
+    max_crew: 3,
+    created_at: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 5,
+    code: 'B777',
+    name: 'Boeing 777',
+    manufacturer: 'Boeing',
+    category: 'Wide-body',
+    min_crew: 2,
+    max_crew: 4,
+    created_at: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 6,
+    code: 'B787',
+    name: 'Boeing 787 Dreamliner',
+    manufacturer: 'Boeing',
+    category: 'Wide-body',
+    min_crew: 2,
+    max_crew: 4,
+    created_at: '2024-01-01T00:00:00Z',
+  },
+];
+
+export const mockChiefPilots: ChiefPilot[] = [
+  {
+    id: 1,
+    user_id: 101,
+    aircraft_type_id: 1,
+    name: 'Capt. Ahmed Hassan',
+    license_number: 'EG-CPL-A320-001',
+    total_flight_hours: 12500,
+    phone: '+20 100 123 4567',
+    email: 'ahmed.hassan@egyptair.com',
+    assigned_date: '2023-01-15',
+    status: 'active',
+    created_at: '2023-01-15T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z',
+    aircraft_type: mockAircraftTypes[0],
+  },
+  {
+    id: 2,
+    user_id: 102,
+    aircraft_type_id: 3,
+    name: 'Capt. Mohamed Ali',
+    license_number: 'EG-CPL-A330-001',
+    total_flight_hours: 15200,
+    phone: '+20 100 234 5678',
+    email: 'mohamed.ali@egyptair.com',
+    assigned_date: '2022-06-01',
+    status: 'active',
+    created_at: '2022-06-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z',
+    aircraft_type: mockAircraftTypes[2],
+  },
+  {
+    id: 3,
+    user_id: 103,
+    aircraft_type_id: 5,
+    name: 'Capt. Omar Khalil',
+    license_number: 'EG-CPL-B777-001',
+    total_flight_hours: 18000,
+    phone: '+20 100 345 6789',
+    email: 'omar.khalil@egyptair.com',
+    assigned_date: '2021-03-20',
+    status: 'active',
+    created_at: '2021-03-20T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z',
+    aircraft_type: mockAircraftTypes[4],
+  },
+];
+
+export const mockCrewAssignments: CrewAssignment[] = [
+  // A320 Crew (Chief Pilot: Ahmed Hassan)
+  {
+    id: 1,
+    pilot_id: 201,
+    pilot_name: 'Capt. Youssef Ibrahim',
+    chief_pilot_id: 1,
+    aircraft_type_id: 1,
+    assignment_date: '2024-01-01',
+    status: 'active',
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z',
+    aircraft_type: mockAircraftTypes[0],
+  },
+  {
+    id: 2,
+    pilot_id: 202,
+    pilot_name: 'F/O Amr Saeed',
+    chief_pilot_id: 1,
+    aircraft_type_id: 1,
+    assignment_date: '2024-01-01',
+    status: 'active',
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z',
+    aircraft_type: mockAircraftTypes[0],
+  },
+  {
+    id: 3,
+    pilot_id: 203,
+    pilot_name: 'F/O Sara Ahmed',
+    chief_pilot_id: 1,
+    aircraft_type_id: 1,
+    assignment_date: '2024-02-15',
+    status: 'active',
+    created_at: '2024-02-15T00:00:00Z',
+    updated_at: '2024-02-15T00:00:00Z',
+    aircraft_type: mockAircraftTypes[0],
+  },
+  // A330 Crew (Chief Pilot: Mohamed Ali)
+  {
+    id: 4,
+    pilot_id: 301,
+    pilot_name: 'Capt. Khaled Mostafa',
+    chief_pilot_id: 2,
+    aircraft_type_id: 3,
+    assignment_date: '2023-06-01',
+    status: 'active',
+    created_at: '2023-06-01T00:00:00Z',
+    updated_at: '2023-06-01T00:00:00Z',
+    aircraft_type: mockAircraftTypes[2],
+  },
+  {
+    id: 5,
+    pilot_id: 302,
+    pilot_name: 'F/O Hossam Fathy',
+    chief_pilot_id: 2,
+    aircraft_type_id: 3,
+    assignment_date: '2023-06-01',
+    status: 'active',
+    created_at: '2023-06-01T00:00:00Z',
+    updated_at: '2023-06-01T00:00:00Z',
+    aircraft_type: mockAircraftTypes[2],
+  },
+];
+
+export const mockMonthlyRosters: MonthlyRoster[] = [
+  {
+    id: 1,
+    chief_pilot_id: 1,
+    aircraft_type_id: 1,
+    month: 11, // November
+    year: 2025,
+    status: 'approved',
+    total_flights: 124,
+    total_duty_hours: 892.5,
+    created_by: 101,
+    approved_by: 1,
+    approved_at: '2025-10-28T10:00:00Z',
+    notes: 'November roster for A320 fleet',
+    created_at: '2025-10-20T00:00:00Z',
+    updated_at: '2025-10-28T10:00:00Z',
+    chief_pilot: mockChiefPilots[0],
+    aircraft_type: mockAircraftTypes[0],
+  },
+  {
+    id: 2,
+    chief_pilot_id: 1,
+    aircraft_type_id: 1,
+    month: 12, // December
+    year: 2025,
+    status: 'draft',
+    total_flights: 0,
+    total_duty_hours: 0,
+    created_by: 101,
+    notes: 'December roster for A320 fleet - in progress',
+    created_at: '2025-11-01T00:00:00Z',
+    updated_at: '2025-11-01T00:00:00Z',
+    chief_pilot: mockChiefPilots[0],
+    aircraft_type: mockAircraftTypes[0],
+  },
+];
+
+export const mockRosterEntries: RosterEntry[] = [
+  // Sample entries for November 5, 2025
+  {
+    id: 1,
+    roster_id: 1,
+    pilot_id: 201,
+    pilot_name: 'Capt. Youssef Ibrahim',
+    date: '2025-11-05',
+    flight_number: 'MS777',
+    aircraft_registration: 'SU-GDL',
+    departure_airport: 'CAI',
+    arrival_airport: 'LHR',
+    scheduled_departure: '10:30',
+    scheduled_arrival: '14:45',
+    duty_start: '09:00',
+    duty_end: '16:00',
+    duty_hours: 7.0,
+    flight_hours: 4.25,
+    position: 'captain',
+    status: 'scheduled',
+    created_at: '2025-10-20T00:00:00Z',
+    updated_at: '2025-10-20T00:00:00Z',
+  },
+  {
+    id: 2,
+    roster_id: 1,
+    pilot_id: 202,
+    pilot_name: 'F/O Amr Saeed',
+    date: '2025-11-05',
+    flight_number: 'MS777',
+    aircraft_registration: 'SU-GDL',
+    departure_airport: 'CAI',
+    arrival_airport: 'LHR',
+    scheduled_departure: '10:30',
+    scheduled_arrival: '14:45',
+    duty_start: '09:00',
+    duty_end: '16:00',
+    duty_hours: 7.0,
+    flight_hours: 4.25,
+    position: 'first_officer',
+    status: 'scheduled',
+    created_at: '2025-10-20T00:00:00Z',
+    updated_at: '2025-10-20T00:00:00Z',
+  },
+  {
+    id: 3,
+    roster_id: 1,
+    pilot_id: 203,
+    pilot_name: 'F/O Sara Ahmed',
+    date: '2025-11-05',
+    flight_number: 'MS785',
+    aircraft_registration: 'SU-GDM',
+    departure_airport: 'CAI',
+    arrival_airport: 'CDG',
+    scheduled_departure: '14:15',
+    scheduled_arrival: '18:30',
+    duty_start: '13:00',
+    duty_end: '20:00',
+    duty_hours: 7.0,
+    flight_hours: 4.25,
+    position: 'first_officer',
+    status: 'scheduled',
+    created_at: '2025-10-20T00:00:00Z',
+    updated_at: '2025-10-20T00:00:00Z',
+  },
+];
+
+// Helper function to get chief pilot by user ID
+export function getChiefPilotByUserId(userId: number): ChiefPilot | undefined {
+  return mockChiefPilots.find(cp => cp.user_id === userId);
+}
+
+// Helper function to get crew for a chief pilot
+export function getCrewForChiefPilot(chiefPilotId: number): CrewAssignment[] {
+  return mockCrewAssignments.filter(ca => ca.chief_pilot_id === chiefPilotId);
+}
+
+// Helper function to get rosters for a chief pilot
+export function getRostersForChiefPilot(chiefPilotId: number): MonthlyRoster[] {
+  return mockMonthlyRosters.filter(mr => mr.chief_pilot_id === chiefPilotId);
+}
+
+// Helper function to get roster entries for a roster
+export function getRosterEntries(rosterId: number): RosterEntry[] {
+  return mockRosterEntries.filter(re => re.roster_id === rosterId);
+}
+
