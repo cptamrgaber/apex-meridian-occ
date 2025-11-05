@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
-import MobileBottomNav from '@/components/MobileBottomNav';
 import { Plane, Users, AlertTriangle, Calendar, Activity, Radio, Clock, TrendingUp, MapPin } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -222,80 +221,81 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="flex h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <Sidebar onLogout={handleLogout} />
       
-      <main className="flex-1 overflow-auto mobile-page-content">
-        {/* Header */}
-        <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 md:px-8 py-6">
-          <div className="flex items-center justify-between">
+      <main className="flex-1 overflow-auto">
+        {/* Hero Section */}
+        <div className="relative h-48 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/images/occ-hero.jpg')] bg-cover bg-center opacity-20"></div>
+          <div className="relative z-10 h-full flex items-center px-8">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">Operations Control</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Real-time EgyptAir monitoring</p>
+              <h1 className="text-4xl font-bold text-white mb-2">Operations Control Center</h1>
+              <p className="text-blue-100 text-lg">Real-time EgyptAir operations monitoring</p>
             </div>
-            <div className="hidden md:flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-green-700 dark:text-green-400">Live</span>
-              <span className="text-xs text-green-600 dark:text-green-500">• {formatTime(lastUpdate.getTime() / 1000)}</span>
+            <div className="ml-auto flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-white font-medium">Live ADS-B</span>
+              <span className="text-blue-200 text-sm">• {formatTime(lastUpdate.getTime() / 1000)}</span>
             </div>
           </div>
         </div>
 
-        <div className="p-4 md:p-6 space-y-6">
+        <div className="p-6 space-y-6">
           {/* Statistics Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                  <Plane className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <div className="grid grid-cols-4 gap-4">
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <Plane className="w-8 h-8 opacity-80" />
+                <div className="text-right">
+                  <div className="text-3xl font-bold">{stats.activeFlights}</div>
+                  <div className="text-sm opacity-90">Live Tracking</div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.activeFlights}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Flights</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Live Tracking</div>
+              <div className="text-sm font-medium">Active Flights</div>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                  <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
+            <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <Users className="w-8 h-8 opacity-80" />
+                <div className="text-right">
+                  <div className="text-3xl font-bold">{stats.crewOnDuty}</div>
+                  <div className="text-sm opacity-90">Estimated</div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.crewOnDuty}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Crew On Duty</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Estimated</div>
+              <div className="text-sm font-medium">Crew On Duty</div>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-                  <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+            <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <AlertTriangle className="w-8 h-8 opacity-80" />
+                <div className="text-right">
+                  <div className="text-3xl font-bold">{stats.alerts}</div>
+                  <div className="text-sm opacity-90">All Clear</div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.alerts}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Alerts</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">All Clear</div>
+              <div className="text-sm font-medium">Active Alerts</div>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 md:p-5 hover:shadow-lg transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                  <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+            <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <Calendar className="w-8 h-8 opacity-80" />
+                <div className="text-right">
+                  <div className="text-3xl font-bold">{stats.scheduledFlights}</div>
+                  <div className="text-sm opacity-90">Today</div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.scheduledFlights}</div>
               </div>
-              <div className="text-sm font-medium text-gray-600 dark:text-gray-400">Scheduled</div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Today</div>
+              <div className="text-sm font-medium">Scheduled</div>
             </div>
           </div>
 
           {/* Charts Row 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 gap-6">
             {/* Hourly Operations */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-              <div className="flex items-center gap-2 mb-4">
-                <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Hourly Operations</h2>
+            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800 shadow-lg">
+              <div className="flex items-center gap-3 mb-4">
+                <Clock className="w-5 h-5 text-blue-400" />
+                <h2 className="text-lg font-semibold text-white">Hourly Operations</h2>
               </div>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={hourlyData}>
@@ -314,10 +314,10 @@ export default function DashboardPage() {
             </div>
 
             {/* Weekly Operations */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-              <div className="flex items-center gap-2 mb-4">
-                <TrendingUp className="w-5 h-5 text-green-600 dark:text-green-400" />
-                <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Weekly Operations</h2>
+            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800 shadow-lg">
+              <div className="flex items-center gap-3 mb-4">
+                <TrendingUp className="w-5 h-5 text-emerald-400" />
+                <h2 className="text-lg font-semibold text-white">Weekly Operations</h2>
               </div>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={weeklyData}>
@@ -337,10 +337,10 @@ export default function DashboardPage() {
           </div>
 
           {/* Charts Row 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-3 gap-6">
             {/* Delay Reasons */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-              <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-4">Delay Reasons</h2>
+            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800 shadow-lg">
+              <h2 className="text-lg font-semibold text-white mb-4">Delay Reasons</h2>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie
@@ -363,8 +363,8 @@ export default function DashboardPage() {
             </div>
 
             {/* On-Time Performance */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800 md:col-span-2">
-              <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-4">On-Time Performance (Last 5 Months)</h2>
+            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800 shadow-lg col-span-2">
+              <h2 className="text-lg font-semibold text-white mb-4">On-Time Performance (Last 5 Months)</h2>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={performanceData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -389,11 +389,11 @@ export default function DashboardPage() {
           </div>
 
           {/* Live Flights Table */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
-            <div className="flex items-center gap-2 mb-4">
-              <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Live EgyptAir Flights</h2>
-              <span className="ml-auto text-xs md:text-sm text-gray-500 dark:text-gray-400">
+          <div className="bg-slate-900 rounded-xl p-6 border border-slate-800 shadow-lg">
+            <div className="flex items-center gap-3 mb-4">
+              <MapPin className="w-5 h-5 text-blue-400" />
+              <h2 className="text-lg font-semibold text-white">Live EgyptAir Flights</h2>
+              <span className="ml-auto text-sm text-slate-400">
                 Real-Time ADS-B Tracking
               </span>
             </div>
@@ -401,30 +401,30 @@ export default function DashboardPage() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">CALLSIGN</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">POSITION</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">ALTITUDE</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">SPEED</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">HEADING</th>
-                    <th className="text-left py-3 px-4 text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">STATUS</th>
+                  <tr className="border-b border-slate-800">
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">CALLSIGN</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">POSITION</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">ALTITUDE</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">SPEED</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">HEADING</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">STATUS</th>
                   </tr>
                 </thead>
                 <tbody>
                   {liveFlights.map((flight) => (
-                    <tr key={flight.id} className="border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                      <td className="py-3 px-4 font-mono text-blue-600 dark:text-blue-400 font-semibold text-sm">{flight.callsign}</td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 font-mono text-xs md:text-sm">
+                    <tr key={flight.id} className="border-b border-slate-800 hover:bg-slate-800/50 transition-colors">
+                      <td className="py-3 px-4 font-mono text-blue-400 font-semibold">{flight.callsign}</td>
+                      <td className="py-3 px-4 text-slate-300 font-mono text-sm">
                         {flight.latitude?.toFixed(2)}°, {flight.longitude?.toFixed(2)}°
                       </td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 text-sm">{flight.altitude_feet?.toLocaleString() || 0} ft</td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 text-sm">{flight.speed_knots || 0} kts</td>
-                      <td className="py-3 px-4 text-gray-700 dark:text-gray-300 text-sm">{flight.heading || 0}°</td>
+                      <td className="py-3 px-4 text-slate-300">{flight.altitude_feet?.toLocaleString() || 0} ft</td>
+                      <td className="py-3 px-4 text-slate-300">{flight.speed_knots || 0} kts</td>
+                      <td className="py-3 px-4 text-slate-300">{flight.heading || 0}°</td>
                       <td className="py-3 px-4">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           flight.on_ground 
-                            ? 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300' 
-                            : 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400'
+                            ? 'bg-slate-700 text-slate-300' 
+                            : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                         }`}>
                           {flight.status}
                         </span>
@@ -437,8 +437,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-      
-      <MobileBottomNav />
     </div>
   );
 }

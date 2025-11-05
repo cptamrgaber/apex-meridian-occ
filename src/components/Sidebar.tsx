@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Plane, Users, Calendar, BarChart3, Settings, LogOut, Radio, MapPin, CalendarDays, Bell, Cloud, BookOpen, Shield, Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 interface SidebarProps {
   onLogout: () => void;
@@ -38,16 +39,16 @@ export default function Sidebar({ onLogout }: SidebarProps) {
       {/* Mobile Menu Button - Fixed at top left */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-slate-900 rounded-lg border border-slate-700 text-white hover:bg-slate-800 transition-colors shadow-lg"
+        className="md:hidden fixed top-4 left-4 z-50 p-2.5 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-md"
         aria-label="Toggle menu"
       >
-        {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
       {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
+          className="md:hidden fixed inset-0 bg-black/30 dark:bg-black/50 z-40 backdrop-blur-sm"
           onClick={closeMobileMenu}
         />
       )}
@@ -56,24 +57,27 @@ export default function Sidebar({ onLogout }: SidebarProps) {
       <div
         className={`
           fixed md:static inset-y-0 left-0 z-40
-          w-64 bg-slate-900 border-r border-slate-800 flex flex-col
+          w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
       >
-        {/* Logo */}
-        <div className="p-6 border-b border-slate-800">
-          <div className="flex items-center gap-3">
-            <Plane className="w-8 h-8 text-sky-400" />
-            <div>
-              <h1 className="text-xl font-bold text-white">Apex Meridian</h1>
-              <p className="text-xs text-slate-400">Operations Control</p>
+        {/* Logo & Theme Toggle */}
+        <div className="p-4 border-b border-gray-200 dark:border-gray-800">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <Plane className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+              <div>
+                <h1 className="text-lg font-bold text-gray-900 dark:text-white">Apex Meridian</h1>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Operations Control</p>
+              </div>
             </div>
           </div>
+          <ThemeToggle />
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -83,30 +87,30 @@ export default function Sidebar({ onLogout }: SidebarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={closeMobileMenu}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                   isActive
-                    ? 'bg-sky-600 text-white'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
                 <Icon className="w-5 h-5" />
-                <span className="font-medium">{item.label}</span>
+                <span className="text-sm">{item.label}</span>
               </Link>
             );
           })}
         </nav>
 
         {/* Logout */}
-        <div className="p-4 border-t border-slate-800">
+        <div className="p-3 border-t border-gray-200 dark:border-gray-800">
           <button
             onClick={() => {
               closeMobileMenu();
               onLogout();
             }}
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors w-full"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors w-full"
           >
             <LogOut className="w-5 h-5" />
-            <span className="font-medium">Logout</span>
+            <span className="text-sm font-medium">Logout</span>
           </button>
         </div>
       </div>
