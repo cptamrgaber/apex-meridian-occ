@@ -332,3 +332,20 @@
 - [ ] Add crew utilization graphs
 - [ ] Add aircraft utilization graphs
 
+
+
+
+## USER REQUEST: Fix Mobile Responsiveness Issues (CRITICAL)
+- [ ] Add mobile hamburger menu to Sidebar component
+- [ ] Make sidebar collapsible/toggleable on mobile devices
+- [ ] Hide sidebar by default on screens < 768px (md breakpoint)
+- [ ] Add overlay backdrop when mobile menu is open
+- [ ] Fix sidebar covering main content on mobile
+- [ ] Test all pages on mobile viewport (375px, 768px)
+- [ ] Ensure charts are responsive on mobile
+- [ ] Fix hero section height on mobile
+- [ ] Fix stat cards grid on mobile (should stack 1-2 columns)
+- [ ] Add touch-friendly navigation
+- [ ] Test hamburger menu open/close functionality
+- [ ] Ensure proper z-index layering for mobile menu
+
