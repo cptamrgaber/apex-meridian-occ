@@ -101,10 +101,10 @@ export default function RosterDetailPage() {
 
   if (loading || !roster) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-50 dark:bg-gray-950">
+      <div className="flex h-screen items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading roster...</p>
+          <p className="mt-4 text-gray-600">Loading roster...</p>
         </div>
       </div>
     );
@@ -121,34 +121,34 @@ export default function RosterDetailPage() {
   const isDraft = roster.status === 'draft';
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="flex h-screen bg-gray-50">
       <Sidebar onLogout={handleLogout} />
       
       <main className="flex-1 overflow-auto mobile-page-content">
         {/* Header */}
-        <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 md:px-8 py-6">
+        <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-6">
           <div className="flex items-center gap-4 mb-4">
             <button
               onClick={() => router.push('/chief-pilot')}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
             <div className="flex-1">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
                 {monthName} Roster
               </h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600">
                 {roster.aircraft_type?.name} Fleet • {roster.total_flights} flights • {roster.total_duty_hours.toFixed(1)} duty hours
               </p>
             </div>
             <div className="flex items-center gap-2">
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                 roster.status === 'approved'
-                  ? 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400'
+                  ? 'bg-green-100 text-green-700
                   : roster.status === 'submitted'
-                  ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-400'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                  ? 'bg-blue-100 text-blue-700
+                  : 'bg-gray-200 text-gray-700
               }`}>
                 {roster.status}
               </span>
@@ -187,17 +187,17 @@ export default function RosterDetailPage() {
 
         <div className="p-4 md:p-6 space-y-6">
           {/* Calendar View */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-200">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Select Date</h2>
+                <Calendar className="w-5 h-5 text-blue-600" />
+                <h2 className="text-base md:text-lg font-semibold text-gray-900">Select Date</h2>
               </div>
             </div>
 
             <div className="grid grid-cols-7 gap-2">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                <div key={day} className="text-center text-xs font-semibold text-gray-600 dark:text-gray-400 py-2">
+                <div key={day} className="text-center text-xs font-semibold text-gray-600 py-2">
                   {day}
                 </div>
               ))}
@@ -219,15 +219,15 @@ export default function RosterDetailPage() {
                     onClick={() => setSelectedDate(date)}
                     className={`aspect-square rounded-lg border-2 transition-all ${
                       isSelected
-                        ? 'border-blue-600 bg-blue-50 dark:bg-blue-900/20'
+                        ? 'border-blue-600 bg-blue-50
                         : hasEntries
-                        ? 'border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/10 hover:border-green-400'
-                        : 'border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600'
+                        ? 'border-green-200 bg-green-50 hover:border-green-400'
+                        : 'border-gray-200 hover:border-gray-400
                     }`}
                   >
-                    <div className="text-sm font-medium text-gray-900 dark:text-white">{index + 1}</div>
+                    <div className="text-sm font-medium text-gray-900">{index + 1}</div>
                     {hasEntries && (
-                      <div className="text-xs text-green-600 dark:text-green-400">{dayEntries.length}</div>
+                      <div className="text-xs text-green-600">{dayEntries.length}</div>
                     )}
                   </button>
                 );
@@ -236,11 +236,11 @@ export default function RosterDetailPage() {
           </div>
 
           {/* Roster Entries for Selected Date */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-200">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <Plane className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
+                <Plane className="w-5 h-5 text-blue-600" />
+                <h2 className="text-base md:text-lg font-semibold text-gray-900">
                   Flights on {new Date(selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </h2>
               </div>
@@ -258,7 +258,7 @@ export default function RosterDetailPage() {
             {entriesForDate.length === 0 ? (
               <div className="text-center py-12">
                 <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600 dark:text-gray-400">No flights scheduled for this date</p>
+                <p className="text-gray-600">No flights scheduled for this date</p>
                 {isDraft && (
                   <button
                     onClick={handleAddEntry}
@@ -273,32 +273,32 @@ export default function RosterDetailPage() {
                 {entriesForDate.map((entry) => (
                   <div
                     key={entry.id}
-                    className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                    className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
                       <div>
-                        <div className="text-xs text-gray-500 dark:text-gray-500 mb-1">Flight</div>
-                        <div className="font-semibold text-gray-900 dark:text-white">{entry.flight_number}</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">{entry.aircraft_registration}</div>
+                        <div className="text-xs text-gray-500 mb-1">Flight</div>
+                        <div className="font-semibold text-gray-900">{entry.flight_number}</div>
+                        <div className="text-xs text-gray-600">{entry.aircraft_registration}</div>
                       </div>
                       <div>
-                        <div className="text-xs text-gray-500 dark:text-gray-500 mb-1">Route</div>
-                        <div className="font-medium text-gray-900 dark:text-white">
+                        <div className="text-xs text-gray-500 mb-1">Route</div>
+                        <div className="font-medium text-gray-900">
                           {entry.departure_airport} → {entry.arrival_airport}
                         </div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">
+                        <div className="text-xs text-gray-600">
                           {entry.scheduled_departure} - {entry.scheduled_arrival}
                         </div>
                       </div>
                       <div>
-                        <div className="text-xs text-gray-500 dark:text-gray-500 mb-1">Pilot</div>
-                        <div className="font-medium text-gray-900 dark:text-white">{entry.pilot_name}</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400 capitalize">{entry.position}</div>
+                        <div className="text-xs text-gray-500 mb-1">Pilot</div>
+                        <div className="font-medium text-gray-900">{entry.pilot_name}</div>
+                        <div className="text-xs text-gray-600 capitalize">{entry.position}</div>
                       </div>
                       <div>
-                        <div className="text-xs text-gray-500 dark:text-gray-500 mb-1">Duty</div>
-                        <div className="font-medium text-gray-900 dark:text-white">{entry.duty_hours}h</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">
+                        <div className="text-xs text-gray-500 mb-1">Duty</div>
+                        <div className="font-medium text-gray-900">{entry.duty_hours}h</div>
+                        <div className="text-xs text-gray-600">
                           {entry.duty_start} - {entry.duty_end}
                         </div>
                       </div>
@@ -306,9 +306,9 @@ export default function RosterDetailPage() {
                     {isDraft && (
                       <button
                         onClick={() => handleDeleteEntry(entry.id)}
-                        className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                        className="p-2 hover:bg-red-50 rounded-lg transition-colors"
                       >
-                        <Trash2 className="w-4 h-4 text-red-600 dark:text-red-400" />
+                        <Trash2 className="w-4 h-4 text-red-600" />
                       </button>
                     )}
                   </div>
@@ -318,23 +318,23 @@ export default function RosterDetailPage() {
           </div>
 
           {/* Crew Availability */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-200 dark:border-gray-800">
+          <div className="bg-white rounded-xl p-4 md:p-6 border border-gray-200">
             <div className="flex items-center gap-2 mb-4">
-              <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Available Crew</h2>
+              <User className="w-5 h-5 text-blue-600" />
+              <h2 className="text-base md:text-lg font-semibold text-gray-900">Available Crew</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {crew.filter(c => c.status === 'active').map((member) => (
                 <div
                   key={member.id}
-                  className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-800 rounded-lg"
+                  className="flex items-center justify-between p-3 border border-gray-200 rounded-lg"
                 >
                   <div>
-                    <div className="font-medium text-gray-900 dark:text-white text-sm">{member.pilot_name}</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">{member.aircraft_type?.code}</div>
+                    <div className="font-medium text-gray-900 text-sm">{member.pilot_name}</div>
+                    <div className="text-xs text-gray-600">{member.aircraft_type?.code}</div>
                   </div>
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
+                  <CheckCircle className="w-5 h-5 text-green-600" />
                 </div>
               ))}
             </div>
