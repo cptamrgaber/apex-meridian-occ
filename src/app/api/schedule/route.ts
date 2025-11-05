@@ -29,9 +29,11 @@ export async function GET(request: Request) {
     }
 
     // Sort by departure time
-    flights.sort((a, b) => 
-      new Date(a.scheduled_departure).getTime() - new Date(b.scheduled_departure).getTime()
-    );
+    flights.sort((a, b) => {
+      const timeA = a.departure_time || '00:00';
+      const timeB = b.departure_time || '00:00';
+      return timeA.localeCompare(timeB);
+    });
 
     return NextResponse.json({
       success: true,
