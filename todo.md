@@ -495,6 +495,54 @@
 - [x] Apply new clean design to /dashboard page
 - [x] Add theme toggle to dashboard
 - [x] Replace mock names with real OM-A names
-- [ ] Test both light and dark themes
+- [x] Test both light and dark themes
+- [x] Deploy and verify on production
+
+
+
+
+## USER REQUEST: Fix Ugly, Unreadable Dashboard UI
+
+### Current Problems
+- [ ] Fonts are too small and unreadable
+- [ ] Poor spacing - elements cramped together
+- [ ] No clear visual hierarchy
+- [ ] Doesn't meet Apex-Meridian brand standards
+- [ ] Charts are unclear and hard to read
+- [ ] Overall unprofessional appearance
+
+### Design Improvements Needed
+- [ ] Increase font sizes significantly (headings, body text, labels)
+- [ ] Add generous padding and margins throughout
+- [ ] Create clear visual hierarchy (size, weight, color)
+- [ ] Define and apply Apex-Meridian typography standards
+- [ ] Improve chart readability (larger labels, better colors)
+- [ ] Add proper spacing between sections
+- [ ] Make stat cards more prominent and readable
+- [ ] Improve table typography and spacing
+- [ ] Ensure professional, corporate appearance
+- [ ] Test readability at different screen sizes
+
+
+
+
+## USER REQUEST: Add Apex-Meridian & EgyptAir Logos
+
+### Logo Placement Strategy
+- [ ] Login page: Both logos prominently displayed (Apex-Meridian top, EgyptAir below/beside)
+- [ ] Headers: Apex-Meridian logo (left) showing system ownership
+- [ ] Footers: Both logos (Apex-Meridian left as builder, EgyptAir right as client)
+- [ ] Design shows Apex-Meridian as builder/owner, EgyptAir as client (no text needed)
+
+### Implementation Tasks
+- [x] Obtain/download Apex-Meridian logo (high resolution)
+- [x] Obtain/download EgyptAir logo (high resolution)
+- [x] Add logos to public/images directory
+- [x] Update login page with both logos
+- [x] Create Header component with Apex-Meridian logo (in Sidebar)
+- [x] Create Footer component with both logos
+- [x] Add Header/Footer to all pages
+- [ ] Ensure responsive sizing for mobile
+- [ ] Test logo visibility in light/dark themes
 - [ ] Deploy and verify on production
 

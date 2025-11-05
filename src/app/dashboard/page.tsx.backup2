@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import MobileBottomNav from '@/components/MobileBottomNav';
-import Footer from '@/components/Footer';
 import { Plane, Users, AlertTriangle, Calendar } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -404,7 +403,6 @@ export default function DashboardPage() {
         </div>
       </main>
 
-      <Footer />
       <MobileBottomNav />
     </div>
   );

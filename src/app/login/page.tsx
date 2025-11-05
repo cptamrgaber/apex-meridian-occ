@@ -130,17 +130,30 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo and Title */}
+        {/* Logos */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4">
-            <Plane className="w-8 h-8 text-white" />
+          {/* Apex-Meridian Logo (System Builder/Owner) */}
+          <div className="mb-6">
+            <img 
+              src="/images/apex-meridian-logo.png" 
+              alt="Apex-Meridian" 
+              className="h-16 mx-auto"
+            />
           </div>
+          
+          {/* Title */}
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Apex Meridian® OCC
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
             Operations Control Center
-          </p>
+          </h1>
+          
+          {/* EgyptAir Logo (Client) */}
+          <div className="mt-6">
+            <img 
+              src="/images/egyptair-logo.jpg" 
+              alt="EgyptAir" 
+              className="h-12 mx-auto"
+            />
+          </div>
         </div>
 
         {/* Login Form */}

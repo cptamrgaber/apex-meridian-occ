@@ -67,13 +67,14 @@ export default function Sidebar({ onLogout }: SidebarProps) {
         <div className="p-4 border-b border-gray-200 dark:border-gray-800">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Plane className="w-7 h-7 text-blue-600 dark:text-blue-400" />
-              <div>
-                <h1 className="text-lg font-bold text-gray-900 dark:text-white">Apex Meridian</h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Operations Control</p>
-              </div>
+              <img 
+                src="/images/apex-meridian-logo.png" 
+                alt="Apex-Meridian" 
+                className="h-8"
+              />
             </div>
           </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">Operations Control Center</p>
           <ThemeToggle />
         </div>
 
