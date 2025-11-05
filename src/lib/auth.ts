@@ -45,7 +45,7 @@ export type Permission = keyof typeof PERMISSIONS;
 export function hasPermission(user: User | null, permission: Permission): boolean {
   if (!user) return false;
   
-  const allowedRoles = PERMISSIONS[permission];
+  const allowedRoles = PERMISSIONS[permission] as readonly UserRole[];
   return allowedRoles.includes(user.role);
 }
 
