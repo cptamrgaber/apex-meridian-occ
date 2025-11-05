@@ -459,3 +459,18 @@
 - [x] Implement logout functionality
 - [ ] Add password reset functionality
 
+
+
+
+## USER REQUEST: Complete All 6 Aircraft Type Chief Pilots
+
+### Add Missing Chief Pilots
+- [ ] Add Chief Pilot for Boeing 737-800/MAX
+- [ ] Add Chief Pilot for Boeing 787-9
+- [ ] Add Chief Pilot for Boeing 777
+- [ ] Add Chief Pilot for Airbus A350
+- [ ] Update login page with all 6 chief pilot credentials
+- [ ] Update mock data with all 6 fleets
+- [ ] Update fleet management data with all aircraft types
+- [ ] Test each chief pilot can only access their assigned fleet
+

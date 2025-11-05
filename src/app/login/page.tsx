@@ -33,13 +33,49 @@ const MOCK_USERS = [
   },
   {
     id: 4,
+    username: 'chief.omar',
+    password: 'omar123',
+    role: 'chief_pilot',
+    name: 'Capt. Omar Khalil',
+    aircraft_type: 'B737',
+    chief_pilot_id: 3,
+  },
+  {
+    id: 5,
+    username: 'chief.khaled',
+    password: 'khaled123',
+    role: 'chief_pilot',
+    name: 'Capt. Khaled Mansour',
+    aircraft_type: 'B787',
+    chief_pilot_id: 4,
+  },
+  {
+    id: 6,
+    username: 'chief.tarek',
+    password: 'tarek123',
+    role: 'chief_pilot',
+    name: 'Capt. Tarek Fouad',
+    aircraft_type: 'B777',
+    chief_pilot_id: 5,
+  },
+  {
+    id: 7,
+    username: 'chief.waleed',
+    password: 'waleed123',
+    role: 'chief_pilot',
+    name: 'Capt. Waleed Samir',
+    aircraft_type: 'A350',
+    chief_pilot_id: 6,
+  },
+  {
+    id: 8,
     username: 'pilot.ibrahim',
     password: 'ibrahim123',
     role: 'pilot',
     name: 'Capt. Youssef Ibrahim',
   },
   {
-    id: 5,
+    id: 9,
     username: 'dispatcher',
     password: 'dispatch123',
     role: 'dispatcher',
@@ -195,6 +231,22 @@ export default function LoginPage() {
               <div className="flex justify-between">
                 <span className="font-medium">Chief Pilot (A330):</span>
                 <span className="font-mono">chief.mohamed / mohamed123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Chief Pilot (B737):</span>
+                <span className="font-mono">chief.omar / omar123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Chief Pilot (B787):</span>
+                <span className="font-mono">chief.khaled / khaled123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Chief Pilot (B777):</span>
+                <span className="font-mono">chief.tarek / tarek123</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Chief Pilot (A350):</span>
+                <span className="font-mono">chief.waleed / waleed123</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium">Pilot:</span>

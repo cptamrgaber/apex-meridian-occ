@@ -179,7 +179,7 @@ export function getAccessibleAircraftTypes(user: User | null): string[] {
   
   // Admin can access all types
   if (user.role === 'admin') {
-    return ['A320', 'A321', 'A330', 'B737', 'B777', 'B787'];
+    return ['A320', 'A321', 'A330', 'A350', 'B737', 'B777', 'B787'];
   }
   
   // Chief pilot can only access their assigned type
