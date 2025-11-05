@@ -20,7 +20,7 @@ function loadChunks(): OMAChunk[] {
     const chunksPath = path.join(process.cwd(), 'src/data/om-a/chunks.json');
     chunksCache = JSON.parse(fs.readFileSync(chunksPath, 'utf-8'));
   }
-  return chunksCache;
+  return chunksCache as OMAChunk[];
 }
 
 export async function POST(request: NextRequest) {
