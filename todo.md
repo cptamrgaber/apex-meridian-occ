@@ -207,3 +207,38 @@
 - [ ] Test deployment package locally
 - [ ] Include all real data (541 captains, 72 flights, 67 aircraft)
 
+
+
+
+## USER REQUEST: Comprehensive EgyptAir Flight Database Search
+- [x] Search EgyptAir official website for complete flight schedules
+- [x] Search EgyptAir timetables for regular routes
+- [x] Search EgyptAir seasonal schedules (summer/winter)
+- [x] Search FlightRadar24 for all EgyptAir routes (MS/MSR callsigns)
+- [x] Search FlightAware for EgyptAir flight database
+- [x] Search OAG (Official Airline Guide) for EgyptAir schedules
+- [x] Search ADS-B Exchange for real-time EgyptAir flights
+- [x] Search aviation databases for EgyptAir route network
+- [x] Search airport timetables for EgyptAir departures/arrivals
+- [x] Compile all found flights into comprehensive database
+- [x] Add regular flights to database
+- [x] Add seasonal flights to database
+- [x] Add charter flights to database
+- [x] Update application with expanded flight data
+- [ ] Deploy updated application
+
+
+
+
+## USER REQUEST: Match Actual Aircraft Types to Flight Numbers
+- [ ] Search FlightAware for each flight number's actual aircraft type
+- [ ] Search FlightRadar24 for flight-specific aircraft assignments
+- [ ] Document MS001-MS099 with actual aircraft types
+- [ ] Document MS100-MS299 with actual aircraft types
+- [ ] Document MS300-MS599 with actual aircraft types
+- [ ] Document MS600-MS699 with actual aircraft types
+- [ ] Document MS700-MS899 with actual aircraft types
+- [ ] Document MS900-MS999 with actual aircraft types
+- [ ] Update database with verified aircraft assignments
+- [ ] Deploy updated database with real aircraft types
+
