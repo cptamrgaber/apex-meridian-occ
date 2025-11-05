@@ -1,70 +1,271 @@
+/* Import futuristic Google Fonts for Tech Command Center theme */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Light theme (default) */
+  /* Tech Command Center Theme - Black + Cyan + Neon */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217.2 91.2% 59.8%;
-    --radius: 0.5rem;
-  }
-
-  /* Dark theme */
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    /* Main colors - Pure black background with cyan accents */
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 189 100% 80%; /* Bright cyan text */
+    
+    /* Cards and surfaces - Dark gray with cyan glow */
+    --card: 240 10% 10%; /* Very dark gray */
+    --card-foreground: 189 100% 90%; /* Bright cyan */
+    
+    /* Popovers */
+    --popover: 240 10% 5%;
+    --popover-foreground: 189 100% 90%;
+    
+    /* Primary - Cyan/Teal accent */
+    --primary: 189 100% 42%; /* #06b6d4 - Cyan */
+    --primary-foreground: 0 0% 0%;
+    
+    /* Secondary - Matrix green */
+    --secondary: 142 71% 45%; /* #22c55e - Green */
+    --secondary-foreground: 0 0% 0%;
+    
+    /* Muted */
+    --muted: 240 10% 15%;
+    --muted-foreground: 189 50% 60%;
+    
+    /* Accent - Electric blue */
+    --accent: 217 91% 60%; /* #3b82f6 - Blue */
+    --accent-foreground: 0 0% 0%;
+    
+    /* Destructive - Bright red */
+    --destructive: 0 84% 60%; /* #dc2626 - Red */
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Warning - Neon orange */
+    --warning: 25 95% 53%; /* #fb923c - Orange */
+    --warning-foreground: 0 0% 0%;
+    
+    /* Success - Lime green */
+    --success: 78 92% 45%; /* #84cc16 - Lime */
+    --success-foreground: 0 0% 0%;
+    
+    /* Borders - Cyan glow */
+    --border: 189 100% 42%;
+    --input: 189 100% 42%;
+    --ring: 189 100% 50%;
+    
+    /* Sharp corners for technical feel */
+    --radius: 0.125rem; /* 2px - very sharp */
   }
 }
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    border-color: hsl(var(--border) / 0.3);
   }
+  
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: 'Orbitron', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: 0.05em; /* Wider letter spacing for technical feel */
+  }
+  
+  /* Headings use Exo 2 */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  /* Monospace for technical data */
+  code, pre, .monospace, .flight-number, .technical-data {
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.1em;
   }
 }
 
-/* Smooth theme transitions */
+/* Neon glow effects */
+@layer utilities {
+  .neon-glow {
+    text-shadow: 
+      0 0 5px hsl(var(--primary)),
+      0 0 10px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary)),
+      0 0 40px hsl(var(--primary));
+  }
+  
+  .neon-border {
+    border: 1px solid hsl(var(--primary));
+    box-shadow: 
+      0 0 5px hsl(var(--primary) / 0.5),
+      inset 0 0 5px hsl(var(--primary) / 0.2);
+  }
+  
+  .neon-box-glow {
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.3),
+      0 0 20px hsl(var(--primary) / 0.2),
+      inset 0 0 10px hsl(var(--primary) / 0.1);
+  }
+  
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--primary)), 
+      transparent
+    );
+    animation: scan 3s linear infinite;
+  }
+  
+  @keyframes scan {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.8);
+    }
+  }
+}
+
+/* Typography scale for Tech Command Center */
+@layer base {
+  .text-hero {
+    font-size: 3.5rem; /* 56px */
+    line-height: 1.1;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .text-page-title {
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .text-section-title {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.3;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .text-card-title {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.4;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .text-stat-number {
+    font-size: 4rem; /* 64px */
+    line-height: 1;
+    font-weight: 700;
+    font-family: 'Share Tech Mono', monospace;
+  }
+}
+
+/* Command Center specific components */
+@layer components {
+  .command-card {
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--primary) / 0.5);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.2),
+      inset 0 0 10px hsl(var(--primary) / 0.05);
+  }
+  
+  .command-button {
+    background-color: transparent;
+    border: 1px solid hsl(var(--primary));
+    color: hsl(var(--primary));
+    padding: 0.75rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .command-button:hover {
+    background-color: hsl(var(--primary) / 0.1);
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.5),
+      inset 0 0 10px hsl(var(--primary) / 0.2);
+  }
+  
+  .command-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid hsl(var(--primary) / 0.5);
+    color: hsl(var(--foreground));
+    padding: 0.5rem 0;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+  }
+  
+  .command-input:focus {
+    outline: none;
+    border-bottom-color: hsl(var(--primary));
+    box-shadow: 0 2px 10px hsl(var(--primary) / 0.5);
+  }
+  
+  .status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: hsl(var(--success));
+    box-shadow: 0 0 10px hsl(var(--success));
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  .status-indicator.warning {
+    background-color: hsl(var(--warning));
+    box-shadow: 0 0 10px hsl(var(--warning));
+  }
+  
+  .status-indicator.error {
+    background-color: hsl(var(--destructive));
+    box-shadow: 0 0 10px hsl(var(--destructive));
+  }
+}
+
+/* Smooth transitions */
 * {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Mobile bottom nav padding */
@@ -72,5 +273,31 @@
   .mobile-page-content {
     padding-bottom: 5rem; /* Space for bottom nav */
   }
+}
+
+/* Scrollbar styling for command center theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+  box-shadow: 0 0 10px hsl(var(--primary));
+}
+
+/* Selection color */
+::selection {
+  background-color: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
 }
 
