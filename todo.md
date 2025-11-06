@@ -728,5 +728,32 @@
 - [x] Check if welcome section displays on mobile
 - [x] Ensure graph descriptions are readable on mobile
 - [x] Test mobile responsiveness of all fixes
-- [ ] Deploy mobile-specific fixes
+- [x] Deploy mobile-specific fixes
+
+
+
+## USER REQUEST: Resize ALL Logos and Icons Throughout Project
+
+### Find All Logos/Icons
+- [x] Find all logo instances in Sidebar
+- [x] Find all logo instances in Login page
+- [x] Find all logo instances in Footer
+- [x] Find all logo instances in Header
+- [x] Find icon sizes in all components
+- [x] Check for any other image/logo references
+
+### Resize to Proper Artistic Sizes
+- [x] Resize Sidebar logo (reduced from h-7 to h-5)
+- [x] Verify Login page logo size (reduced from h-6 to h-5)
+- [x] Resize Footer logos (Apex h-8→h-6, EgyptAir h-7→h-5)
+- [x] Ensure all icons are proportional
+- [x] Make sizes consistent across project
+- [x] Ensure artistic, professional appearance
+- [x] Add solid white background to sidebar (inline style + bg-white class)
+
+### Deploy and Verify
+- [ ] Test all pages for proper logo sizing
+- [ ] Verify hamburger menu logo is appropriate
+- [ ] Check artistic consistency
+- [ ] Deploy fixes to production
 

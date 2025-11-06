@@ -58,17 +58,18 @@ export default function Sidebar({ onLogout }: SidebarProps) {
         className={`
           fixed md:static inset-y-0 left-0 z-[50]
           w-64 bg-white border-r border-gray-200 flex flex-col shadow-2xl
-          transform transition-transform duration-300 ease-in-out
+          transform transition-transform duration-300 ease-in-out backdrop-blur-none
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
+        style={{ backgroundColor: '#ffffff' }}
       >
         {/* Logo */}
-        <div className="p-4 border-b border-gray-200">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="p-3 border-b border-gray-200 bg-white">
+          <div className="flex items-center gap-2 mb-1">
             <img 
               src="/images/apex-meridian-logo.png" 
               alt="Apex-Meridian" 
-              className="h-7"
+              className="h-5"
             />
           </div>
           <p className="text-xs text-gray-600 font-medium">Operations Control Center</p>
