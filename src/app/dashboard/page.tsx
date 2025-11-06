@@ -63,16 +63,16 @@ export default function Dashboard() {
     <div className="min-h-screen flex bg-gray-50">
       <Sidebar onLogout={handleLogout} />
       
-      <main className="flex-1 md:ml-64 mobile-page-content">
+      <main className="flex-1 md:ml-64 mobile-page-content w-full">
         {/* Header */}
         <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-          <div className="container mx-auto px-6 py-6">
+          <div className="container mx-auto px-4 md:px-6 py-4 md:py-6 pt-16 md:pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-1">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
                   Operations Control
                 </h1>
-                <p className="text-base text-gray-600">
+                <p className="text-sm md:text-base text-gray-600">
                   Real-time EgyptAir Monitoring
                 </p>
               </div>
@@ -88,9 +88,9 @@ export default function Dashboard() {
 
         {/* Welcome Section */}
         <div className="bg-blue-50 border-b border-blue-100">
-          <div className="container mx-auto px-6 py-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">Welcome to EgyptAir Operations Control Center</h2>
-            <p className="text-sm text-gray-700">
+          <div className="container mx-auto px-4 md:px-6 py-4 md:py-6">
+            <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-2">Welcome to EgyptAir Operations Control Center</h2>
+            <p className="text-xs md:text-sm text-gray-700">
               This dashboard provides real-time monitoring of all EgyptAir flight operations. Track active flights, crew availability, 
               operational alerts, and performance metrics. Use the sidebar to navigate to specific modules for detailed management.
             </p>
@@ -98,8 +98,8 @@ export default function Dashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="container mx-auto px-6 py-8">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Current Operations Overview</h3>
+        <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
+          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 md:mb-4">Current Operations Overview</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {/* Active Flights */}
             <div className="stat-card">
@@ -155,8 +155,8 @@ export default function Dashboard() {
           </div>
 
           {/* Charts Section */}
-          <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">Performance Analytics</h3>
-          <p className="text-sm text-gray-600 mb-6">Detailed analysis of flight operations, delays, and performance trends.</p>
+          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 md:mb-4 mt-6 md:mt-8">Performance Analytics</h3>
+          <p className="text-xs md:text-sm text-gray-600 mb-4 md:mb-6">Detailed analysis of flight operations, delays, and performance trends.</p>
           
           {/* Charts Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
