@@ -86,8 +86,20 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Welcome Section */}
+        <div className="bg-blue-50 border-b border-blue-100">
+          <div className="container mx-auto px-6 py-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Welcome to EgyptAir Operations Control Center</h2>
+            <p className="text-sm text-gray-700">
+              This dashboard provides real-time monitoring of all EgyptAir flight operations. Track active flights, crew availability, 
+              operational alerts, and performance metrics. Use the sidebar to navigate to specific modules for detailed management.
+            </p>
+          </div>
+        </div>
+
         {/* Stats Grid */}
         <div className="container mx-auto px-6 py-8">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Current Operations Overview</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {/* Active Flights */}
             <div className="stat-card">
@@ -142,14 +154,23 @@ export default function Dashboard() {
             </div>
           </div>
 
+          {/* Charts Section */}
+          <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">Performance Analytics</h3>
+          <p className="text-sm text-gray-600 mb-6">Detailed analysis of flight operations, delays, and performance trends.</p>
+          
           {/* Charts Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Hourly Operations */}
             <div className="clean-card p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-                <Activity className="w-5 h-5 text-blue-600" />
-                Hourly Operations
-              </h2>
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <Activity className="w-5 h-5 text-blue-600" />
+                  Hourly Operations
+                </h2>
+                <p className="text-sm text-gray-600">
+                  Flight operations throughout the day, showing on-time vs delayed flights for each 3-hour period.
+                </p>
+              </div>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={hourlyData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -179,10 +200,15 @@ export default function Dashboard() {
 
             {/* Weekly Operations */}
             <div className="clean-card p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-blue-600" />
-                Weekly Operations
-              </h2>
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-blue-600" />
+                  Weekly Operations
+                </h2>
+                <p className="text-sm text-gray-600">
+                  7-day trend showing total scheduled flights and on-time performance across the week.
+                </p>
+              </div>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={weeklyData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -212,9 +238,14 @@ export default function Dashboard() {
 
             {/* Delay Reasons */}
             <div className="clean-card p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">
-                Delay Reasons
-              </h2>
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                  Delay Reasons
+                </h2>
+                <p className="text-sm text-gray-600">
+                  Breakdown of flight delays by cause: weather conditions, technical issues, crew availability, and other factors.
+                </p>
+              </div>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
@@ -245,10 +276,15 @@ export default function Dashboard() {
 
             {/* Live Flights Table */}
             <div className="clean-card p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-                <Plane className="w-5 h-5 text-blue-600" />
-                Live EgyptAir Flights
-              </h2>
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <Plane className="w-5 h-5 text-blue-600" />
+                  Live EgyptAir Flights
+                </h2>
+                <p className="text-sm text-gray-600">
+                  Real-time tracking of active flights currently in the air, showing flight number, route, altitude, and speed.
+                </p>
+              </div>
               <div className="space-y-3">
                 {liveFlights.map((flight, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition-all">

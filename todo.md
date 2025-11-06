@@ -680,6 +680,38 @@
 - [x] Clean up unused imports in components
 - [x] Verify no dark theme classes remain in pages
 - [x] Remove old color scheme references
-- [ ] Commit cleanup changes
-- [ ] Deploy cleaned repository to production
+- [x] Commit cleanup changes
+- [x] Deploy cleaned repository to production
+
+
+
+
+## USER REQUEST: Fix Critical UX Bugs (URGENT)
+
+### Logo Issues
+- [x] Reduce logo size in login page (currently too large)
+- [x] Fix logo positioning in sidebar (better placement)
+- [x] Ensure logos are proportional to page elements
+- [ ] Test logo visibility on different screen sizes
+
+### Hamburger Menu Issues
+- [x] Add solid background to hamburger menu button (not transparent)
+- [x] Fix menu overlay to prevent content interference
+- [x] Ensure menu items don't overlap with main content
+- [x] Add proper z-index layering for mobile menu
+- [x] Make hamburger button more visible and accessible
+
+### Dashboard Context Issues
+- [x] Add descriptive titles to all graphs
+- [x] Add explanatory text for what each graph shows
+- [x] Add context descriptions for dashboard sections
+- [x] Explain what "Hourly Operations" means
+- [x] Explain what "Delay Reasons" shows
+- [x] Add helpful tooltips or info icons
+- [x] Make dashboard self-explanatory for first-time users
+
+### Deploy Fixes
+- [ ] Test all fixes locally
+- [ ] Verify mobile responsiveness
+- [ ] Deploy to production
 

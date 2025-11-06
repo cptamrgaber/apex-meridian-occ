@@ -39,16 +39,16 @@ export default function Sidebar({ onLogout }: SidebarProps) {
       {/* Mobile Menu Button - Fixed at top left */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 p-2.5 bg-white rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors shadow-md"
+        className="md:hidden fixed top-4 left-4 z-[60] p-2.5 bg-white rounded-lg border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-blue-500 transition-all shadow-lg"
         aria-label="Toggle menu"
       >
-        {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/20 z-40 backdrop-blur-sm"
+          className="md:hidden fixed inset-0 bg-black/50 z-[45] backdrop-blur-sm"
           onClick={closeMobileMenu}
         />
       )}
@@ -56,22 +56,22 @@ export default function Sidebar({ onLogout }: SidebarProps) {
       {/* Sidebar */}
       <div
         className={`
-          fixed md:static inset-y-0 left-0 z-40
-          w-64 bg-white border-r border-gray-200 flex flex-col
+          fixed md:static inset-y-0 left-0 z-[50]
+          w-64 bg-white border-r border-gray-200 flex flex-col shadow-2xl
           transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
       >
         {/* Logo */}
-        <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
+        <div className="p-4 border-b border-gray-200">
+          <div className="flex items-center gap-2 mb-2">
             <img 
               src="/images/apex-meridian-logo.png" 
               alt="Apex-Meridian" 
-              className="h-10"
+              className="h-7"
             />
           </div>
-          <p className="text-sm text-gray-600 font-medium">Operations Control Center</p>
+          <p className="text-xs text-gray-600 font-medium">Operations Control Center</p>
         </div>
 
         {/* Navigation */}
