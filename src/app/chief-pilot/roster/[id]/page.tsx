@@ -218,9 +218,9 @@ export default function RosterDetailPage() {
                     key={date}
                     onClick={() => setSelectedDate(date)}
                     className={`aspect-square rounded-lg border-2 transition-all ${
-                      isSelected
+                      isSelected'
                         ? 'border-blue-600 bg-blue-50
-                        : hasEntries
+                        : hasEntries'
                         ? 'border-green-200 bg-green-50 hover:border-green-400'
                         : 'border-gray-200 hover:border-gray-400
                     }`}
