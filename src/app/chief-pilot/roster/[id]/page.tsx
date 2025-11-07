@@ -143,15 +143,15 @@ export default function RosterDetailPage() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                roster.status === 'approved'
-                  ? 'bg-green-100 text-green-700
-                  : roster.status === 'submitted'
-                  ? 'bg-blue-100 text-blue-700
-                  : 'bg-gray-200 text-gray-700
-              }`}>
-                {roster.status}
-              </span>
+            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+              roster.status === 'approved'
+                ? 'bg-green-100 text-green-700'
+                : roster.status === 'submitted'
+                  ? 'bg-blue-100 text-blue-700'
+                  : 'bg-gray-200 text-gray-700'
+            }`}>
+              {roster.status}
+            </span>
             </div>
           </div>
 
