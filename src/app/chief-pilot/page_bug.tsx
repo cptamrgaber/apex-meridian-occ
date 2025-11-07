@@ -222,10 +222,10 @@ export default function ChiefPilotDashboard() {
                   <div className="flex items-center gap-3">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                       roster.status === 'approved'
-                        ? 'bg-green-100 text-green-700
+                        ? 'bg-green-100 text-green-'700
                         : roster.status === 'submitted'
-                        ? 'bg-blue-100 text-blue-700
-                        : 'bg-gray-200 text-gray-700
+                        ? 'bg-blue-100 text-b'lue-700
+                        : 'bg-gray-200 text-'gray-700
                     }`}>
                       {roster.status}
                     </span>
