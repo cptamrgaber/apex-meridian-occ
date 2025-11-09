@@ -145,10 +145,10 @@ export default function RosterDetailPage() {
             <div className="flex items-center gap-2">
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                 roster.status === 'approved'
-                  ? 'bg-green-100 text-green-700
+                  ? 'bg-green-100 text-green-700'
                   : roster.status === 'submitted'
-                  ? 'bg-blue-100 text-blue-700
-                  : 'bg-gray-200 text-gray-700
+                  ? 'bg-blue-100 text-blue-700'
+                  : 'bg-gray-200 text-gray-700'
               }`}>
                 {roster.status}
               </span>
@@ -219,10 +219,10 @@ export default function RosterDetailPage() {
                     onClick={() => setSelectedDate(date)}
                     className={`aspect-square rounded-lg border-2 transition-all ${
                       isSelected
-                        ? 'border-blue-600 bg-blue-50
+                        ? 'border-blue-600 bg-blue-50'
                         : hasEntries
                         ? 'border-green-200 bg-green-50 hover:border-green-400'
-                        : 'border-gray-200 hover:border-gray-400
+                        : 'border-gray-200 hover:border-gray-400'
                     }`}
                   >
                     <div className="text-sm font-medium text-gray-900">{index + 1}</div>
