@@ -234,3 +234,59 @@ ON CONFLICT (code) DO NOTHING;
 -- Chief Pilot for B737 family
 -- Chief Pilot for B777/B787 family
 
+-- ======================================
+-- 15. LEAVE & VACATION REQUESTS
+-- ======================================
+
+CREATE TABLE IF NOT EXISTS leave_requests (
+    id SERIAL PRIMARY KEY,
+    crew_id INT NOT NULL REFERENCES crew(id),
+    request_type TEXT NOT NULL, -- 'annual', 'sick', 'training', 'unpaid'
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    status TEXT NOT NULL DEFAULT 'requested', -- 'requested', 'approved', 'rejected'
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ======================================
+-- 16. RESERVE ASSIGNMENTS
+-- ======================================
+
+CREATE TABLE IF NOT EXISTS reserve_assignments (
+    id SERIAL PRIMARY KEY,
+    crew_id INT NOT NULL REFERENCES crew(id),
+    reserve_start DATE NOT NULL,
+    reserve_end DATE NOT NULL,
+    assigned_flight_id INT REFERENCES flights(id),
+    status TEXT NOT NULL DEFAULT 'scheduled', -- 'scheduled', 'assigned', 'completed', 'cancelled'
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ======================================
+-- 17. CREW TRADE REQUESTS
+-- ======================================
+
+CREATE TABLE IF NOT EXISTS crew_trade_requests (
+    id SERIAL PRIMARY KEY,
+    requester_id INT NOT NULL REFERENCES crew(id),
+    target_id INT REFERENCES crew(id),
+    flight_id INT REFERENCES flights(id),
+    request_date DATE NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending', -- 'pending', 'approved', 'rejected', 'matched'
+    details TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexes for new tables
+
+CREATE INDEX IF NOT EXISTS idx_leave_requests_crew_id ON leave_requests (crew_id);
+CREATE INDEX IF NOT EXISTS idx_reserve_assignments_crew_id ON reserve_assignments (crew_id);
+CREATE INDEX IF NOT EXISTS idx_reserve_assignments_flight_id ON reserve_assignments (assigned_flight_id);
+CREATE INDEX IF NOT EXISTS idx_crew_trade_requests_requester_id ON crew_trade_requests (requester_id);
+CREATE INDEX IF NOT EXISTS idx_crew_trade_requests_target_id ON crew_trade_requests (target_id);
+

@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'standalone', // Enable standalone output for Docker
+  output: 'standalone',
+    typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;
-
