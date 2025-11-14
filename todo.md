@@ -823,3 +823,76 @@
 - [ ] Verify Vercel deployment
 - [ ] Test on production site
 
+
+
+
+## NEW ISSUES - Nov 14, 2025 (Post-Deployment)
+
+### OM-A AI Assistant Issues
+- [ ] Fix OM-A AI Assistant - currently not working
+- [ ] Test Gemini API integration
+- [ ] Verify RAG system functionality
+- [ ] Check vector search implementation
+- [ ] Test chat interface
+
+### Layout & Design Organization Issues
+- [ ] Fix menu interfering with content
+- [ ] Reorganize overall layout structure
+- [ ] Fix elements overlapping each other
+- [ ] Improve spacing between components
+- [ ] Fix sidebar z-index and positioning
+- [ ] Review and fix all page layouts
+
+### Minor UI Issues
+- [ ] Remove stray icon characters before chart headings on dashboard
+- [ ] Fix login page logo visibility (top-left corner)
+- [ ] Ensure consistent icon rendering across all pages
+
+
+
+
+
+## QUALITY CONTROL REPORT ISSUES - Nov 14, 2025
+
+### Login Page Issues
+- [ ] Wrap login form in centered card with padding and rounded corners
+- [ ] Place logo in upper-left corner or above form (not inside it)
+- [ ] Fix misaligned inputs and labels - use container with max-width
+- [ ] Apply consistent margin and padding to labels and inputs
+- [ ] Style demo credentials table with equal column widths and subtle borders
+- [ ] Remove redundant logos from demo credentials section
+- [ ] Add dark mode styling to login page (currently always light)
+- [ ] Fix button styling - use standard bg-blue-600 hover:bg-blue-700 with rounded corners
+
+### Dashboard Issues
+- [ ] Fix hamburger menu overlapping "Operations Control" heading
+- [ ] Align menu icon and logo on same baseline
+- [ ] Remove vertical line from collapsed sidebar state
+- [ ] Remove stray icons before "Hourly Operations" and "Weekly Operations" titles (√ and diagonal arrow)
+- [ ] Add padding to chart containers and ensure titles are anchored above charts
+- [ ] Use card backgrounds (light and dark) consistent with theme
+- [ ] Implement proper table component for "Live EgyptAir Flights" with column headers
+- [ ] Remove Apex Meridian logo from middle of flight table
+- [ ] Consolidate footer branding - remove duplicate logos and taglines
+- [ ] Keep footer minimal (copyright only)
+
+### Overall System Issues
+- [ ] Unify routing structure - ensure only app/ directory is used (remove pages/ if exists)
+- [ ] Remove or migrate legacy files causing duplicate components
+- [ ] Centralise design tokens - create consistent colors, spacing, typography variables
+- [ ] Apply proper card and table components from UI library throughout
+- [ ] Remove redundant logos and stray symbols from global CSS ::before content
+- [ ] Check for pseudo-elements inserting "Apex Meridian" text overlays
+- [ ] Replace stray Unicode symbols with proper icon components (Font Awesome or Heroicons)
+- [ ] Improve login UI with flex container, proper padding, dark-mode classes
+- [ ] Refactor dashboard layout - align hamburger menu, headings, and content
+- [ ] Add consistent padding around charts and fix flight table layout
+- [ ] Test dark mode, high-contrast mode, and mobile responsiveness after each change
+
+### Code Quality Issues
+- [ ] Remove duplication between app/ and pages/ directories
+- [ ] Clean up global CSS pseudo-elements (::before) inserting unwanted content
+- [ ] Ensure GitHub changes reflect accurately in production deployment
+- [ ] Fix stray characters from manually inserted Unicode instead of icon components
+
+

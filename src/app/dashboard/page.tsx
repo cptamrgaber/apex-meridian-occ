@@ -66,7 +66,7 @@ export default function Dashboard() {
       <main className="flex-1 md:ml-64 mobile-page-content w-full">
         {/* Header */}
         <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-          <div className="container mx-auto px-4 md:px-6 py-4 md:py-6 pt-16 md:pt-6">
+          <div className="container mx-auto px-4 md:px-6 py-4 md:py-6 pt-20 md:pt-6">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
@@ -161,10 +161,9 @@ export default function Dashboard() {
           {/* Charts Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Hourly Operations */}
-            <div className="clean-card p-6">
+            <div className="clean-card p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
               <div className="mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <Activity className="w-5 h-5 text-blue-600" />
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">
                   Hourly Operations
                 </h2>
                 <p className="text-sm text-gray-600">
@@ -199,10 +198,9 @@ export default function Dashboard() {
             </div>
 
             {/* Weekly Operations */}
-            <div className="clean-card p-6">
+            <div className="clean-card p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
               <div className="mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-blue-600" />
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">
                   Weekly Operations
                 </h2>
                 <p className="text-sm text-gray-600">
@@ -237,7 +235,7 @@ export default function Dashboard() {
             </div>
 
             {/* Delay Reasons */}
-            <div className="clean-card p-6">
+            <div className="clean-card p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
               <div className="mb-4">
                 <h2 className="text-xl font-semibold text-gray-900 mb-2">
                   Delay Reasons
@@ -275,40 +273,47 @@ export default function Dashboard() {
             </div>
 
             {/* Live Flights Table */}
-            <div className="clean-card p-6">
+            <div className="clean-card p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
               <div className="mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <Plane className="w-5 h-5 text-blue-600" />
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">
                   Live EgyptAir Flights
                 </h2>
                 <p className="text-sm text-gray-600">
                   Real-time tracking of active flights currently in the air, showing flight number, route, altitude, and speed.
                 </p>
               </div>
-              <div className="space-y-3">
-                {liveFlights.map((flight, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition-all">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="font-semibold text-gray-900 text-base">{flight.callsign}</span>
-                      <span className="text-xs px-3 py-1 bg-green-100 text-green-700 rounded-full font-medium">
-                        {flight.status}
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3 text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium">{flight.origin}</span>
-                        <span>→</span>
-                        <span className="font-medium">{flight.destination}</span>
-                      </div>
-                      <div className="text-right">{flight.altitude.toLocaleString()} ft</div>
-                      <div>{flight.speed} kts</div>
-                      <div className="text-right flex items-center justify-end gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-green-600 font-medium">Tracking</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Flight</th>
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Route</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Altitude</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Speed</th>
+                      <th className="text-center py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {liveFlights.map((flight, index) => (
+                      <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td className="py-3 px-4 font-semibold text-gray-900">{flight.callsign}</td>
+                        <td className="py-3 px-4 text-gray-600">
+                          <span className="font-medium">{flight.origin}</span>
+                          <span className="mx-1">→</span>
+                          <span className="font-medium">{flight.destination}</span>
+                        </td>
+                        <td className="py-3 px-4 text-right text-gray-600">{flight.altitude.toLocaleString()} ft</td>
+                        <td className="py-3 px-4 text-right text-gray-600">{flight.speed} kts</td>
+                        <td className="py-3 px-4 text-center">
+                          <span className="inline-flex items-center gap-2 text-xs px-3 py-1 bg-green-100 text-green-700 rounded-full font-medium">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            {flight.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

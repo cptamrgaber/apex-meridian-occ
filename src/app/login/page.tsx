@@ -45,7 +45,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
       {/* Logo in top-left corner */}
       <div className="absolute top-4 left-4">
         <img
@@ -59,20 +59,20 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Title Section */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             Operations Control Center
           </h1>
-          <p className="text-base text-gray-600">
+          <p className="text-base text-gray-600 dark:text-gray-300">
             EgyptAir Operations Management
           </p>
         </div>
 
         {/* Login Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-6">
           <form onSubmit={handleLogin} className="space-y-6">
             {/* Username field */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Username
               </label>
               <input
@@ -88,7 +88,7 @@ export default function Login() {
 
             {/* Password field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Password
               </label>
               <input
@@ -124,55 +124,55 @@ export default function Login() {
 
         {/* Credentials list */}
         {showCredentials && (
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">
               Demo Accounts
             </h3>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">Admin:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">Admin:</span>
                 <span className="text-gray-600 font-mono text-xs">admin / admin123</span>
               </div>
               
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mt-4 mb-2">
+              <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-4 mb-2">
                 Chief Pilots
               </div>
               
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">A320:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">A320:</span>
                 <span className="text-gray-600 font-mono text-xs">chief.yasser / yasser123</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">A330:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">A330:</span>
                 <span className="text-gray-600 font-mono text-xs">chief.mersal / mersal123</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">B737:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">B737:</span>
                 <span className="text-gray-600 font-mono text-xs">chief.sherif / sherif123</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">B787:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">B787:</span>
                 <span className="text-gray-600 font-mono text-xs">chief.khaled / khaled123</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">B777:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">B777:</span>
                 <span className="text-gray-600 font-mono text-xs">chief.tarek / tarek123</span>            
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">A350:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">A350:</span>
                 <span className="text-gray-600 font-mono text-xs">chief.elyan / elyan123</span>
               </div>
               
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mt-4 mb-2">
+              <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-4 mb-2">
                 Operations
               </div>
               
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">Pilot:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">Pilot:</span>
                 <span className="text-gray-600 font-mono text-xs">pilot.ibrahim / ibrahim123</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="font-medium text-gray-700">Dispatcher:</span>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                <span className="font-medium text-gray-700 dark:text-gray-300">Dispatcher:</span>
                 <span className="text-gray-600 font-mono text-xs">dispatcher / dispatch123</span>
               </div>
             </div>
