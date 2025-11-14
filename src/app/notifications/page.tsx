@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 import { Bell, AlertTriangle, Info, CheckCircle, XCircle } from "lucide-react";
 
 interface Notification {
@@ -206,7 +206,7 @@ export default function Notifications() {
 
   return (
     <div className="flex min-h-screen bg-slate-950">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       <div className="flex-1 p-8">
         {/* Header */}
         <div className="mb-8">

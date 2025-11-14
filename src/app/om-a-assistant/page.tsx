@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 import { Send, BookOpen, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 
 interface Message {
@@ -107,7 +107,7 @@ export default function OMAAssistantPage() {
 
   return (
     <div className="flex h-screen bg-slate-950">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}

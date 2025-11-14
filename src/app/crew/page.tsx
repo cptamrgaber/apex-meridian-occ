@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 
 interface Captain {
   id: string;
@@ -70,7 +70,7 @@ export default function CrewManagement() {
   if (loading) {
     return (
       <div className="flex h-screen bg-slate-950">
-        <Sidebar onLogout={() => {
+        <Header onLogout={() => {
           localStorage.removeItem('token');
           router.push('/login');
         }} />
@@ -83,7 +83,7 @@ export default function CrewManagement() {
 
   return (
     <div className="flex h-screen bg-slate-950">
-      <Sidebar onLogout={() => {
+      <Header onLogout={() => {
         localStorage.removeItem('token');
         router.push('/login');
       }} />

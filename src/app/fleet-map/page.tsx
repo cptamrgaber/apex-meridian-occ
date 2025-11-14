@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 import { MapPin, Plane, Radio, Activity } from 'lucide-react';
 
 // Dynamically import map to avoid SSR issues
@@ -101,7 +101,7 @@ export default function FleetMapPage() {
 
   return (
     <div className="flex h-screen bg-slate-950">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       
       <main className="flex-1 flex flex-col">
         {/* Header */}

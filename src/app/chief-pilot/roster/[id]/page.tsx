@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import {
   Calendar,
@@ -122,7 +122,7 @@ export default function RosterDetailPage() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       
       <main className="flex-1 overflow-auto mobile-page-content">
         {/* Header */}

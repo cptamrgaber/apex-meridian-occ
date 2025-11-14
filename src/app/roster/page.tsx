@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 import { Calendar, Users, Plane, Plus, Download, RefreshCw } from 'lucide-react';
 
 interface RosterEntry {
@@ -155,7 +155,7 @@ export default function RosterPage() {
 
   return (
     <div className="min-h-screen flex bg-slate-950">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       
       <div className="flex-1 flex flex-col">
         {/* Header */}

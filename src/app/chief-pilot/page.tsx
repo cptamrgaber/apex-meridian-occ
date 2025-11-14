@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { Plane, Users, Calendar, FileText, Plus, Download, Check, Clock, AlertCircle } from 'lucide-react';
 import type { ChiefPilot, CrewAssignment, MonthlyRoster } from '@/types/fleet-management';
@@ -65,7 +65,7 @@ export default function ChiefPilotDashboard() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       
       <main className="flex-1 overflow-auto mobile-page-content">
         {/* Header */}

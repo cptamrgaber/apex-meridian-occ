@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 import { BarChart3, TrendingUp, Clock, Calendar, AlertCircle, CheckCircle2, Download } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -127,7 +127,7 @@ export default function AnalyticsPage() {
 
   return (
     <div className="flex h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       
       <main className="flex-1 overflow-auto">
         {/* Header */}

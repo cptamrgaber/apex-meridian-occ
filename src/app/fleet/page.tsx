@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 
 interface Aircraft {
   registration: string;
@@ -74,7 +74,7 @@ export default function FleetManagement() {
   if (loading) {
     return (
       <div className="flex h-screen bg-slate-950">
-        <Sidebar onLogout={handleLogout} />
+        <Header onLogout={handleLogout} />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-slate-400">Loading fleet data...</div>
         </div>
@@ -84,7 +84,7 @@ export default function FleetManagement() {
 
   return (
     <div className="flex h-screen bg-slate-950">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       
       <div className="flex-1 overflow-auto">
         <div className="p-8">

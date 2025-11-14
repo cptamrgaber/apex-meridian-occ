@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Footer from '@/components/Footer';
 import { Plane, Users, AlertTriangle, Calendar, Activity, TrendingUp } from 'lucide-react';
@@ -89,13 +89,13 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex bg-gray-50">
-      <Sidebar onLogout={handleLogout} />
+    <div className="min-h-screen bg-gray-50">
+      <Header onLogout={handleLogout} />
       
-      <main className="flex-1 md:ml-64 mobile-page-content w-full">
+      <main className="pt-16 w-full mobile-page-content">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-          <div className="container mx-auto px-4 md:px-6 py-4 md:py-6 pt-20 md:pt-6">
+        <div className="bg-white border-b border-gray-200">
+          <div className="container mx-auto px-4 md:px-6 py-4 md:py-6">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">

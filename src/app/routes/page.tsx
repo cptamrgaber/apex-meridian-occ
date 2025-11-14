@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 
 interface Route {
   flight_num: string;
@@ -84,7 +84,7 @@ export default function Routes() {
 
   return (
     <div className="flex min-h-screen bg-slate-950">
-      <Sidebar onLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       <div className="flex-1 p-8">
         {/* Header */}
         <div className="mb-8">
