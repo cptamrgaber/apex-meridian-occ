@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateRoster, calculateRosterStatistics, DEFAULT_ROSTER_OPTIONS } from '@/lib/roster-generator';
-import type { RosterGenerationOptions } from '@/lib/roster-generator';
+import { generateRoster, calculateRosterStatistics, DEFAULT_ROSTER_OPTIONS } from '@/lib/roster/roster-generator';
+import type { RosterGenerationOptions } from '@/lib/roster/roster-generator';
 import { generateSampleFlights } from '@/data/sample-flights';
 import { mockCrewAssignments } from '@/data/fleet-management-mock';
 

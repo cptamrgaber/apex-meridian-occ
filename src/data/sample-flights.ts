@@ -1,7 +1,7 @@
 // Sample flight data for November 2025 - A320 Fleet
 // For testing roster generation algorithm
 
-import type { Flight } from '@/lib/roster-generator';
+import type { Flight } from '@/lib/roster/roster-generator';
 
 /**
  * Generate sample flights for a month
