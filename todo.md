@@ -757,3 +757,31 @@
 - [x] Check artistic consistency
 - [x] Deploy fixes to production
 
+
+
+
+## USER REQUEST: Fix UI Issues (Clean, Professional Design)
+
+### Remove Decorative Overlays
+- [ ] Check globals.css for ::before or ::after pseudo-elements
+- [ ] Remove oversized "Apex Meridian" text overlay
+- [ ] Check for content utilities creating decorative elements
+- [ ] Remove any extraneous decorative CSS
+
+### Fix Dashboard Issues
+- [ ] Fix tilde (~) before "Weekly Operations" heading
+- [x] Remove large blank space below dashboard content
+- [x] Check for unnecessary min-h-screen classes
+- [ ] Fix layout container spacing
+
+### Unify Design System
+- [ ] Ensure consistent color palette using theme variables
+- [ ] Unify typography across all pages
+- [ ] Apply consistent Tailwind spacing utilities
+- [ ] Reference dark/light theme variables from globals.css
+
+### Deploy Fixes
+- [ ] Test all fixes
+- [ ] Commit changes
+- [ ] Deploy to production
+

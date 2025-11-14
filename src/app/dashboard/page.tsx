@@ -60,7 +60,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="flex bg-gray-50">
       <Sidebar onLogout={handleLogout} />
       
       <main className="flex-1 md:ml-64 mobile-page-content w-full">
