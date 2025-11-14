@@ -896,3 +896,31 @@
 - [ ] Fix stray characters from manually inserted Unicode instead of icon components
 
 
+
+
+
+## REAL DATA INTEGRATION - Nov 14, 2025
+
+### Database Integration (Option A)
+- [ ] Locate existing database files (Excel and DB format)
+- [ ] Analyze database schema and structure
+- [ ] Set up Vercel Postgres database connection
+- [ ] Create database tables for flights, crew, fleet, schedules, rosters
+- [ ] Import real data from existing files
+- [ ] Replace mock data with database queries
+
+### Flight Tracking API Integration (Option B)
+- [ ] Research FlightAware/FlightRadar24 API options
+- [ ] Set up API credentials
+- [ ] Implement real-time flight tracking
+- [ ] Update dashboard with live flight data
+- [ ] Add flight status updates and alerts
+
+### CSV/Excel Import System (Option C)
+- [ ] Create admin interface for data uploads
+- [ ] Build CSV/Excel parser for crew data
+- [ ] Build CSV/Excel parser for fleet data
+- [ ] Build CSV/Excel parser for flight schedules
+- [ ] Add data validation and error handling
+- [ ] Create data management dashboard
+

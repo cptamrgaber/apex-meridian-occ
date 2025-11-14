@@ -17,11 +17,40 @@ export default function Dashboard() {
     scheduledFlights: 326
   });
 
-  const [liveFlights, setLiveFlights] = useState([
-    { callsign: 'MSR777', origin: 'CAI', destination: 'JFK', altitude: 35000, speed: 450, status: 'In Flight' },
-    { callsign: 'MSR985', origin: 'CAI', destination: 'LHR', altitude: 38000, speed: 480, status: 'In Flight' },
-    { callsign: 'MSR612', origin: 'CAI', destination: 'DXB', altitude: 32000, speed: 420, status: 'In Flight' },
-  ]);
+  const [liveFlights, setLiveFlights] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch real live flights data
+  useEffect(() => {
+    const fetchLiveFlights = async () => {
+      try {
+        const response = await fetch('/api/live-flights?count=5');
+        const data = await response.json();
+        if (data.success && data.flights) {
+          setLiveFlights(data.flights);
+          setStats(prev => ({
+            ...prev,
+            activeFlights: data.flights.length
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching live flights:', error);
+        // Fallback to mock data
+        setLiveFlights([
+          { callsign: 'MS777', origin: 'CAI', destination: 'LHR', altitude: 35000, speed: 450, status: 'In Flight' },
+          { callsign: 'MS985', origin: 'CAI', destination: 'JFK', altitude: 38000, speed: 480, status: 'In Flight' },
+          { callsign: 'MS961', origin: 'CAI', destination: 'CDG', altitude: 32000, speed: 420, status: 'In Flight' },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLiveFlights();
+    // Refresh every 30 seconds
+    const interval = setInterval(fetchLiveFlights, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Hourly operations data
   const hourlyData = [
