@@ -1,7 +1,8 @@
-// Real EgyptAir data from JSON files - COMPLETE DATABASE
-import flightsData from '@/data/egyptair_flights_verified.json'; // 326 flights with full details
-import aircraftData from '@/data/egyptair_aircraft.json'; // Complete aircraft fleet
-import airportsData from '@/data/egyptair_airports_complete.json'; // 95 airports
+// Real EgyptAir data from JSON files - COMPLETE DATABASE (Updated)
+import flightsData from '@/data/flights_complete.json'; // 326 flights
+import aircraftData from '@/data/aircraft_complete.json'; // 67 aircraft
+import airportsData from '@/data/airports_complete.json'; // 95 airports
+import captainsData from '@/data/captains.json'; // 541 captains
 
 // Types for complete database
 export interface Flight {
@@ -28,11 +29,11 @@ export interface Flight {
 export interface Aircraft {
   registration: string;
   aircraft_type: string;
-  msn?: string;
+  msn_serial_number?: string;
   manufacturer?: string;
   status?: string;
-  delivery_date?: string;
-  [key: string]: any; // Allow additional fields
+  delivery_date_year_entered_service?: string;
+  [key: string]: any;
 }
 
 export interface Airport {
@@ -43,6 +44,20 @@ export interface Airport {
   country: string;
   region: string;
   classification: string;
+}
+
+export interface Captain {
+  id: string;
+  code: string;
+  seniority: string;
+  arabic_name: string;
+  english_name: string;
+  passport_name: string;
+  birth_date: string;
+  joining_date: string;
+  aircraft_type: string;
+  status: string;
+  [key: string]: any;
 }
 
 // Flight queries
@@ -146,6 +161,27 @@ export function getHubAirports(): Airport[] {
   return airportsData.filter(a => a.classification === 'Hub') as Airport[];
 }
 
+// Captain/Crew queries
+export function getAllCaptains(): Captain[] {
+  return captainsData as Captain[];
+}
+
+export function getCaptainByCode(code: string): Captain | undefined {
+  return captainsData.find(c => c.code === code) as Captain | undefined;
+}
+
+export function getCaptainsByAircraftType(aircraftType: string): Captain[] {
+  return captainsData.filter(c => c.aircraft_type?.includes(aircraftType)) as Captain[];
+}
+
+export function getActiveCaptains(): Captain[] {
+  return captainsData.filter(c => c.status === 'Active') as Captain[];
+}
+
+export function getCaptainsBySeniority(seniority: string): Captain[] {
+  return captainsData.filter(c => c.seniority === seniority) as Captain[];
+}
+
 // Statistics
 export function getFlightStats() {
   const flights = flightsData as Flight[];
@@ -213,6 +249,40 @@ export function getAirportStats() {
     })),
     classificationSummary: Object.entries(classificationSummary).map(([classification, count]) => ({
       classification,
+      count
+    }))
+  };
+}
+
+export function getCrewStats() {
+  const captains = captainsData as Captain[];
+  const activeCaptains = captains.filter(c => c.status === 'Active');
+  
+  // Group by aircraft type
+  const aircraftTypeSummary: Record<string, number> = {};
+  activeCaptains.forEach(c => {
+    if (c.aircraft_type) {
+      aircraftTypeSummary[c.aircraft_type] = (aircraftTypeSummary[c.aircraft_type] || 0) + 1;
+    }
+  });
+  
+  // Group by seniority
+  const senioritySummary: Record<string, number> = {};
+  activeCaptains.forEach(c => {
+    if (c.seniority) {
+      senioritySummary[c.seniority] = (senioritySummary[c.seniority] || 0) + 1;
+    }
+  });
+  
+  return {
+    totalCaptains: captains.length,
+    activeCaptains: activeCaptains.length,
+    aircraftTypeSummary: Object.entries(aircraftTypeSummary).map(([type, count]) => ({
+      aircraft_type: type,
+      count
+    })),
+    senioritySummary: Object.entries(senioritySummary).map(([seniority, count]) => ({
+      seniority,
       count
     }))
   };
