@@ -156,7 +156,7 @@ export default function Login() {
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-100">
                 <span className="font-medium text-gray-700">B777:</span>
-                <span className="text-gray-600 font-mono text-xs">chief.tarek / tarek123</span>
+                <span className="text-gray-600 font-mono text-xs">chief.tarek / tarek123</span>            
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-100">
                 <span className="font-medium text-gray-700">A350:</span>
