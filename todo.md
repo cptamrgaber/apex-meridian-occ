@@ -785,3 +785,41 @@
 - [ ] Commit changes
 - [ ] Deploy to production
 
+
+
+
+## URGENT: Complete UI Overhaul - Design Disaster Fix
+
+### Switch to Light Theme
+- [x] Change dashboard from dark to light theme
+- [x] Update globals.css to default to light theme
+- [x] Fix all pages using dark backgrounds
+- [x] Ensure all text is dark on light backgrounds
+- [ ] Remove any dark theme classes from components
+
+### Fix Oversized Logos
+- [x] Reduce sidebar logo size (h-4 = 16px with max-width)
+- [x] Fix login page logo size (h-4 with max-width)
+- [x] Fix footer logo sizes (h-4 with max-width and object-contain)
+- [x] Ensure logos are properly proportioned (16px height)
+- [x] Fix logo positioning and alignment
+
+### Remove Decorative Overlays
+- [x] Find and remove oversized "Apex Meridian" decorative text (none found)
+- [x] Check for CSS ::before/::after overlays (cleaned in globals.css)
+- [x] Remove any extraneous decorative elements
+- [x] Clean up global styles
+
+### Apply Clean Minimal Design
+- [x] Use white/light gray backgrounds (updated in globals.css)
+- [x] Apply consistent spacing (Tailwind utilities)
+- [x] Use professional font sizes (16px body text in globals.css)
+- [x] Add subtle shadows (subtle box-shadows in .clean-card)
+- [x] Ensure Apple/Google-like cleanliness
+
+### Deploy and Verify
+- [ ] Commit all fixes
+- [ ] Push to GitHub
+- [ ] Verify Vercel deployment
+- [ ] Test on production site
+

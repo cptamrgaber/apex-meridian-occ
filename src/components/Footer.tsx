@@ -8,7 +8,7 @@ export default function Footer() {
             <img 
               src="/images/apex-meridian-logo.png" 
               alt="Apex-Meridian" 
-              className="h-6"
+              className="h-4 w-auto max-w-[100px]"
             />
             <span className="text-sm text-gray-600 font-medium">
               System by Apex-Meridian®
@@ -28,7 +28,7 @@ export default function Footer() {
             <img 
               src="/images/egyptair-logo.jpg" 
               alt="EgyptAir" 
-              className="h-5"
+              className="h-4 w-auto max-w-[80px] object-contain"
             />
           </div>
         </div>

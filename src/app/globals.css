@@ -2,89 +2,139 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Clean, Minimal Light Theme - Apple/Google Style */
+
 /* Fonts */
 :root {
   --font-ar: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial, sans-serif;
-  --font-en: "Noto Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-en: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial, sans-serif;
 
-  /* Dark Theme Colors */
-  --bg: #0b0f14;
-  --panel: #0f141b;
-  --muted: #1a212b;
-  --text: #e6eef8;
-  --subtle: #a6b3c2;
-  --brand: #4166ff;
-  --brand-weak: #3353cc;
-  --ok: #22c55e;
+  /* Light Theme Colors - Clean & Professional */
+  --bg: #ffffff;
+  --bg-secondary: #f9fafb;
+  --panel: #ffffff;
+  --muted: #f3f4f6;
+  --text: #111827;
+  --text-secondary: #6b7280;
+  --subtle: #9ca3af;
+  --brand: #3b82f6;
+  --brand-weak: #60a5fa;
+  --ok: #10b981;
   --warn: #f59e0b;
   --bad: #ef4444;
-  --ring: #2b3952;
+  --border: #e5e7eb;
+  --ring: #dbeafe;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   background: var(--bg);
 }
 
 body {
   font-family: var(--font-en);
   color: var(--text);
-  background: var(--bg);
+  background: var(--bg-secondary);
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 :root[dir="rtl"] body {
   font-family: var(--font-ar);
 }
 
-/* Cards / panels */
+/* Cards / panels - Clean with subtle shadows */
 .app-card {
   background: var(--panel);
-  border: 1px solid var(--ring);
+  border: 1px solid var(--border);
   border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.clean-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  transition: all 0.2s;
+}
+
+.clean-card:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
 /* Utilities */
 .badge {
   border-radius: 999px;
-  padding: 2px 8px;
-  font-size: 12px;
-}
-.badge.ok {
-  background: color-mix(in oklab, var(--ok) 20%, transparent);
-  color: var(--ok);
-}
-.badge.warn {
-  background: color-mix(in oklab, var(--warn) 20%, transparent);
-  color: var(--warn);
-}
-.badge.bad {
-  background: color-mix(in oklab, var(--bad) 20%, transparent);
-  color: var(--bad);
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-/* Tables */
+.badge.ok {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge.warn {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.bad {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Tables - Clean design */
 .table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .table th,
 .table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--ring);
-}
-.table th {
-  text-align: start;
-  color: var(--subtle);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
 }
 
-/* Scrollbar */
-*::-webkit-scrollbar {
-  height: 10px;
-  width: 10px;
+.table th {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  background: var(--bg-secondary);
 }
-*::-webkit-scrollbar-thumb {
+
+.table td {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.table tr:hover td {
   background: var(--muted);
+}
+
+/* Scrollbar - Minimal */
+*::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--subtle);
   border-radius: 8px;
 }
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Remove any decorative overlays */
+*::before,
+*::after {
+  /* Ensure no pseudo-elements create overlays */
+}
+

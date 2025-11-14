@@ -69,7 +69,7 @@ export default function Sidebar({ onLogout }: SidebarProps) {
             <img 
               src="/images/apex-meridian-logo.png" 
               alt="Apex-Meridian" 
-              className="h-5"
+              className="h-4 w-auto max-w-[120px]"
             />
           </div>
           <p className="text-xs text-gray-600 font-medium">Operations Control Center</p>

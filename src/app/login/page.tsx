@@ -51,7 +51,7 @@ export default function Login() {
         <img
           src="/images/apex-meridian-logo.png"
           alt="Apex-Meridian"
-          className="h-5 opacity-90"
+          className="h-4 w-auto max-w-[100px] opacity-90"
         />
       </div>
 
