@@ -3,7 +3,7 @@ import {
   getAllAirports, 
   getAirportByIATA,
   getAirportsByRegion,
-  getAirportsByType
+  getAirportsByClassification
 } from '@/lib/database';
 
 export const runtime = 'nodejs';
@@ -37,9 +37,9 @@ export async function GET(request: Request) {
       });
     }
 
-    // Get airports by type
+    // Get airports by type/classification
     if (type) {
-      const airports = getAirportsByType(type);
+      const airports = getAirportsByClassification(type);
       return NextResponse.json({
         success: true,
         airports,
@@ -52,8 +52,8 @@ export async function GET(request: Request) {
     
     // Calculate statistics
     const totalAirports = airports.length;
-    const hubs = airports.filter(a => a.type === 'Hub').length;
-    const focusCities = airports.filter(a => a.type === 'Focus City').length;
+    const hubs = airports.filter(a => a.classification === 'Hub').length;
+    const focusCities = airports.filter(a => a.classification === 'Focus City').length;
     
     // Group by region
     const byRegion: Record<string, number> = {};
@@ -75,8 +75,8 @@ export async function GET(request: Request) {
         total: totalAirports,
         hubs,
         focusCities,
-        domestic: airports.filter(a => a.type === 'Domestic').length,
-        international: airports.filter(a => a.type !== 'Domestic').length
+        domestic: airports.filter(a => a.classification === 'Domestic').length,
+        international: airports.filter(a => a.classification !== 'Domestic').length
       },
       byRegion,
       byCountry,

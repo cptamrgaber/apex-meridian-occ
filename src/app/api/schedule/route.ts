@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import flightSchedule from '@/data/flight_schedule.json';
+import flightSchedule from '@/data/flights_complete.json';
 
 export const runtime = 'edge';
 
