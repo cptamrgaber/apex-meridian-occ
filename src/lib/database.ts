@@ -1,34 +1,48 @@
-// Real EgyptAir data from JSON files (exported from SQLite databases)
-import flightsData from '@/data/flights.json';
-import aircraftData from '@/data/aircraft.json';
-import airportsData from '@/data/airports.json';
+// Real EgyptAir data from JSON files - COMPLETE DATABASE
+import flightsData from '@/data/egyptair_flights_verified.json'; // 326 flights with full details
+import aircraftData from '@/data/egyptair_aircraft.json'; // Complete aircraft fleet
+import airportsData from '@/data/egyptair_airports_complete.json'; // 95 airports
 
-// Types
+// Types for complete database
 export interface Flight {
+  id: number;
   flight_number: string;
-  origin: string;
-  destination: string;
+  callsign: string;
   aircraft_type: string;
-  frequency: string;
+  aircraft_name: string;
+  origin: string;
+  origin_city: string;
+  origin_country: string;
+  destination: string;
+  destination_city: string;
+  destination_country: string;
+  departure_time: string;
+  arrival_time: string;
+  distance_km: number;
+  region: string;
+  status: string;
+  terminal?: string;
+  gate?: string;
 }
 
 export interface Aircraft {
   registration: string;
   aircraft_type: string;
-  msn: string;
-  manufacturer: string;
-  status: string;
-  delivery_date: string;
+  msn?: string;
+  manufacturer?: string;
+  status?: string;
+  delivery_date?: string;
+  [key: string]: any; // Allow additional fields
 }
 
 export interface Airport {
-  iata: string;
-  icao: string;
-  name: string;
+  iata_code: string;
+  icao_code: string;
+  airport_name: string;
   city: string;
   country: string;
   region: string;
-  type: string;
+  classification: string;
 }
 
 // Flight queries
@@ -54,6 +68,18 @@ export function getFlightsByDestination(destination: string): Flight[] {
 
 export function getFlightsByAircraftType(aircraftType: string): Flight[] {
   return flightsData.filter(f => f.aircraft_type === aircraftType) as Flight[];
+}
+
+export function getFlightsByRegion(region: string): Flight[] {
+  return flightsData.filter(f => f.region === region) as Flight[];
+}
+
+export function getDomesticFlights(): Flight[] {
+  return flightsData.filter(f => f.region === 'domestic') as Flight[];
+}
+
+export function getInternationalFlights(): Flight[] {
+  return flightsData.filter(f => f.region === 'international') as Flight[];
 }
 
 // Aircraft queries
@@ -82,7 +108,7 @@ export function getFleetSummary() {
       summary[a.aircraft_type] = {
         count: 0,
         active: 0,
-        manufacturer: a.manufacturer
+        manufacturer: a.manufacturer || 'Unknown'
       };
     }
     summary[a.aircraft_type].count++;
@@ -105,15 +131,19 @@ export function getAllAirports(): Airport[] {
 }
 
 export function getAirportByIATA(iata: string): Airport | undefined {
-  return airportsData.find(a => a.iata === iata) as Airport | undefined;
+  return airportsData.find(a => a.iata_code === iata) as Airport | undefined;
 }
 
 export function getAirportsByRegion(region: string): Airport[] {
   return airportsData.filter(a => a.region === region) as Airport[];
 }
 
-export function getAirportsByType(type: string): Airport[] {
-  return airportsData.filter(a => a.type === type) as Airport[];
+export function getAirportsByClassification(classification: string): Airport[] {
+  return airportsData.filter(a => a.classification === classification) as Airport[];
+}
+
+export function getHubAirports(): Airport[] {
+  return airportsData.filter(a => a.classification === 'Hub') as Airport[];
 }
 
 // Statistics
@@ -127,10 +157,22 @@ export function getFlightStats() {
     routeSummary[route] = (routeSummary[route] || 0) + 1;
   });
   
+  // Group by region
+  const regionSummary: Record<string, number> = {};
+  flights.forEach(f => {
+    regionSummary[f.region] = (regionSummary[f.region] || 0) + 1;
+  });
+  
   return {
     totalFlights: flights.length,
+    domesticFlights: flights.filter(f => f.region === 'domestic').length,
+    internationalFlights: flights.filter(f => f.region === 'international').length,
     routeSummary: Object.entries(routeSummary).map(([route, count]) => ({
       route,
+      count
+    })),
+    regionSummary: Object.entries(regionSummary).map(([region, count]) => ({
+      region,
       count
     }))
   };
@@ -144,6 +186,35 @@ export function getAircraftStats() {
     totalAircraft: aircraft.length,
     activeAircraft: activeAircraft.length,
     fleetSummary: getFleetSummary()
+  };
+}
+
+export function getAirportStats() {
+  const airports = airportsData as Airport[];
+  
+  // Group by region
+  const regionSummary: Record<string, number> = {};
+  airports.forEach(a => {
+    regionSummary[a.region] = (regionSummary[a.region] || 0) + 1;
+  });
+  
+  // Group by classification
+  const classificationSummary: Record<string, number> = {};
+  airports.forEach(a => {
+    classificationSummary[a.classification] = (classificationSummary[a.classification] || 0) + 1;
+  });
+  
+  return {
+    totalAirports: airports.length,
+    hubs: airports.filter(a => a.classification === 'Hub').length,
+    regionSummary: Object.entries(regionSummary).map(([region, count]) => ({
+      region,
+      count
+    })),
+    classificationSummary: Object.entries(classificationSummary).map(([classification, count]) => ({
+      classification,
+      count
+    }))
   };
 }
 
