@@ -861,20 +861,20 @@
 - [ ] Apply consistent margin and padding to labels and inputs
 - [ ] Style demo credentials table with equal column widths and subtle borders
 - [ ] Remove redundant logos from demo credentials section
-- [ ] Add dark mode styling to login page (currently always light)
+- [x] Add dark mode styling to login page (currently always light)
 - [ ] Fix button styling - use standard bg-blue-600 hover:bg-blue-700 with rounded corners
 
 ### Dashboard Issues
-- [ ] Fix hamburger menu overlapping "Operations Control" heading
+- [x] Fix hamburger menu overlapping "Operations Control" heading
 - [ ] Align menu icon and logo on same baseline
 - [ ] Remove vertical line from collapsed sidebar state
-- [ ] Remove stray icons before "Hourly Operations" and "Weekly Operations" titles (√ and diagonal arrow)
-- [ ] Add padding to chart containers and ensure titles are anchored above charts
-- [ ] Use card backgrounds (light and dark) consistent with theme
-- [ ] Implement proper table component for "Live EgyptAir Flights" with column headers
-- [ ] Remove Apex Meridian logo from middle of flight table
-- [ ] Consolidate footer branding - remove duplicate logos and taglines
-- [ ] Keep footer minimal (copyright only)
+- [x] Remove stray icons before "Hourly Operations" and "Weekly Operations" titles (√ and diagonal arrow)
+- [x] Add padding to chart containers and ensure titles are anchored above charts
+- [x] Use card backgrounds (light and dark) consistent with theme
+- [x] Implement proper table component for "Live EgyptAir Flights" with column headers
+- [x] Remove Apex Meridian logo from middle of flight table
+- [x] Consolidate footer branding - remove duplicate logos and taglines
+- [x] Keep footer minimal (copyright only)
 
 ### Overall System Issues
 - [ ] Unify routing structure - ensure only app/ directory is used (remove pages/ if exists)
