@@ -1,38 +1,7 @@
-import Database from 'better-sqlite3';
-import path from 'path';
-
-// Database paths
-const DB_DIR = path.join(process.cwd(), 'data');
-const FLIGHTS_DB = path.join(DB_DIR, 'egyptair_flights_accurate.db');
-const AIRCRAFT_DB = path.join(DB_DIR, 'egyptair_aircraft_accurate.db');
-const AIRPORTS_DB = path.join(DB_DIR, 'egyptair_airports_accurate.db');
-
-// Database connections (singleton pattern)
-let flightsDb: Database.Database | null = null;
-let aircraftDb: Database.Database | null = null;
-let airportsDb: Database.Database | null = null;
-
-// Initialize database connections
-function getFlightsDb() {
-  if (!flightsDb) {
-    flightsDb = new Database(FLIGHTS_DB, { readonly: true });
-  }
-  return flightsDb;
-}
-
-function getAircraftDb() {
-  if (!aircraftDb) {
-    aircraftDb = new Database(AIRCRAFT_DB, { readonly: true });
-  }
-  return aircraftDb;
-}
-
-function getAirportsDb() {
-  if (!airportsDb) {
-    airportsDb = new Database(AIRPORTS_DB, { readonly: true });
-  }
-  return airportsDb;
-}
+// Real EgyptAir data from JSON files (exported from SQLite databases)
+import flightsData from '@/data/flights.json';
+import aircraftData from '@/data/aircraft.json';
+import airportsData from '@/data/airports.json';
 
 // Types
 export interface Flight {
@@ -64,137 +33,117 @@ export interface Airport {
 
 // Flight queries
 export function getAllFlights(): Flight[] {
-  const db = getFlightsDb();
-  const stmt = db.prepare('SELECT * FROM flights');
-  return stmt.all() as Flight[];
+  return flightsData as Flight[];
 }
 
 export function getFlightByNumber(flightNumber: string): Flight | undefined {
-  const db = getFlightsDb();
-  const stmt = db.prepare('SELECT * FROM flights WHERE flight_number = ?');
-  return stmt.get(flightNumber) as Flight | undefined;
+  return flightsData.find(f => f.flight_number === flightNumber) as Flight | undefined;
 }
 
 export function getFlightsByRoute(origin: string, destination: string): Flight[] {
-  const db = getFlightsDb();
-  const stmt = db.prepare('SELECT * FROM flights WHERE origin = ? AND destination = ?');
-  return stmt.all(origin, destination) as Flight[];
+  return flightsData.filter(f => f.origin === origin && f.destination === destination) as Flight[];
 }
 
 export function getFlightsByOrigin(origin: string): Flight[] {
-  const db = getFlightsDb();
-  const stmt = db.prepare('SELECT * FROM flights WHERE origin = ?');
-  return stmt.all(origin) as Flight[];
+  return flightsData.filter(f => f.origin === origin) as Flight[];
 }
 
 export function getFlightsByDestination(destination: string): Flight[] {
-  const db = getFlightsDb();
-  const stmt = db.prepare('SELECT * FROM flights WHERE destination = ?');
-  return stmt.all(destination) as Flight[];
+  return flightsData.filter(f => f.destination === destination) as Flight[];
 }
 
 export function getFlightsByAircraftType(aircraftType: string): Flight[] {
-  const db = getFlightsDb();
-  const stmt = db.prepare('SELECT * FROM flights WHERE aircraft_type = ?');
-  return stmt.all(aircraftType) as Flight[];
+  return flightsData.filter(f => f.aircraft_type === aircraftType) as Flight[];
 }
 
 // Aircraft queries
 export function getAllAircraft(): Aircraft[] {
-  const db = getAircraftDb();
-  const stmt = db.prepare('SELECT * FROM aircraft');
-  return stmt.all() as Aircraft[];
+  return aircraftData as Aircraft[];
 }
 
 export function getAircraftByRegistration(registration: string): Aircraft | undefined {
-  const db = getAircraftDb();
-  const stmt = db.prepare('SELECT * FROM aircraft WHERE registration = ?');
-  return stmt.get(registration) as Aircraft | undefined;
+  return aircraftData.find(a => a.registration === registration) as Aircraft | undefined;
 }
 
 export function getAircraftByType(aircraftType: string): Aircraft[] {
-  const db = getAircraftDb();
-  const stmt = db.prepare('SELECT * FROM aircraft WHERE aircraft_type = ?');
-  return stmt.all(aircraftType) as Aircraft[];
+  return aircraftData.filter(a => a.aircraft_type === aircraftType) as Aircraft[];
 }
 
 export function getActiveAircraft(): Aircraft[] {
-  const db = getAircraftDb();
-  const stmt = db.prepare('SELECT * FROM aircraft WHERE status = ?');
-  return stmt.all('Active') as Aircraft[];
+  return aircraftData.filter(a => a.status === 'Active') as Aircraft[];
 }
 
 export function getFleetSummary() {
-  const db = getAircraftDb();
-  const stmt = db.prepare('SELECT * FROM fleet_summary');
-  return stmt.all();
+  const aircraft = aircraftData as Aircraft[];
+  const summary: Record<string, { count: number; active: number; manufacturer: string }> = {};
+  
+  aircraft.forEach(a => {
+    if (!summary[a.aircraft_type]) {
+      summary[a.aircraft_type] = {
+        count: 0,
+        active: 0,
+        manufacturer: a.manufacturer
+      };
+    }
+    summary[a.aircraft_type].count++;
+    if (a.status === 'Active') {
+      summary[a.aircraft_type].active++;
+    }
+  });
+  
+  return Object.entries(summary).map(([type, data]) => ({
+    aircraft_type: type,
+    manufacturer: data.manufacturer,
+    total: data.count,
+    active: data.active
+  }));
 }
 
 // Airport queries
 export function getAllAirports(): Airport[] {
-  const db = getAirportsDb();
-  const stmt = db.prepare('SELECT * FROM airports');
-  return stmt.all() as Airport[];
+  return airportsData as Airport[];
 }
 
 export function getAirportByIATA(iata: string): Airport | undefined {
-  const db = getAirportsDb();
-  const stmt = db.prepare('SELECT * FROM airports WHERE iata = ?');
-  return stmt.get(iata) as Airport | undefined;
+  return airportsData.find(a => a.iata === iata) as Airport | undefined;
 }
 
 export function getAirportsByRegion(region: string): Airport[] {
-  const db = getAirportsDb();
-  const stmt = db.prepare('SELECT * FROM airports WHERE region = ?');
-  return stmt.all(region) as Airport[];
+  return airportsData.filter(a => a.region === region) as Airport[];
 }
 
 export function getAirportsByType(type: string): Airport[] {
-  const db = getAirportsDb();
-  const stmt = db.prepare('SELECT * FROM airports WHERE type = ?');
-  return stmt.all(type) as Airport[];
+  return airportsData.filter(a => a.type === type) as Airport[];
 }
 
 // Statistics
 export function getFlightStats() {
-  const db = getFlightsDb();
+  const flights = flightsData as Flight[];
   
-  const totalFlights = db.prepare('SELECT COUNT(*) as count FROM flights').get() as { count: number };
-  const routeSummary = db.prepare('SELECT * FROM route_summary').all();
+  // Group by route
+  const routeSummary: Record<string, number> = {};
+  flights.forEach(f => {
+    const route = `${f.origin}-${f.destination}`;
+    routeSummary[route] = (routeSummary[route] || 0) + 1;
+  });
   
   return {
-    totalFlights: totalFlights.count,
-    routeSummary
+    totalFlights: flights.length,
+    routeSummary: Object.entries(routeSummary).map(([route, count]) => ({
+      route,
+      count
+    }))
   };
 }
 
 export function getAircraftStats() {
-  const db = getAircraftDb();
-  
-  const totalAircraft = db.prepare('SELECT COUNT(*) as count FROM aircraft').get() as { count: number };
-  const activeAircraft = db.prepare('SELECT COUNT(*) as count FROM aircraft WHERE status = ?').get('Active') as { count: number };
-  const fleetSummary = db.prepare('SELECT * FROM fleet_summary').all();
+  const aircraft = aircraftData as Aircraft[];
+  const activeAircraft = aircraft.filter(a => a.status === 'Active');
   
   return {
-    totalAircraft: totalAircraft.count,
-    activeAircraft: activeAircraft.count,
-    fleetSummary
+    totalAircraft: aircraft.length,
+    activeAircraft: activeAircraft.length,
+    fleetSummary: getFleetSummary()
   };
-}
-
-// Close databases (for cleanup)
-export function closeDatabases() {
-  if (flightsDb) {
-    flightsDb.close();
-    flightsDb = null;
-  }
-  if (aircraftDb) {
-    aircraftDb.close();
-    aircraftDb = null;
-  }
-  if (airportsDb) {
-    airportsDb.close();
-    airportsDb = null;
-  }
 }
 
