@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Footer from '@/components/Footer';
 import { Plane, Users, AlertTriangle, Calendar, Activity, TrendingUp } from 'lucide-react';
+import ADSBStatus from '@/components/ADSBStatus';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function Dashboard() {
@@ -24,7 +25,8 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchLiveFlights = async () => {
       try {
-        const response = await fetch('/api/live-flights?count=5');
+        // Try OpenSky ADS-B first, fallback to simulated data
+        const response = await fetch('/api/adsb/live-flights');
         const data = await response.json();
         if (data.success && data.flights) {
           setLiveFlights(data.flights);
@@ -105,11 +107,14 @@ export default function Dashboard() {
                   Real-time EgyptAir Monitoring
                 </p>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-green-700">
-                  System Online
-                </span>
+              <div className="flex flex-col md:flex-row items-end md:items-center gap-2">
+                <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-green-700">
+                    System Online
+                  </span>
+                </div>
+                <ADSBStatus />
               </div>
             </div>
           </div>
