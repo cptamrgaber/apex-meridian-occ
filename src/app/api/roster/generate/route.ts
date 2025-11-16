@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { generateRoster, calculateRosterStatistics, DEFAULT_ROSTER_OPTIONS } from '@/lib/roster/roster-generator';
 import type { RosterGenerationOptions } from '@/lib/roster/roster-generator';
 import { generateSampleFlights } from '@/data/sample-flights';
-import { mockCrewAssignments } from '@/data/fleet-management-mock';
+import { generateRealCrewAssignments } from '@/lib/real-data-generators';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,9 +13,10 @@ export async function POST(request: NextRequest) {
       ...body.options,
     };
     
-    // Get crew for the specified aircraft type
-    const crew = mockCrewAssignments.filter(
-      c => c.aircraft_type?.code === options.aircraft_type && c.status === 'active'
+    // Get real crew for the specified aircraft type
+    const allCrew = generateRealCrewAssignments();
+    const crew = allCrew.filter(
+      c => c.aircraft_type === options.aircraft_type && c.status === 'active'
     );
     
     if (crew.length === 0) {

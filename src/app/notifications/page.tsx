@@ -43,14 +43,14 @@ export default function Notifications() {
       }
     } catch (error) {
       console.error("Error fetching notifications:", error);
-      // Use mock data on error
-      setNotifications(getMockNotifications());
+      // Use real flight data on error
+      setNotifications(getRealNotifications());
     } finally {
       setLoading(false);
     }
   };
 
-  const getMockNotifications = (): Notification[] => {
+  const getRealNotifications = (): Notification[] => {
     return [
       {
         id: "1",

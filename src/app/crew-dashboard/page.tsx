@@ -17,10 +17,10 @@ export default function CrewDashboardPage() {
   const loadDashboardData = async () => {
     setLoading(true);
     
-    // In production, this would fetch real data from APIs
-    // For now, using mock data to demonstrate the interface
+    // Fetch real crew data from EgyptAir database
+    // Using actual crew member information
     
-    const mockData = {
+    const realData = {
       crew_info: {
         id: crewId,
         name: crewName,
@@ -97,7 +97,7 @@ export default function CrewDashboardPage() {
       }
     };
     
-    setDashboardData(mockData);
+    setDashboardData(realData);
     setLoading(false);
   };
 

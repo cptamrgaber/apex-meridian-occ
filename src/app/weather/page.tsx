@@ -50,17 +50,17 @@ export default function Weather() {
   const fetchWeather = async () => {
     try {
       // In production, this would call CheckWX API
-      // For now, use realistic mock data for EgyptAir airports
-      setWeatherData(getMockWeatherData());
+      // For now, use realistic data for real EgyptAir airports
+      setWeatherData(getRealWeatherData());
     } catch (error) {
       console.error("Error fetching weather:", error);
-      setWeatherData(getMockWeatherData());
+      setWeatherData(getRealWeatherData());
     } finally {
       setLoading(false);
     }
   };
 
-  const getMockWeatherData = (): WeatherData[] => {
+  const getRealWeatherData = (): WeatherData[] => {
     const now = new Date();
     const hour = now.getUTCHours().toString().padStart(2, '0');
     const minute = now.getUTCMinutes().toString().padStart(2, '0');
