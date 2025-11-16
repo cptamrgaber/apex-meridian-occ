@@ -20,10 +20,9 @@ import {
 } from 'lucide-react';
 import type { MonthlyRoster, RosterEntry, CrewAssignment } from '@/types/fleet-management';
 import {
-  mockMonthlyRosters,
-  getRosterEntries,
+  getRostersForChiefPilot,
   getCrewForChiefPilot,
-} from '@/data/fleet-management-mock';
+} from '@/lib/real-data-generators';
 
 export default function RosterDetailPage() {
   const router = useRouter();
@@ -38,15 +37,16 @@ export default function RosterDetailPage() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    // Load roster data
-    const foundRoster = mockMonthlyRosters.find(r => r.id === rosterId);
+    // Load roster data from real captains database
+    const rosters = getRostersForChiefPilot(1); // Get rosters for first chief pilot
+    const foundRoster = rosters.find(r => r.id === rosterId);
     if (!foundRoster) {
       router.push('/chief-pilot');
       return;
     }
 
     setRoster(foundRoster);
-    setEntries(getRosterEntries(rosterId));
+    setEntries(foundRoster.entries || []); // Use entries from roster
     setCrew(getCrewForChiefPilot(foundRoster.chief_pilot_id));
     
     // Set selected date to first day of the month

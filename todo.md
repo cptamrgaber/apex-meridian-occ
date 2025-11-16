@@ -950,3 +950,29 @@
 - [ ] Test dropdown menus on desktop and mobile (deployment in progress)
 - [ ] Deploy new navigation design (deployment in progress)
 
+
+
+
+## USER REQUEST: Fix Header Background Color - Nov 15, 2025
+- [x] Change header background from transparent to white
+- [x] Ensure header is visible on all pages
+- [ ] Deploy fix to production (in progress)
+
+
+
+
+## USER REQUEST: Replace ALL Fake/Placeholder Data with Real Database - Nov 15, 2025
+- [ ] Audit dashboard for fake data
+- [ ] Audit crew page for fake names
+- [ ] Audit fleet page for fake aircraft
+- [ ] Audit schedule page for fake flights
+- [ ] Audit roster page for fake assignments
+- [ ] Audit all API endpoints for mock data
+- [ ] Replace crew names with real captains database (541 captains)
+- [ ] Replace flight data with real flights database (326 flights)
+- [ ] Replace aircraft data with real fleet database (67 aircraft)
+- [ ] Replace airport data with real airports database (95 airports)
+- [ ] Remove all hardcoded mock/sample data
+- [ ] Verify all pages show real EgyptAir data
+- [ ] Deploy with 100% real data
+

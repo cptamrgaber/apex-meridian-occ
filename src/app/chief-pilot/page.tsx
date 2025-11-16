@@ -7,10 +7,10 @@ import MobileBottomNav from '@/components/MobileBottomNav';
 import { Plane, Users, Calendar, FileText, Plus, Download, Check, Clock, AlertCircle } from 'lucide-react';
 import type { ChiefPilot, CrewAssignment, MonthlyRoster } from '@/types/fleet-management';
 import {
-  mockChiefPilots,
+  realChiefPilots,
   getCrewForChiefPilot,
   getRostersForChiefPilot,
-} from '@/data/fleet-management-mock';
+} from '@/lib/real-data-generators';
 
 export default function ChiefPilotDashboard() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function ChiefPilotDashboard() {
     }
 
     // For demo, use first chief pilot (Capt. Ahmed Hassan - A320)
-    const cp = mockChiefPilots[0];
+    const cp = realChiefPilots[0];
     setChiefPilot(cp);
     setCrew(getCrewForChiefPilot(cp.id));
     setRosters(getRostersForChiefPilot(cp.id));
