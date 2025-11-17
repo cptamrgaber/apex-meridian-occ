@@ -4,7 +4,7 @@
  * Replaces all mock data with actual captains, flights, and aircraft
  */
 
-import { getCaptains, getFlights, getAircraft } from './database';
+import { getAllCaptains, getAllFlights, getAllAircraft } from './database';
 import type {
   ChiefPilot,
   CrewAssignment,
@@ -81,7 +81,7 @@ export const REAL_AIRCRAFT_TYPES: AircraftType[] = [
  * Generate real chief pilots from actual EgyptAir captains database
  */
 export function generateRealChiefPilots(): ChiefPilot[] {
-  const captains = getCaptains();
+  const captains = getAllCaptains();
   
   // Select senior captains for chief pilot roles
   // Filter by experience and assign to aircraft types
@@ -143,7 +143,7 @@ export function generateRealChiefPilots(): ChiefPilot[] {
  * Generate real crew assignments from actual captains
  */
 export function generateRealCrewAssignments(chiefPilotId?: number): CrewAssignment[] {
-  const captains = getCaptains();
+  const captains = getAllCaptains();
   const chiefPilots = generateRealChiefPilots();
   
   let targetChiefPilot = chiefPilots[0];
@@ -177,7 +177,7 @@ export function generateRealCrewAssignments(chiefPilotId?: number): CrewAssignme
  * Generate real monthly rosters from actual flights and captains
  */
 export function generateRealMonthlyRosters(chiefPilotId: number): MonthlyRoster[] {
-  const flights = getFlights();
+  const flights = getAllFlights();
   const crew = generateRealCrewAssignments(chiefPilotId);
   
   const rosters: MonthlyRoster[] = [];

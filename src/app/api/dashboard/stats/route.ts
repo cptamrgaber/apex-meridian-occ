@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getFlights, getAircraft, getAirports, getCaptains } from '@/lib/database';
+import { getAllFlights, getAllAircraft, getAllAirports, getAllCaptains } from '@/lib/database';
 
 export async function GET(request: NextRequest) {
   try {
     // Get real EgyptAir data from database
-    const flights = getFlights();
-    const aircraft = getAircraft();
-    const airports = getAirports();
-    const captains = getCaptains();
+    const flights = getAllFlights();
+    const aircraft = getAllAircraft();
+    const airports = getAllAirports();
+    const captains = getAllCaptains();
     
     const stats = {
       activeFlights: 5, // From live flight tracking

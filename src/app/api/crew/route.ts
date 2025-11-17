@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCaptains } from '@/lib/database';
+import { getAllCaptains } from '@/lib/database';
 
 export async function GET(request: NextRequest) {
   try {
     // Get real EgyptAir captains from database
-    const captains = getCaptains();
+    const captains = getAllCaptains();
     
     // Transform to crew format with status
     const crew = captains.slice(0, 150).map((captain, index) => ({
