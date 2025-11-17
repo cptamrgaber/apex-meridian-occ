@@ -992,3 +992,13 @@
 - [ ] Test with real EgyptAir flights (deployment in progress)
 - [ ] Deploy ADS-B features to production (in progress)
 
+
+
+
+## USER REQUEST: Add OpenSky Account Credentials - Nov 16, 2025
+- [ ] Update opensky-adsb.ts to support authentication
+- [ ] Add OPENSKY_USERNAME environment variable
+- [ ] Add OPENSKY_PASSWORD environment variable
+- [ ] Test authenticated API access (40 requests/min)
+- [ ] Deploy with authentication enabled
+

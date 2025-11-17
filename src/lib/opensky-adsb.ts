@@ -66,6 +66,10 @@ export interface FlightPosition {
 
 const OPENSKY_API_BASE = 'https://opensky-network.org/api';
 
+// OpenSky credentials from environment variables
+const OPENSKY_USERNAME = process.env.OPENSKY_USERNAME;
+const OPENSKY_PASSWORD = process.env.OPENSKY_PASSWORD;
+
 /**
  * Get all state vectors from OpenSky Network
  */
@@ -93,7 +97,14 @@ export async function getAllStates(options?: {
   
   const url = `${OPENSKY_API_BASE}/states/all${params.toString() ? '?' + params.toString() : ''}`;
   
-  const response = await fetch(url);
+  // Add authentication headers if credentials are available
+  const headers: HeadersInit = {};
+  if (OPENSKY_USERNAME && OPENSKY_PASSWORD) {
+    const auth = Buffer.from(`${OPENSKY_USERNAME}:${OPENSKY_PASSWORD}`).toString('base64');
+    headers['Authorization'] = `Basic ${auth}`;
+  }
+  
+  const response = await fetch(url, { headers });
   
   if (!response.ok) {
     throw new Error(`OpenSky API error: ${response.status} ${response.statusText}`);
