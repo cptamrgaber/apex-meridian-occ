@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getFlights } from '@/lib/database';
+import { getAllFlights } from '@/lib/database';
 
 export async function GET(request: NextRequest) {
   try {
     // Generate real notifications from operational data
-    const flights = getFlights();
+    const flights = getAllFlights();
     
     // Create realistic notifications based on real EgyptAir operations
     const notifications: any[] = [];
