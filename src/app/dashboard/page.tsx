@@ -94,7 +94,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50">
       <Header onLogout={handleLogout} />
       
-      <main className="pt-16 w-full mobile-page-content">
+      <main className="pt-28 md:pt-16 w-full mobile-page-content">
         {/* Header */}
         <div className="bg-white border-b border-gray-200">
           <div className="container mx-auto px-4 md:px-6 py-4 md:py-6">

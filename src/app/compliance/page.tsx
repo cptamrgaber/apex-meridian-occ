@@ -137,7 +137,7 @@ export default function CompliancePage() {
     <div className="flex h-screen bg-slate-950">
       <Header onLogout={handleLogout} />
       
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto pt-28 md:pt-16">
         <div className="p-6 space-y-6">
           {/* Header */}
           <div className="flex items-center justify-between">

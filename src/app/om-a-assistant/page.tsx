@@ -109,7 +109,7 @@ export default function OMAAssistantPage() {
     <div className="flex h-screen bg-slate-950">
       <Header onLogout={handleLogout} />
       
-      <main className="flex-1 flex flex-col overflow-hidden">
+      <main className="flex-1 flex flex-col overflow-hidden pt-28 md:pt-16">
         {/* Header */}
         <div className="bg-slate-900 border-b border-slate-800 px-6 py-4">
           <div className="flex items-center gap-3">

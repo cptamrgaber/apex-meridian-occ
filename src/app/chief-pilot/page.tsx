@@ -67,7 +67,7 @@ export default function ChiefPilotDashboard() {
     <div className="flex h-screen bg-gray-50">
       <Header onLogout={handleLogout} />
       
-      <main className="flex-1 overflow-auto mobile-page-content">
+      <main className="flex-1 overflow-auto mobile-page-content pt-28 md:pt-16">
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-6">
           <div className="flex items-center justify-between">

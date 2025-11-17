@@ -1002,3 +1002,11 @@
 - [ ] Test authenticated API access (40 requests/min)
 - [ ] Deploy with authentication enabled
 
+
+
+
+## USER REQUEST: Fix Header Layout Issue
+- [ ] Fix header layout - menu is floating over header text making it unreadable
+- [ ] Integrate menu properly into header structure instead of floating overlay
+- [ ] Ensure header text is visible and not covered by navigation
+

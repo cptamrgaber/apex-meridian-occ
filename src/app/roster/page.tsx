@@ -157,7 +157,7 @@ export default function RosterPage() {
     <div className="min-h-screen flex bg-slate-950">
       <Header onLogout={handleLogout} />
       
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col pt-28 md:pt-16">
         {/* Header */}
         <div className="bg-slate-900 border-b border-slate-800 p-6">
           <div className="flex items-center justify-between">

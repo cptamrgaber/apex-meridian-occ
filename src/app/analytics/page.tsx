@@ -129,7 +129,7 @@ export default function AnalyticsPage() {
     <div className="flex h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <Header onLogout={handleLogout} />
       
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto pt-28 md:pt-16">
         {/* Header */}
         <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-8 py-6 border-b border-indigo-700">
           <div className="flex items-center justify-between">

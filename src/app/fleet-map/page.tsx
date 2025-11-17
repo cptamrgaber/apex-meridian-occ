@@ -103,7 +103,7 @@ export default function FleetMapPage() {
     <div className="flex h-screen bg-slate-950">
       <Header onLogout={handleLogout} />
       
-      <main className="flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col pt-28 md:pt-16">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 px-6 py-4 border-b border-blue-700">
           <div className="flex items-center justify-between">

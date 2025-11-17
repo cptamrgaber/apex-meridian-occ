@@ -224,7 +224,7 @@ export default function Weather() {
   return (
     <div className="flex min-h-screen bg-slate-950">
       <Header onLogout={handleLogout} />
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 pt-28 md:pt-16">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Aviation Weather</h1>

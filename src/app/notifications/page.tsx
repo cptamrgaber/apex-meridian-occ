@@ -207,7 +207,7 @@ export default function Notifications() {
   return (
     <div className="flex min-h-screen bg-slate-950">
       <Header onLogout={handleLogout} />
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 pt-28 md:pt-16">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
