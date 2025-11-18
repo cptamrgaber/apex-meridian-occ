@@ -2,14 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Clean, Minimal Light Theme - Apple/Google Style */
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
 
-/* Fonts */
+/* Aviation Professional Design System */
+
 :root {
   --font-ar: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial, sans-serif;
   --font-en: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial, sans-serif;
 
-  /* Light Theme Colors - Clean & Professional */
+  /* Aviation Blue Palette */
+  --aviation-blue-50:  #f0f7ff;
+  --aviation-blue-100: #e0effe;
+  --aviation-blue-200: #b9dffc;
+  --aviation-blue-300: #7cc4f9;
+  --aviation-blue-400: #36a5f4;
+  --aviation-blue-500: #0c8ce9;
+  --aviation-blue-600: #006fc7;
+  --aviation-blue-700: #0158a1;
+  --aviation-blue-800: #064a85;
+  --aviation-blue-900: #0b3e6e;
+
+  /* Status Colors */
+  --status-online:    #10b981;
+  --status-warning:   #f59e0b;
+  --status-critical:  #ef4444;
+  --status-offline:   #6b7280;
+  --status-scheduled: #60a5fa;
+  --status-enroute:   #0c8ce9;
+
+  /* Light Theme */
   --bg: #ffffff;
   --bg-secondary: #f9fafb;
   --panel: #ffffff;
@@ -17,11 +40,11 @@
   --text: #111827;
   --text-secondary: #6b7280;
   --subtle: #9ca3af;
-  --brand: #3b82f6;
-  --brand-weak: #60a5fa;
-  --ok: #10b981;
-  --warn: #f59e0b;
-  --bad: #ef4444;
+  --brand: var(--aviation-blue-600);
+  --brand-weak: var(--aviation-blue-400);
+  --ok: var(--status-online);
+  --warn: var(--status-warning);
+  --bad: var(--status-critical);
   --border: #e5e7eb;
   --ring: #dbeafe;
 }
@@ -37,18 +60,27 @@ body {
   background: var(--bg-secondary);
   font-size: 16px;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :root[dir="rtl"] body {
   font-family: var(--font-ar);
 }
 
-/* Cards / panels - Clean with subtle shadows */
+/* Enhanced Cards with Gradients */
 .app-card {
-  background: var(--panel);
+  background: linear-gradient(to bottom right, var(--panel), rgba(249, 250, 251, 0.5));
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.app-card:hover {
+  box-shadow: 0 4px 12px -1px rgb(0 0 0 / 0.15);
+  transform: translateY(-2px);
+  border-color: rgba(229, 231, 235, 0.8);
 }
 
 .clean-card {
@@ -63,27 +95,135 @@ body {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-/* Utilities */
+/* Enhanced Stat Cards with Glow Effects */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, #ffffff, rgba(249, 250, 251, 0.5));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  opacity: 0.5;
+  background: radial-gradient(circle, var(--aviation-blue-500) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 12px -1px rgb(0 0 0 / 0.15);
+  transform: translateY(-2px);
+  border-color: rgba(229, 231, 235, 0.8);
+}
+
+.stat-number {
+  position: relative;
+  z-index: 10;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.stat-description {
+  font-size: 12px;
+  color: var(--subtle);
+  margin-top: 8px;
+}
+
+/* Color-Coded Status Badges */
 .badge {
+  display: inline-flex;
+  align-items: center;
   border-radius: 999px;
   padding: 4px 12px;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
 }
 
-.badge.ok {
-  background: #d1fae5;
+.badge.ok,
+.badge-success {
+  background: rgba(16, 185, 129, 0.15);
   color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-.badge.warn {
-  background: #fef3c7;
+.badge.warn,
+.badge-warning {
+  background: rgba(245, 158, 11, 0.15);
   color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
-.badge.bad {
-  background: #fee2e2;
+.badge.bad,
+.badge-danger {
+  background: rgba(239, 68, 68, 0.15);
   color: #991b1b;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-info {
+  background: rgba(96, 165, 250, 0.15);
+  color: #1e40af;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.badge-enroute {
+  background: rgba(12, 140, 233, 0.15);
+  color: #014a85;
+  border: 1px solid rgba(12, 140, 233, 0.3);
+}
+
+/* Flight Cards */
+.flight-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(243, 244, 246, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  transition: all 0.2s;
+}
+
+.flight-card:hover {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+/* Alert Cards */
+.alert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(243, 244, 246, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.5);
 }
 
 /* Tables - Clean design */
@@ -132,12 +272,6 @@ body {
   background: var(--text-secondary);
 }
 
-/* Remove any decorative overlays */
-*::before,
-*::after {
-  /* Ensure no pseudo-elements create overlays */
-}
-
 /* Input fields - Clean design */
 .clean-input {
   width: 100%;
@@ -178,7 +312,7 @@ body {
 }
 
 .premium-button-primary:hover {
-  background: #2563eb;
+  background: #0158a1;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
@@ -186,31 +320,30 @@ body {
   transform: scale(0.98);
 }
 
-/* Stat cards */
-.stat-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-  transition: all 0.2s;
+/* Glow Effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(12, 140, 233, 0.3);
 }
 
-.stat-card:hover {
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+.glow-success {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
-.stat-number {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 8px;
+.glow-warning {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
 }
 
-.stat-label {
-  font-size: 14px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
+.glow-danger {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
+/* Smooth Transitions */
+.transition-smooth {
+  transition: all 200ms cubic-bezier(0.45, 0, 0.15, 1);
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
