@@ -77,15 +77,17 @@ export default function ChiefPilotDashboard() {
                 Chief Pilot Dashboard
               </h1>
               <p className="text-sm text-gray-600">
-                {chiefPilot.name} • {chiefPilot.aircraft_type?.name} Fleet Manager
+                {chiefPilot.name} • {chiefPilot.aircraft_type?.name || 'Aircraft'} Fleet Manager
               </p>
             </div>
-            <div className="hidden md:flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg border border-blue-200">
-              <Plane className="w-5 h-5 text-blue-600" />
-              <span className="text-sm font-medium text-blue-700">
-                {chiefPilot.aircraft_type?.code}
-              </span>
-            </div>
+            {chiefPilot.aircraft_type && (
+              <div className="hidden md:flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg border border-blue-200">
+                <Plane className="w-5 h-5 text-blue-600" />
+                <span className="text-sm font-medium text-blue-700">
+                  {chiefPilot.aircraft_type.code}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
