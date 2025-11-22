@@ -30,8 +30,9 @@ export default function Login() {
     );
 
     if (user) {
-      // Store user info in localStorage
+      // Store user info and token in localStorage
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", "authenticated");
       
       // Redirect based on role
       if (user.role === "chief_pilot") {
